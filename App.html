@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -30,27 +30,24 @@
       <div class="row align-items-start">
         <div class="col-md-2">
           <ul class="custom-menu">
-            <li><a href="index.html">Works</a></li>             
+            <li><a href="index.html">Works</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div class="col-md-6 d-none d-md-block  mr-auto">
+        <div class="col-md-6 d-none d-md-block mr-auto">
           <div class="tweet d-flex">
-           <span class="bi bi-behance text-white mt-2 mr-3"></span>
+            <span class="bi bi-behance text-white mt-2 mr-3"></span>
             <div>
-              <p><em>For more details, please download my resume from below. <br> <a href="#"></a></em></p>
-          <p><a href="./assets/img/SDE.pdf" class="readmore">DOWNLOAD MY RESUME</a></p>
-       
-        </div>
+              <p><em>For more details, please download my resume from below.<br> <a href="#"></a></em></p>
+              <p><a href="./assets/img/SDE.pdf" class="readmore">DOWNLOAD MY RESUME</a></p>
+            </div>
           </div>
         </div>
         <div class="col-md-4 d-none d-md-block">
           <h3>About Me</h3>
-          <p>Hello there! I'm a software developer located in Bangalore, Karnataka, India. With a Bachelor's degree in Computer Science & Engineering and a 3-year Diploma degree in Computer Science and Technology, I have a keen interest in UI/UX design. My focus lies in creating visually appealing and user-friendly designs that are characterized by simplicity and originality. In addition to my software development skills, I am also deeply passionate about photography and content creation. <br> <a href = "mailto: shilpabanerjee50@gmail.com">Email: shilpabanerjee50@gmail.com </a></p>
-     
+          <p>Hello there! I'm a software developer located in Bangalore, Karnataka, India. With a Bachelor's degree in Computer Science & Engineering and a 3-year Diploma degree in Computer Science and Technology, I have a keen interest in UI/UX design. My focus lies in creating visually appealing and user-friendly designs that are characterized by simplicity and originality. In addition to my software development skills, I am also deeply passionate about photography and content creation.<br> <a href="mailto:shilpabanerjee50@gmail.com">Email: shilpabanerjee50@gmail.com</a></p>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -68,98 +65,128 @@
     <section class="section">
       <div class="container">
         <div class="row mb-4 align-items-center">
-          <div class="col-md-6" data-aos="fade-up">
+          <div class="col-md-12" data-aos="fade-up">
             <h2>RESPONSIVE APP DEVELOPMENT</h2>
+            <ul class="nav nav-tabs" id="appTabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="native-apps-tab" data-bs-toggle="tab" href="#native-apps" role="tab" aria-controls="native-apps" aria-selected="true">React Native Apps</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="flutter-apps-tab" data-bs-toggle="tab" href="#flutter-apps" role="tab" aria-controls="flutter-apps" aria-selected="false">Flutter Apps</a>
+              </li>
+          <!----   <li class="nav-item">
+                <a class="nav-link" id="swift-ui-java-kotlin-apps-tab" data-bs-toggle="tab" href="#swift-ui-java-kotlin-apps" role="tab" aria-controls="swift-ui-java-kotlin-apps" aria-selected="false">SwiftUI/Java/Kotlin Apps</a>
+              </li> -->
 
-   <span style="font-weight: 500; color:#000000; font-size: 25px;">Travel App</span>
-            <p style="font-size:20px; margin:1rem">
-             Here Developed a visually appealing and user-friendly travel app using React Native. This app features a modern UI design and utilizes Tailwind CSS, linear gradients, and Heroicons to create an engaging experience for users. Below is a detailed overview of the various screens and the tech stack used to build the app.
-                </p>
+            </ul>
+            <div class="tab-content" id="appTabsContent">
+              <!-- Native Apps Tab -->
+              <div class="tab-pane fade show active" id="native-apps" role="tabpanel" aria-labelledby="native-apps-tab">
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h3>Travel App</h3>
+                    <p>Developed a visually appealing and user-friendly travel app using React Native. This app features a modern UI design and utilizes Tailwind CSS, linear gradients, and Heroicons to create an engaging experience for users.</p>
+                    <video loop autoplay src="./assets/img/Travel-App.mov" alt="Travel App Video" class="img-fluid" style="padding:2rem"></video>
+                
 
-            
+                    <h5>UI Screens</h5>
+                    <p>Explore various screens of the Travel App, showcasing the intuitive and vibrant design. It aims to provide a seamless travel planning experience with features like destination browsing.</p>
+                    <img src="assets/img/Travel-App-Output.png" class="img-fluid" alt="Travel App Screens" style="padding:2rem">
+  
+                    <p><a href="https://github.com/ShraboniBanerjee/Travel-App" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: React Native, Tailwind CSS & Expo</li>
+                    </ul>
+                  </div>
+
+                  
+                  <div class="col-md-6">
+                    <h3>Fitness App</h3>
+                    <p>The Fitness App is a comprehensive mobile application designed to assist users in achieving their fitness goals conveniently and effectively. Developed using like React Native, Expo, and React Native Navigation. It offers a seamless user experience across both iOS and Android platforms.</p>
+                    <video loop autoplay src="./assets/img/Fitness-App.mov" alt="Fitness App Video" class="img-fluid" style="padding:2rem"></video>
+                    <h5>UI Screens</h5>
+                    <p>View the different screens of the Fitness App, demonstrating a seamless and engaging user experience.</p>
+                    <img src="assets/img/Fitness-App.png" class="img-fluid" alt="Fitness App Screens" style="padding:2rem" >
+                    <p><a href="https://github.com/ShraboniBanerjee/Fitness-App" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: React Native, React Native Navigation & Expo</li>
+                    </ul>
+                  </div>
+
+                  <div class="col-md-6" style="padding-top: 2%;">
+                    <h3>Food Delivery App</h3>
+                    <p>Developed a fully functional food delivery app utilizing a modern tech stack to create a seamless user experience. The app was built with React Native, enabling cross-platform compatibility for Android, iOS, and Windows devices.</p>
+                    <video loop autoplay src="./assets/img/Food-Delivery-App.mov" alt="Food Delivery App Video" class="img-fluid" style="padding:2rem"></video>
+                   <p>Take a look at the UI screens of the Food Delivery App, highlighting its smooth navigation and user-friendly interface.</p>
+                    <h5>UI Screens</h5>
+                    <img src="assets/img/Food-Delivery-App-Output.png" class="img-fluid" alt="Food Delivery App Screens" style="padding:2rem">
+                    <p><a href="https://github.com/ShraboniBanerjee/Food-Delivery-App" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: React Native, React Native Navigation, Expo & Sanity CMS</li>
+                    </ul>
+                  </div>
+
+
+                  <div class="col-md-6" style="padding-top: 2%;">
+                    <h3>Food Recipes App</h3>
+                    <p>A beautifully designed mobile application for iOS and Android, allowing users to explore, search, and manage recipes with ease.The app provides an intuitive and seamless experience, making it simple for users to discover new recipes.</p>
+                    <video loop autoplay src="./assets/img/Food Recipes App.mov" alt="Food Recipes App Video" class="img-fluid" style="padding:2rem"></video>
+                    <p>Discover the UI screens of the Food Recipes App, featuring an elegant design for easy recipe browsing.</p>
+                    <h5>UI Screens</h5>
+                    <img src="assets/img/Food-Recipes-App-Output.png" class="img-fluid" alt="Food Recipes App Screens" style="padding:2rem">
+                    <p><a href="https://github.com/ShraboniBanerjee/Food-recipes-app" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: React Native, Redux, Expo, React Native Navigation & Expo</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+   
+             
+       
+              <!-- Swift UI/Java/Kotlin Apps Tab -->
+              <div class="tab-pane fade" id="swift-ui-java-kotlin-apps" role="tabpanel" aria-labelledby="swift-ui-java-kotlin-apps-tab">
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h3>Example Swift UI App</h3>
+                    <p>Details about the Swift UI app.</p>
+                    <video loop autoplay src="./assets/img/Example-Swift-UI-App.mov" alt="Example Swift UI App Video" class="img-fluid"></video>
+                    <h5>UI Screens</h5>
+                    <img src="assets/img/Example-Swift-UI-App.png" class="img-fluid" alt="Example Swift UI App Screens">
+                    <p><a href="https://github.com/ShraboniBanerjee/Example-Swift-UI-App" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: Swift UI</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h3>Example Java/Kotlin App</h3>
+                    <p>Details about the Java/Kotlin app.</p>
+                    <video loop autoplay src="./assets/img/Example-Java-Kotlin-App.mov" alt="Example Java/Kotlin App Video" class="img-fluid"></video>
+                    <h5>UI Screens</h5>
+                    <img src="assets/img/Example-Java-Kotlin-App.png" class="img-fluid" alt="Example Java/Kotlin App Screens">
+                    <p><a href="https://github.com/ShraboniBanerjee/Example-Java-Kotlin-App" class="readmore">Visit Github</a></p>
+                    <h5>Tech-Stack</h5>
+                    <ul>
+                      <li>Development: Java, Kotlin</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="site-section pb-0">
-        <div class="container">
-          <div class="row align-items-stretch">
-            <div class="col-md-8" data-aos="fade-up">
-        
-              <img src="assets/img/Travel-App-Output.png" class="img-fluid">
-              <p style="padding: 1rem;"><a href="https://github.com/ShraboniBanerjee/Travel-App" class="readmore">Visit Github</a></p>
-        <p style="font-weight: 500; color:#000000; font-size: 25px;">Tech-Stack:
-              <ul>
-               
-                <li>Development: React Native, Tailwind CSS & Expo</li>
-              </ul>
-            </p>
-      
-          
+  </main>
 
-   <span style="font-weight: 500; color:#000000; font-size: 25px;">FITNESS APP</span>
-          <p style="font-size:20px; margin:1rem">This project is a Fitness App developed using React Native, Expo, and React Native Navigation.</p>
-     
-            
-            <img src="assets/img/Fitness-App.png" class="img-fluid">
-        
-            <p style="padding: 1rem;"><a href="https://github.com/ShraboniBanerjee/Fitness-App" class="readmore">Visit Github</a></p>
-         
-         <p style="font-weight: 500; color:#000000; font-size: 25px;">Tech-Stack:
-            <ul>
-                <li>Development: React Native, React Native Navigation & Expo</li>
-            </ul>
-          </p>
-
-
-          
-           <span style="font-weight: 500; color:#000000; font-size: 25px;">Food Delivery App</span>
-          <p style="font-size:20px; margin:1rem">Here developed a fully functional food delivery app utilizing a modern tech stack to create a seamless user experience. The app was built with React Native, enabling cross-platform compatibility for Android, iOS, and Windows devices.
-
-            For the backend, Sanity CMS was implemented, providing a robust and flexible system. Navigation between screens was handled using React Native Navigation, ensuring smooth transitions and an user-friendly interface.
-            
-            Additionally, the app features a sleek and animated checkout flow designed to enhance the overall UI/UX. Tailwind CSS was employed to style the app, offering a utility-first approach that streamlined the development process and resulted in a polished and responsive design.</p>
-     
-          <img src="assets/img/Food-Delivery-App-Output.png" class="img-fluid">
-          <p style="padding: 1rem;"><a href="https://github.com/ShraboniBanerjee/Food-Delivery-App" class="readmore">Visit Github</a></p>
-        <p style="font-weight: 500; color:#000000; font-size: 25px;">Tech-Stack:
-          <ul>
-            <li>Development: React Native, React Native Navigation, Expo & Sanity CMS</li>
-          </ul>
-        </p>
-
-
-          <span style="font-weight: 500; color:#000000; font-size: 25px;">Food Recipes App</span>
-        <p style="font-size:20px; margin:1rem"> A beautifully designed mobile application for iOS and Android, allowing users to explore, search, and manage recipes with ease.
-</p>
-         <p style="font-size:20px; margin:1rem"> Features
-            
-         <ul>  
-            <li>Recipes List: Browse various recipes.</li>
-          <li>Categories: Discover recipes by categories.</li>  
-           <li>Ingredients: View and manage ingredients.</li> 
-           <li>Recipe Details: Detailed recipe views with descriptions and photos.</li>
-           </ul> </p>
-        <img src="assets/img/Food-Recipes-App-Output.png" class="img-fluid">
-
-          <p style="padding: 1rem;"><a href="https://github.com/ShraboniBanerjee/Food-recipes-app" class="readmore">Visit Github</a></p>
-        
-          <p style="font-weight: 500; color:#000000; font-size: 25px;">Tech-Stack:
-          <ul>
-            <li>Development: React Native, Redux, Expo, React Native Navigation & Expo</li>
-          </ul>
-        </p>
-            </div>
-        </div>
-             
-              </div>
-        </div>
-</section>
-
-    </main>
-
-    <!-- End #main -->
-
+  <!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -175,4 +202,4 @@
 
 </body>
 
-</html
+</html>
