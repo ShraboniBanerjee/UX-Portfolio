@@ -113,10 +113,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0a0518;border-bo
 
 /* SCOREBOARD */
 #scoreboard{
-  position:absolute;top:62px;right:1rem;z-index:13;
+  position:absolute;bottom:120px;left:1rem;z-index:13;
   background:rgba(0,0,0,0.82);border:2px solid var(--yellow);
-  padding:0.6rem 0.8rem;min-width:160px;display:none;
+  padding:0.6rem 0.8rem;min-width:150px;display:none;
 }
+#musicBtn{
+  position:absolute;bottom:120px;right:1rem;z-index:13;
+  font-family:var(--pixel);font-size:0.38rem;
+  background:rgba(0,0,0,0.82);color:var(--yellow);
+  border:2px solid var(--yellow);padding:0.4rem 0.7rem;
+  cursor:pointer;display:none;letter-spacing:0.05em;
+  transition:background 0.1s,color 0.1s;
+}
+#musicBtn:hover{background:var(--yellow);color:var(--dark);}
 .sb-title{font-family:var(--pixel);font-size:0.38rem;color:var(--yellow);margin-bottom:0.5rem;display:block;text-align:center;}
 .sb-row{display:flex;justify-content:space-between;gap:1rem;font-family:var(--pixel);font-size:0.32rem;color:#aaa;margin-bottom:0.25rem;}
 .sb-row span:first-child{color:var(--pink);}
@@ -272,11 +281,14 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     <span id="livesHud">♥♥♥</span>
   </div>
 
-  <!-- SCOREBOARD (top 5 this session) -->
+  <!-- SCOREBOARD (bottom-left) -->
   <div id="scoreboard">
     <span class="sb-title">★ SCOREBOARD ★</span>
     <div id="sbRows"></div>
   </div>
+
+  <!-- MUSIC TOGGLE (bottom-right) -->
+  <button id="musicBtn">♪ MUSIC: ON</button>
 
   <!-- START SCREEN -->
   <div id="startScreen">
@@ -494,6 +506,71 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // ══════════════════════════════════════════════════════════
+//  PIXEL MUSIC (Web Audio chiptune)
+// ══════════════════════════════════════════════════════════
+let audioCtx=null, musicNodes=[], musicOn=true;
+const musicBtn=document.getElementById('musicBtn');
+
+function initAudio(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  playChiptune();
+}
+
+function playChiptune(){
+  if(!audioCtx||!musicOn) return;
+  // Simple 8-bit style looping melody using oscillators
+  const melody=[
+    523,587,659,698,784,880,988,1047, // C5 up
+    988,880,784,698,659,587,523,494,  // back down
+    523,659,784,1047,784,659,523,440, // arpeggio
+    440,523,659,784,659,523,440,392   // ending phrase
+  ];
+  const dur=0.12, gap=0.02;
+  let t=audioCtx.currentTime+0.05;
+  const gainMaster=audioCtx.createGain();
+  gainMaster.gain.setValueAtTime(0.08,t);
+  gainMaster.connect(audioCtx.destination);
+  musicNodes.push(gainMaster);
+
+  function scheduleNote(freq,start,length){
+    const osc=audioCtx.createOscillator();
+    const g=audioCtx.createGain();
+    osc.type='square';
+    osc.frequency.setValueAtTime(freq,start);
+    g.gain.setValueAtTime(0.8,start);
+    g.gain.linearRampToValueAtTime(0,start+length-0.01);
+    osc.connect(g); g.connect(gainMaster);
+    osc.start(start); osc.stop(start+length);
+    musicNodes.push(osc);
+  }
+
+  // Bass line
+  const bass=[131,131,165,175,196,196,220,262,220,196,165,175,131,131,110,98];
+  melody.forEach((freq,i)=>{
+    scheduleNote(freq, t+i*(dur+gap), dur);
+    if(i<bass.length) scheduleNote(bass[i%bass.length], t+i*(dur+gap), dur*2);
+  });
+
+  // Schedule loop
+  const loopDur=(melody.length)*(dur+gap)*1000+200;
+  const loopId=setTimeout(()=>{ if(musicOn) playChiptune(); }, loopDur);
+  musicNodes.push({stop:()=>clearTimeout(loopId)});
+}
+
+function stopMusic(){
+  musicNodes.forEach(n=>{ try{n.stop&&n.stop(); n.disconnect&&n.disconnect();}catch(e){} });
+  musicNodes=[];
+}
+
+musicBtn.addEventListener('click',()=>{
+  musicOn=!musicOn;
+  musicBtn.textContent=musicOn?'♪ MUSIC: ON':'♪ MUSIC: OFF';
+  if(musicOn){ initAudio(); playChiptune(); }
+  else stopMusic();
+});
+
+// ══════════════════════════════════════════════════════════
 //  MINI GAME
 // ══════════════════════════════════════════════════════════
 (function(){
@@ -511,46 +588,55 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   const retryBtn = document.getElementById('retryBtn');
   const sbPanel  = document.getElementById('scoreboard');
   const sbRows   = document.getElementById('sbRows');
+  const mbtn     = document.getElementById('musicBtn');
 
-  const GH = 108; // ground height (matches CSS)
-  let W, H, gY;
+  const GH=108;
+  let W,H,gY;
 
   function resize(){
-    W = canvas.width  = heroSec.offsetWidth;
-    H = canvas.height = heroSec.offsetHeight;
-    gY = H - GH;
+    W=canvas.width=heroSec.offsetWidth;
+    H=canvas.height=heroSec.offsetHeight;
+    gY=H-GH;
   }
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize',resize);
 
-  // ── session scoreboard ──────────────────────────────────
-  const leaderboard = [];
+  // scoreboard
+  const leaderboard=[];
   function addScore(s){
     leaderboard.push(s);
     leaderboard.sort((a,b)=>b-a);
     leaderboard.splice(5);
-    sbRows.innerHTML = leaderboard.map((v,i)=>`
-      <div class="sb-row"><span>#${i+1}</span><span style="color:var(--yellow)">${v}</span></div>`).join('');
+    sbRows.innerHTML=leaderboard.map((v,i)=>
+      `<div class="sb-row"><span>#${i+1}</span><span style="color:var(--yellow)">${v}</span></div>`
+    ).join('');
   }
 
-  // ── state ────────────────────────────────────────────────
-  let state='start', frame=0, score=0, hiscore=0, lives=3;
-  let speed, spawnT, coinT, invT;
-  let player, coins, monsters, particles;
+  // state
+  let state='start',frame=0,score=0,hiscore=0,lives=3;
+  let speed,spawnT,coinT,invT;
+  let player,coins,monsters,particles;
+
+  // player movement config
+  const PLAYER_MIN_X = 60;
+  const PLAYER_MAX_X = 220; // stays in left third, world scrolls past
+  let keys={left:false,right:false};
 
   function init(){
     gY=H-GH; speed=3.5; score=0; lives=3;
     frame=0; spawnT=80; coinT=40; invT=0;
     coins=[]; monsters=[]; particles=[];
-    player={x:80,y:gY-64,w:48,h:64,vy:0,ground:true,wf:0,wt:0};
+    player={x:80,y:gY-64,w:48,h:64,vy:0,ground:true,wf:0,wt:0,vx:0};
   }
 
-  // ── input ────────────────────────────────────────────────
+  // input
   function doJump(){
     if(state==='start'){
       startSc.style.display='none';
       hudEl.style.display='flex';
       sbPanel.style.display='block';
+      mbtn.style.display='block';
+      initAudio();
       state='play'; init(); return;
     }
     if(state==='over'){ restart(); return; }
@@ -561,18 +647,25 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     state='play'; init();
   }
 
+  // keyboard
   document.addEventListener('keydown',e=>{
-    if(e.code==='Space'||e.code==='ArrowUp'){ e.preventDefault(); doJump(); }
+    if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();doJump();}
+    if(e.code==='ArrowLeft')  keys.left=true;
+    if(e.code==='ArrowRight') keys.right=true;
   });
-  canvas.addEventListener('click', doJump);
+  document.addEventListener('keyup',e=>{
+    if(e.code==='ArrowLeft')  keys.left=false;
+    if(e.code==='ArrowRight') keys.right=false;
+  });
+  canvas.addEventListener('click',doJump);
   canvas.addEventListener('touchstart',e=>{e.preventDefault();doJump();},{passive:false});
-  retryBtn.addEventListener('click', restart);
+  retryBtn.addEventListener('click',restart);
 
-  // ── pixel draw helpers ───────────────────────────────────
-  function px(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(Math.round(x),Math.round(y),w,h); }
+  // draw helpers
+  function px(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
 
   function drawPlayer(x,y,wf,inv){
-    if(inv && Math.floor(Date.now()/80)%2===0) return;
+    if(inv&&Math.floor(Date.now()/80)%2===0) return;
     px(x+14,y+2, 20,6, '#2a1a0a'); px(x+12,y+4,4,4,'#2a1a0a');
     px(x+14,y+4, 20,16,'#f5c5a0');
     px(x+16,y+8, 4,4,'#1a0a2e'); px(x+26,y+8,4,4,'#1a0a2e');
@@ -588,7 +681,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   function drawCoin(x,y,sz,t){
     const scx=Math.abs(Math.sin(t*0.09))*0.65+0.35;
-    const w=sz*scx, off=(sz-w)/2;
+    const w=sz*scx,off=(sz-w)/2;
     px(x+off,y,         w,sz*0.15,'#ffe066');
     px(x+off,y+sz*0.15, w,sz*0.7, '#ffcc00');
     px(x+off,y+sz*0.85, w,sz*0.15,'#ffe066');
@@ -600,24 +693,19 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
   function drawMonster(x,y,w,h,t){
     const b=Math.sin(t*0.12)*2;
-    // horns
-    px(x+8, y+b-16, 6,10,'#c0392b'); px(x+w-14,y+b-16,6,10,'#c0392b');
-    // body
+    px(x+8, y+b-16,6,10,'#c0392b'); px(x+w-14,y+b-16,6,10,'#c0392b'); // horns
     px(x,   y+b,    w,  h*0.7,'#e74c3c');
     px(x+4, y+b-8,  w-8,12,  '#e74c3c');
     px(x+6, y+b-12, w-12,8,  '#c0392b');
-    // eyes
     px(x+8, y+b+4,  8,8,'#fff'); px(x+w-16,y+b+4,8,8,'#fff');
     px(x+10,y+b+6,  4,4,'#1a0a2e'); px(x+w-14,y+b+6,4,4,'#1a0a2e');
-    // mouth angry
     px(x+10,y+b+16, 4,3,'#7a0000'); px(x+16,y+b+14,4,3,'#7a0000'); px(x+22,y+b+16,4,3,'#7a0000');
-    // feet
     px(x+2, y+b+h*0.7,10,6,'#c0392b'); px(x+w-12,y+b+h*0.7,10,6,'#c0392b');
   }
 
   function burst(x,y,color,n){
     for(let i=0;i<n;i++){
-      const a=(Math.PI*2/n)*i+Math.random()*0.5, sp=2+Math.random()*4;
+      const a=(Math.PI*2/n)*i+Math.random()*0.5,sp=2+Math.random()*4;
       particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,life:36+Math.random()*18,color,sz:4+Math.random()*4});
     }
   }
@@ -629,7 +717,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     livesEl.textContent='♥'.repeat(Math.max(0,lives))+'♡'.repeat(Math.max(0,3-lives));
   }
 
-  // ── ground tiles ─────────────────────────────────────────
   function drawGround(){
     for(let tx=0;tx<W;tx+=16){
       ctx.fillStyle=tx%32===0?'#5cad3c':'#4a9a2e'; ctx.fillRect(tx,gY,16,4);
@@ -640,7 +727,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     ctx.fillStyle='#5a3a1a'; ctx.fillRect(0,gY+4,W,2);
   }
 
-  // ── main loop ─────────────────────────────────────────────
   function loop(){
     requestAnimationFrame(loop);
     ctx.clearRect(0,0,W,H);
@@ -656,9 +742,9 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
       // spawn monsters
       spawnT--;
       if(spawnT<=0){
-        const mh=44+Math.random()*22, mw=36+Math.random()*18;
+        const mh=44+Math.random()*22,mw=36+Math.random()*18;
         monsters.push({x:W+40,y:gY-mh,w:mw,h:mh,t:0});
-        spawnT=Math.max(30, 60+Math.random()*80-score/220);
+        spawnT=Math.max(30,60+Math.random()*80-score/220);
       }
 
       // spawn coins
@@ -672,18 +758,34 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
       }
     }
 
-    // physics
+    // ── player horizontal movement ──────────────────────
+    if(state==='play'){
+      const PSPD=3.5;
+      if(keys.left)  player.vx=-PSPD;
+      else if(keys.right) player.vx=PSPD;
+      else player.vx*=0.7; // friction
+
+      player.x+=player.vx;
+      // clamp: player can roam left third of screen
+      if(player.x<20) player.x=20;
+      if(player.x>W*0.45-player.w) player.x=W*0.45-player.w;
+    }
+
+    // ── vertical physics ──────────────────────────────
     if(state==='play'||invT>0){
       player.vy+=0.75; player.y+=player.vy;
       if(player.y>=gY-player.h){ player.y=gY-player.h; player.vy=0; player.ground=true; }
-      player.wt++; if(player.wt>8){player.wt=0;player.wf=(player.wf+1)%3;}
+      // walk animation — faster when moving
+      const moving=Math.abs(player.vx)>0.5||!player.ground;
+      if(moving){ player.wt++; if(player.wt>6){player.wt=0;player.wf=(player.wf+1)%3;} }
+      else player.wf=0;
     }
 
-    // scroll
+    // scroll objects
     coins=coins.filter(c=>c.x>-40); coins.forEach(c=>{c.x-=speed*0.9;c.t++;});
     monsters=monsters.filter(m=>m.x>-80); monsters.forEach(m=>{m.x-=speed;m.t++;});
 
-    // collect coins
+    // coin collect
     if(state==='play') coins.forEach(c=>{
       if(c.col) return;
       if(player.x+8<c.x+c.sz&&player.x+player.w-8>c.x&&player.y+8<c.y+c.sz&&player.y+player.h-8>c.y){
@@ -692,7 +794,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     });
     coins=coins.filter(c=>!c.col);
 
-    // monster collision
+    // monster hit
     if(state==='play'&&invT<=0) monsters.forEach(m=>{
       if(player.x+14<m.x+m.w-6&&player.x+player.w-14>m.x+6&&player.y+10<m.y+m.h&&player.y+player.h>m.y+10){
         lives--; burst(player.x+24,player.y+32,'#ff6eb4',14);
@@ -725,6 +827,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   }
   loop();
 })();
+
 </script>
 </body>
 </html>
