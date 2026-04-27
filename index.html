@@ -44,24 +44,86 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0a0518;border-bo
 .tree-top-px{width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:44px solid #2d8a20;margin:0 auto;position:relative;}
 .tree-top-px::after{content:'';position:absolute;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:32px solid #3aaa28;top:-20px;left:-14px;}
 .tree-trunk-px{width:12px;height:20px;background:#7a5530;margin:0 auto;}
-.walker{position:absolute;bottom:20.5%;z-index:6;animation:walkAcross 10s linear infinite;}
-@keyframes walkAcross{0%{left:-60px;}100%{left:110%;}}
-.ground-block{position:relative;z-index:5;flex-shrink:0;}
+.ground-block{position:relative;z-index:7;flex-shrink:0;}
 .g-top{height:28px;background:repeating-linear-gradient(90deg,#5cad3c 0,#5cad3c 16px,#4a9a2e 16px,#4a9a2e 32px);border-top:4px solid #2d6a1a;}
 .g-mid{height:36px;background:repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px);border-top:4px solid #5a3a1a;}
 .g-bot{height:44px;background:repeating-linear-gradient(90deg,#6b4a2a 0,#6b4a2a 16px,#5a3a1a 16px,#5a3a1a 32px);}
-.hero-title-area{position:absolute;top:16%;left:50%;transform:translateX(-50%);z-index:10;text-align:center;width:90%;}
-.hero-big-title{font-family:var(--pixel);font-size:clamp(1.5rem,6vw,3.5rem);color:var(--pink);text-shadow:4px 4px 0 #a00060,-2px -2px 0 #a00060,2px -2px 0 #a00060,-2px 2px 0 #a00060,6px 6px 0 rgba(0,0,0,0.35);animation:titleFloat 3s ease-in-out infinite;letter-spacing:0.03em;line-height:1.2;}
 @keyframes titleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.hero-tagline{font-family:var(--pixel);font-size:clamp(0.38rem,1.2vw,0.55rem);color:var(--yellow);margin-top:1rem;text-shadow:2px 2px 0 rgba(0,0,0,0.6);letter-spacing:0.12em;}
-.hero-role{font-family:var(--pixel);font-size:clamp(0.3rem,1vw,0.42rem);color:#a8e6f8;margin-top:0.6rem;letter-spacing:0.1em;}
-.press-start{position:absolute;bottom:29%;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--pixel);font-size:clamp(0.5rem,1.5vw,0.7rem);color:var(--yellow);text-shadow:2px 2px 0 #b8860b,4px 4px 0 rgba(0,0,0,0.3);animation:blink 1.1s step-end infinite;white-space:nowrap;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 .hero-copy{position:absolute;bottom:3.5%;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--pixel);font-size:0.3rem;color:#666;letter-spacing:0.12em;white-space:nowrap;}
 
+/* ── GAME HUD ── */
+#gameHud{
+  position:absolute;top:62px;left:50%;transform:translateX(-50%);
+  z-index:12;display:none;gap:1.8rem;align-items:center;
+  background:rgba(0,0,0,0.7);padding:0.4rem 1.2rem;
+  border:2px solid rgba(255,110,180,0.4);
+  pointer-events:none;white-space:nowrap;
+}
+#gameHud span{font-family:var(--pixel);font-size:0.45rem;text-shadow:1px 1px 0 #000;}
+#scoreHud{color:var(--yellow);}
+#hiHud{color:#aaa;}
+#livesHud{color:var(--pink);}
+
+/* ── GAME CANVAS ── */
+#gameCanvas{
+  position:absolute;bottom:0;left:0;width:100%;z-index:6;
+  image-rendering:pixelated;cursor:none;display:block;
+}
+
+/* ── START SCREEN ── */
+#startScreen{
+  position:absolute;inset:0;z-index:20;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0.9rem;pointer-events:none;
+}
+.start-title{
+  font-family:var(--pixel);font-size:clamp(1.5rem,6vw,3.5rem);
+  color:var(--pink);
+  text-shadow:4px 4px 0 #a00060,-2px -2px 0 #a00060,2px -2px 0 #a00060,-2px 2px 0 #a00060,6px 6px 0 rgba(0,0,0,0.35);
+  animation:titleFloat 3s ease-in-out infinite;letter-spacing:0.03em;line-height:1.2;
+  text-align:center;
+}
+.start-name{font-family:var(--pixel);font-size:clamp(0.38rem,1.2vw,0.55rem);color:var(--yellow);text-shadow:2px 2px 0 rgba(0,0,0,0.6);letter-spacing:0.12em;}
+.start-role{font-family:var(--pixel);font-size:clamp(0.3rem,1vw,0.42rem);color:#a8e6f8;letter-spacing:0.1em;}
+.start-blink{font-family:var(--pixel);font-size:clamp(0.5rem,1.5vw,0.7rem);color:var(--yellow);text-shadow:2px 2px 0 #b8860b;animation:blink 1.1s step-end infinite;margin-top:0.4rem;}
+.start-hint{font-family:var(--pixel);font-size:0.33rem;color:#777;letter-spacing:0.06em;}
+
+/* ── GAME OVER SCREEN ── */
+#gameOverScreen{
+  position:absolute;inset:0;z-index:20;
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:0.9rem;
+  background:rgba(8,5,20,0.93);
+}
+.go-title{font-family:var(--pixel);font-size:clamp(1.2rem,4vw,2.5rem);color:var(--pink);text-shadow:4px 4px 0 #a00060;animation:titleFloat 1s ease-in-out infinite;}
+.go-row{font-family:var(--pixel);font-size:0.5rem;}
+.go-score{color:var(--yellow);}
+.go-best{color:#aaa;}
+.go-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem;}
+.px-game-btn{
+  font-family:var(--pixel);font-size:0.46rem;
+  padding:0.65rem 1.5rem;border:4px solid #000;box-shadow:4px 4px 0 #000;
+  cursor:pointer;letter-spacing:0.06em;
+  transition:transform 0.1s,box-shadow 0.1s;text-decoration:none;display:inline-block;
+}
+.px-game-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
+.btn-green{background:var(--green);color:var(--dark);}
+.btn-muted{background:#2a1a4e;color:#aaa;border-color:#3a2a5e;box-shadow:4px 4px 0 #000;}
+.go-hint{font-family:var(--pixel);font-size:0.32rem;color:#555;}
+
+/* SCOREBOARD */
+#scoreboard{
+  position:absolute;top:62px;right:1rem;z-index:13;
+  background:rgba(0,0,0,0.82);border:2px solid var(--yellow);
+  padding:0.6rem 0.8rem;min-width:160px;display:none;
+}
+.sb-title{font-family:var(--pixel);font-size:0.38rem;color:var(--yellow);margin-bottom:0.5rem;display:block;text-align:center;}
+.sb-row{display:flex;justify-content:space-between;gap:1rem;font-family:var(--pixel);font-size:0.32rem;color:#aaa;margin-bottom:0.25rem;}
+.sb-row span:first-child{color:var(--pink);}
+
+/* ── REST OF PORTFOLIO ── */
 .welcome-bar{background:#000080;padding:0.8rem 2rem;text-align:center;border-bottom:4px solid var(--pink);position:relative;z-index:10;}
 .welcome-bar p{font-family:var(--pixel);font-size:0.48rem;color:#fff;letter-spacing:0.1em;}
-
 main{background:#1a0a2e;position:relative;z-index:10;}
 .section{padding:4rem 3rem;}
 .px-btn{display:inline-block;font-family:var(--pixel);font-size:0.52rem;padding:0.6rem 1.6rem;border:4px solid #000;box-shadow:4px 4px 0 #000;text-decoration:none;cursor:pointer;letter-spacing:0.06em;transition:transform 0.1s,box-shadow 0.1s;}
@@ -71,50 +133,29 @@ main{background:#1a0a2e;position:relative;z-index:10;}
 .px-btn-yellow{background:var(--yellow);color:var(--dark);}
 .section-header{text-align:center;margin-bottom:2.5rem;}
 .sub-label{font-family:var(--pixel);font-size:0.38rem;color:#666;margin-top:0.75rem;letter-spacing:0.08em;}
-
-/* FILTERS */
 .filters-row{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;}
 .f-btn{font-family:var(--pixel);font-size:0.38rem;background:#0d0520;color:#888;padding:0.45rem 1rem;border:3px solid #3a1a5e;box-shadow:3px 3px 0 #000;cursor:pointer;letter-spacing:0.05em;transition:all 0.1s;}
 .f-btn:hover,.f-btn.active{background:var(--pink);color:var(--dark);border-color:#000;transform:translate(1px,1px);box-shadow:2px 2px 0 #000;}
-
-/* GRID */
 .p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;max-width:1200px;margin:0 auto;}
-
-/* CARD */
 .p-card{background:#0a0520;border:4px solid #3a1a5e;box-shadow:6px 6px 0 #000;position:relative;overflow:hidden;text-decoration:none;display:block;transition:transform 0.1s,box-shadow 0.1s,border-color 0.1s;}
 .p-card.hidden{display:none;}
 .p-card:hover{transform:translate(-4px,-4px);box-shadow:10px 10px 0 #000;border-color:var(--pink);}
 .p-card::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.1) 3px,rgba(0,0,0,0.1) 4px);pointer-events:none;z-index:4;}
 .p-card::before{content:'▶ OPEN STAGE';position:absolute;bottom:0;left:0;right:0;background:var(--pink);color:var(--dark);font-family:var(--pixel);font-size:0.38rem;text-align:center;padding:0.45rem;letter-spacing:0.1em;transform:translateY(100%);transition:transform 0.2s;z-index:5;}
 .p-card:hover::before{transform:translateY(0);}
-
-/* Pixel art illustration area */
-.card-art{
-  position:relative;width:100%;aspect-ratio:16/9;
-  overflow:hidden;display:flex;align-items:center;justify-content:center;
-}
+.card-art{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .card-art svg{width:100%;height:100%;display:block;image-rendering:pixelated;}
-/* Animated shine sweep on hover */
-.card-art::after{
-  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
-  transition:left 0.5s ease;z-index:3;pointer-events:none;
-}
+.card-art::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);transition:left 0.5s ease;z-index:3;pointer-events:none;}
 .p-card:hover .card-art::after{left:150%;}
-
 .card-cat-badge{position:absolute;top:8px;right:8px;z-index:4;font-family:var(--pixel);font-size:0.32rem;background:var(--pink);color:var(--dark);padding:0.22rem 0.5rem;border:2px solid #000;box-shadow:2px 2px 0 #000;}
-/* Corner brackets */
 .card-art::before{content:'';position:absolute;top:6px;left:6px;width:14px;height:14px;border-top:3px solid var(--yellow);border-left:3px solid var(--yellow);z-index:4;pointer-events:none;}
 .corner-br{position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-bottom:3px solid var(--yellow);border-right:3px solid var(--yellow);z-index:4;pointer-events:none;}
-
 .card-body{padding:1rem 1.1rem 1.2rem;}
 .card-title{font-family:var(--pixel);font-size:0.46rem;color:var(--yellow);line-height:1.7;margin-bottom:0.4rem;}
 .card-meta{font-family:var(--vt);font-size:1rem;color:#666;}
 .hp-bar{margin-top:0.8rem;height:10px;background:#050215;border:2px solid #333;overflow:hidden;}
 .hp-fill{height:100%;background:repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px);animation:hpPulse 2s ease-in-out infinite alternate;}
 @keyframes hpPulse{from{filter:brightness(1);}to{filter:brightness(1.5);}}
-
-/* ABOUT */
 #about{background:#0d0520;border-top:4px solid var(--pink);}
 .about-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.7fr;gap:3rem;align-items:start;}
 .os-window{background:#c0c0c0;border:4px solid #000;box-shadow:6px 6px 0 #000;}
@@ -152,8 +193,6 @@ main{background:#1a0a2e;position:relative;z-index:10;}
 .skill-lbl{font-family:var(--pixel);font-size:0.35rem;color:#888;margin-bottom:0.25rem;display:flex;justify-content:space-between;}
 .skill-bar{height:12px;background:#050215;border:2px solid #333;overflow:hidden;}
 .skill-fill{height:100%;background:repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px);}
-
-/* STATS */
 #stats{background:#0a0518;border-top:4px solid var(--yellow);padding:4rem 3rem;}
 .stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
 .stat-card{background:#0d0520;border:4px solid #3a1a5e;box-shadow:5px 5px 0 #000;padding:1.5rem 1.2rem;text-align:center;transition:transform 0.1s,box-shadow 0.1s,border-color 0.1s;}
@@ -165,20 +204,18 @@ main{background:#1a0a2e;position:relative;z-index:10;}
 .chess-deco{display:inline-grid;grid-template-columns:repeat(4,12px);gap:0;margin-bottom:0.6rem;}
 .chess-sq{width:12px;height:12px;}
 .chess-sq.w{background:#fff;}.chess-sq.b{background:#1a0a2e;border:1px solid #333;}
-
-/* FOOTER */
 footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text-align:center;}
 .footer-dirt{height:28px;background:repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px);border-top:4px solid #5a3a1a;margin-bottom:2rem;}
 .footer-copy{font-family:var(--pixel);font-size:0.38rem;color:#555;margin-bottom:1.5rem;letter-spacing:0.06em;}
 .socials{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem;}
 .socials a{font-family:var(--pixel);font-size:0.38rem;background:var(--yellow);color:var(--dark);padding:0.4rem 0.75rem;border:3px solid #000;box-shadow:3px 3px 0 #000;text-decoration:none;transition:transform 0.1s,box-shadow 0.1s;}
 .socials a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000;background:var(--pink);}
-.game-over{font-family:var(--pixel);font-size:0.35rem;color:#333;letter-spacing:0.1em;}
+.game-over-footer{font-family:var(--pixel);font-size:0.35rem;color:#333;letter-spacing:0.1em;}
 .back-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;font-family:var(--pixel);font-size:0.38rem;background:var(--pink);color:var(--dark);padding:0.45rem 0.7rem;border:3px solid #000;box-shadow:3px 3px 0 #000;text-decoration:none;transition:transform 0.1s,box-shadow 0.1s;}
 .back-top:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000;}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}
 .reveal.visible{opacity:1;transform:none;}
-@media(max-width:768px){nav{padding:0.5rem 1rem;}.nav-links{display:none;}.hero-big-title{font-size:1.3rem;}.about-grid{grid-template-columns:1fr;}.section{padding:3rem 1.2rem;}.p-grid{grid-template-columns:1fr;}#stats{padding:3rem 1.2rem;}}
+@media(max-width:768px){nav{padding:0.5rem 1rem;}.nav-links{display:none;}.about-grid{grid-template-columns:1fr;}.section{padding:3rem 1.2rem;}.p-grid{grid-template-columns:1fr;}#stats{padding:3rem 1.2rem;}}
 </style>
 </head>
 <body>
@@ -192,13 +229,18 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     <li><a href="#about">[ ABOUT ]</a></li>
     <li><a href="#stats">[ STATS ]</a></li>
     <li><a href="contact.html">[ CONTACT ]</a></li>
-    <li><a href="/assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
+    <li><a href="assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
   </ul>
 </nav>
 
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  HERO + GAME                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <section id="hero">
   <div class="sky-bg"></div>
   <div class="stars-layer" id="starsLayer"></div>
+
+  <!-- clouds -->
   <div class="clouds">
     <span class="cloud-px" style="margin-top:30px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
     <span class="cloud-px" style="margin-top:50px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
@@ -206,7 +248,11 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     <span class="cloud-px" style="margin-top:40px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
     <span class="cloud-px" style="margin-top:25px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
   </div>
+
+  <!-- mountains -->
   <div class="mountains-layer"><svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><polygon points="0,200 100,80 200,150 340,50 480,130 600,30 720,110 860,45 1000,125 1140,35 1280,100 1440,55 1440,200" fill="#2a5a20" opacity="0.55"/><polygon points="0,200 80,100 200,170 360,80 490,150 620,55 740,120 880,50 1010,130 1160,65 1300,120 1440,80 1440,200" fill="#3a7a28"/></svg></div>
+
+  <!-- trees (behind game canvas, z-index 4) -->
   <div class="trees-layer">
     <div class="tree-px" style="left:4%"><div class="tree-top-px"></div><div class="tree-trunk-px"></div></div>
     <div class="tree-px" style="left:12%"><div class="tree-top-px" style="border-bottom-color:#3aaa28;"></div><div class="tree-trunk-px"></div></div>
@@ -215,13 +261,45 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     <div class="tree-px" style="left:82%"><div class="tree-top-px"></div><div class="tree-trunk-px"></div></div>
     <div class="tree-px" style="left:91%"><div class="tree-top-px" style="border-bottom-color:#3aaa28;"></div><div class="tree-trunk-px"></div></div>
   </div>
-  <div class="walker"><svg width="48" height="64" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/><rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/><rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="18" y="14" width="12" height="2" fill="#e07060"/><rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/><rect x="12" y="22" width="24" height="20" fill="#2ecc71"/><rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/><rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/></svg></div>
-  <div class="hero-title-area">
-    <div class="hero-big-title">PortFolio</div>
-    <div class="hero-tagline">★ SHRABONI BANERJEE ★</div>
-    <div class="hero-role">SOFTWARE ENGINEER · BENGALURU, INDIA</div>
+
+  <!-- GAME CANVAS (z-index 6, above trees, below ground block) -->
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- HUD (score / hi / lives) -->
+  <div id="gameHud">
+    <span id="scoreHud">SCORE: <span id="scoreVal">0</span></span>
+    <span id="hiHud">BEST: <span id="hiVal">0</span></span>
+    <span id="livesHud">♥♥♥</span>
   </div>
-  <div class="press-start">► PRESS START ◄</div>
+
+  <!-- SCOREBOARD (top 5 this session) -->
+  <div id="scoreboard">
+    <span class="sb-title">★ SCOREBOARD ★</span>
+    <div id="sbRows"></div>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="startScreen">
+    <div class="start-title">PortFolio</div>
+    <div class="start-name">★ SHRABONI BANERJEE ★</div>
+    <div class="start-role">SOFTWARE ENGINEER · BENGALURU, INDIA</div>
+    <div class="start-blink">► PRESS START ◄</div>
+    <div class="start-hint">SPACE / TAP TO JUMP &nbsp;·&nbsp; COLLECT COINS &nbsp;·&nbsp; DODGE MONSTERS</div>
+  </div>
+
+  <!-- GAME OVER SCREEN -->
+  <div id="gameOverScreen">
+    <div class="go-title">GAME OVER</div>
+    <div class="go-row go-score">SCORE: <span id="goScore">0</span></div>
+    <div class="go-row go-best">BEST &nbsp;: <span id="goBest">0</span></div>
+    <div class="go-btns">
+      <button id="retryBtn" class="px-game-btn btn-green">► PLAY AGAIN</button>
+      <a href="#works" class="px-game-btn btn-muted">↓ SEE WORKS</a>
+    </div>
+    <div class="go-hint">SPACE / TAP to play again</div>
+  </div>
+
+  <!-- CSS ground (z-index 7, paints over canvas bottom edge) -->
   <div class="ground-block"><div class="g-top"></div><div class="g-mid"></div><div class="g-bot"></div></div>
   <div class="hero-copy">(C) SHRABONI BANERJEE 2026</div>
 </section>
@@ -245,534 +323,53 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
 
   <div class="p-grid reveal" id="pgrid">
 
-    <!-- 1. RestoGenius POS — restaurant/cafe scene with POS terminal -->
     <a href="./design.html" class="p-card web">
-      <div class="card-art">
-        <span class="card-cat-badge">DESIGN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <!-- Sky/wall background -->
-          <rect width="320" height="180" fill="#1a0050"/>
-          <!-- Floor -->
-          <rect y="130" width="320" height="50" fill="#2d1a6e"/>
-          <rect y="128" width="320" height="4" fill="#ff6eb4"/>
-          <!-- Floor tiles -->
-          <rect x="0" y="132" width="40" height="24" fill="#251560" opacity="0.5"/>
-          <rect x="40" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/>
-          <rect x="80" y="132" width="40" height="24" fill="#251560" opacity="0.5"/>
-          <rect x="120" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/>
-          <rect x="160" y="132" width="40" height="24" fill="#251560" opacity="0.5"/>
-          <rect x="200" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/>
-          <rect x="240" y="132" width="40" height="24" fill="#251560" opacity="0.5"/>
-          <rect x="280" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/>
-          <!-- Counter -->
-          <rect x="60" y="90" width="200" height="40" fill="#3d2080"/>
-          <rect x="60" y="86" width="200" height="8" fill="#5a30b0"/>
-          <!-- POS Terminal -->
-          <rect x="130" y="55" width="60" height="38" fill="#1a1a3e" rx="2"/>
-          <rect x="133" y="58" width="54" height="28" fill="#00d9b5"/>
-          <!-- Screen content pixel -->
-          <rect x="136" y="61" width="10" height="4" fill="#fff" opacity="0.8"/>
-          <rect x="136" y="67" width="20" height="3" fill="#ffe066" opacity="0.8"/>
-          <rect x="136" y="72" width="15" height="3" fill="#ffe066" opacity="0.8"/>
-          <rect x="165" y="61" width="18" height="22" fill="#ff6eb4" opacity="0.6"/>
-          <!-- Terminal stand -->
-          <rect x="155" y="93" width="10" height="8" fill="#2d2060"/>
-          <rect x="148" y="100" width="24" height="4" fill="#2d2060"/>
-          <!-- Buttons on counter -->
-          <rect x="70" y="95" width="12" height="8" fill="#ff6eb4" rx="1"/>
-          <rect x="86" y="95" width="12" height="8" fill="#ffe066" rx="1"/>
-          <rect x="102" y="95" width="12" height="8" fill="#00d9b5" rx="1"/>
-          <!-- Right side receipt printer -->
-          <rect x="230" y="80" width="24" height="30" fill="#2d1a6e"/>
-          <rect x="232" y="85" width="20" height="12" fill="#3d2a7e"/>
-          <rect x="234" y="90" width="16" height="2" fill="#fff" opacity="0.4"/>
-          <rect x="234" y="94" width="12" height="2" fill="#fff" opacity="0.4"/>
-          <!-- Floating order tickets -->
-          <rect x="20" y="30" width="50" height="40" fill="#fff" opacity="0.9"/>
-          <rect x="23" y="33" width="22" height="3" fill="#1a0050"/>
-          <rect x="23" y="38" width="38" height="2" fill="#666"/>
-          <rect x="23" y="42" width="30" height="2" fill="#666"/>
-          <rect x="23" y="46" width="34" height="2" fill="#666"/>
-          <rect x="23" y="52" width="20" height="4" fill="#ff6eb4"/>
-          <!-- Stars/sparkles -->
-          <rect x="260" y="20" width="4" height="4" fill="#ffe066"/>
-          <rect x="264" y="16" width="4" height="4" fill="#ffe066" opacity="0.5"/>
-          <rect x="256" y="16" width="4" height="4" fill="#ffe066" opacity="0.5"/>
-          <rect x="10" y="15" width="6" height="6" fill="#ff6eb4" opacity="0.7"/>
-          <!-- Title text area -->
-          <rect x="80" y="10" width="160" height="20" fill="#ff6eb4" opacity="0.15"/>
-          <text x="160" y="24" font-family="monospace" font-size="7" fill="#ffe066" text-anchor="middle" font-weight="bold">RESTOGENIUS POS</text>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a0050"/><rect y="130" width="320" height="50" fill="#2d1a6e"/><rect y="128" width="320" height="4" fill="#ff6eb4"/><rect x="0" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="40" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="80" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="120" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="160" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="200" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="240" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="280" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="60" y="90" width="200" height="40" fill="#3d2080"/><rect x="60" y="86" width="200" height="8" fill="#5a30b0"/><rect x="130" y="55" width="60" height="38" fill="#1a1a3e" rx="2"/><rect x="133" y="58" width="54" height="28" fill="#00d9b5"/><rect x="136" y="61" width="10" height="4" fill="#fff" opacity="0.8"/><rect x="136" y="67" width="20" height="3" fill="#ffe066" opacity="0.8"/><rect x="136" y="72" width="15" height="3" fill="#ffe066" opacity="0.8"/><rect x="165" y="61" width="18" height="22" fill="#ff6eb4" opacity="0.6"/><rect x="155" y="93" width="10" height="8" fill="#2d2060"/><rect x="148" y="100" width="24" height="4" fill="#2d2060"/><rect x="70" y="95" width="12" height="8" fill="#ff6eb4" rx="1"/><rect x="86" y="95" width="12" height="8" fill="#ffe066" rx="1"/><rect x="102" y="95" width="12" height="8" fill="#00d9b5" rx="1"/><rect x="230" y="80" width="24" height="30" fill="#2d1a6e"/><rect x="232" y="85" width="20" height="12" fill="#3d2a7e"/><rect x="234" y="90" width="16" height="2" fill="#fff" opacity="0.4"/><rect x="234" y="94" width="12" height="2" fill="#fff" opacity="0.4"/><rect x="20" y="30" width="50" height="40" fill="#fff" opacity="0.9"/><rect x="23" y="33" width="22" height="3" fill="#1a0050"/><rect x="23" y="38" width="38" height="2" fill="#666"/><rect x="23" y="42" width="30" height="2" fill="#666"/><rect x="23" y="46" width="34" height="2" fill="#666"/><rect x="23" y="52" width="20" height="4" fill="#ff6eb4"/><rect x="260" y="20" width="4" height="4" fill="#ffe066"/><rect x="10" y="15" width="6" height="6" fill="#ff6eb4" opacity="0.7"/><rect x="80" y="10" width="160" height="20" fill="#ff6eb4" opacity="0.15"/><text x="160" y="24" font-family="monospace" font-size="7" fill="#ffe066" text-anchor="middle" font-weight="bold">RESTOGENIUS POS</text></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">RESTOGENIUS POS</div>
-        <div class="card-meta">Tech Sprint · Apr 2024–Present</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">RESTOGENIUS POS</div><div class="card-meta">Tech Sprint · Apr 2024–Present</div><div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div></div>
     </a>
 
-    <!-- 2. App Development — mobile phone with app icons -->
     <a href="./App.html" class="p-card app">
-      <div class="card-art">
-        <span class="card-cat-badge" style="background:var(--blue);color:#fff;">APP DEV</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#0a1628"/>
-          <!-- Stars -->
-          <rect x="20" y="15" width="3" height="3" fill="#fff" opacity="0.6"/>
-          <rect x="60" y="30" width="2" height="2" fill="#fff" opacity="0.4"/>
-          <rect x="280" y="20" width="3" height="3" fill="#fff" opacity="0.5"/>
-          <rect x="300" y="50" width="2" height="2" fill="#fff" opacity="0.3"/>
-          <rect x="40" y="60" width="2" height="2" fill="#fff" opacity="0.4"/>
-          <!-- Phone body -->
-          <rect x="110" y="20" width="100" height="145" fill="#1a2a4a" rx="8"/>
-          <rect x="113" y="23" width="94" height="139" fill="#0d1a30" rx="6"/>
-          <!-- Screen -->
-          <rect x="116" y="30" width="88" height="120" fill="#0a1628"/>
-          <!-- Notch -->
-          <rect x="145" y="28" width="30" height="6" fill="#1a2a4a" rx="3"/>
-          <!-- Status bar -->
-          <rect x="118" y="32" width="84" height="8" fill="#0d1a30"/>
-          <rect x="120" y="34" width="20" height="4" fill="#3498db" opacity="0.6"/>
-          <rect x="190" y="34" width="10" height="4" fill="#2ecc71" opacity="0.8"/>
-          <!-- App grid -->
-          <rect x="120" y="45" width="20" height="20" fill="#ff6eb4" rx="4"/>
-          <rect x="123" y="48" width="14" height="14" fill="#ff8ec4" rx="2"/>
-          <rect x="144" y="45" width="20" height="20" fill="#3498db" rx="4"/>
-          <rect x="147" y="48" width="14" height="14" fill="#5ab8ff" rx="2"/>
-          <rect x="168" y="45" width="20" height="20" fill="#2ecc71" rx="4"/>
-          <rect x="171" y="48" width="14" height="14" fill="#4eff9e" rx="2"/>
-          <rect x="192" y="45" width="20" height="20" fill="#ffe066" rx="4"/>
-          <rect x="195" y="48" width="14" height="14" fill="#ffee99" rx="2"/>
-          <rect x="120" y="70" width="20" height="20" fill="#9b59b6" rx="4"/>
-          <rect x="123" y="73" width="14" height="14" fill="#c27fff" rx="2"/>
-          <rect x="144" y="70" width="20" height="20" fill="#e74c3c" rx="4"/>
-          <rect x="147" y="73" width="14" height="14" fill="#ff7070" rx="2"/>
-          <rect x="168" y="70" width="20" height="20" fill="#00d9b5" rx="4"/>
-          <rect x="171" y="73" width="14" height="14" fill="#00ffda" rx="2"/>
-          <rect x="192" y="70" width="20" height="20" fill="#e67e22" rx="4"/>
-          <rect x="195" y="73" width="14" height="14" fill="#ffaa55" rx="2"/>
-          <!-- Main content area -->
-          <rect x="120" y="96" width="92" height="40" fill="#1a2a4a" rx="3"/>
-          <rect x="123" y="99" width="40" height="34" fill="#253a5e" rx="2"/>
-          <rect x="167" y="99" width="42" height="15" fill="#253a5e" rx="2"/>
-          <rect x="167" y="118" width="42" height="15" fill="#253a5e" rx="2"/>
-          <!-- Bottom nav -->
-          <rect x="118" y="140" width="84" height="8" fill="#1a2a4a"/>
-          <rect x="124" y="142" width="10" height="4" fill="#3498db"/>
-          <rect x="142" y="142" width="10" height="4" fill="#666"/>
-          <rect x="160" y="142" width="10" height="4" fill="#666"/>
-          <rect x="178" y="142" width="10" height="4" fill="#666"/>
-          <rect x="196" y="142" width="8" height="4" fill="#666"/>
-          <!-- Floating code elements -->
-          <rect x="20" y="80" width="70" height="50" fill="#1a2a4a" opacity="0.8"/>
-          <rect x="23" y="83" width="50" height="3" fill="#ff6eb4" opacity="0.7"/>
-          <rect x="23" y="89" width="60" height="2" fill="#3498db" opacity="0.6"/>
-          <rect x="23" y="94" width="40" height="2" fill="#2ecc71" opacity="0.6"/>
-          <rect x="23" y="99" width="55" height="2" fill="#ffe066" opacity="0.6"/>
-          <rect x="23" y="104" width="35" height="2" fill="#fff" opacity="0.4"/>
-          <rect x="23" y="109" width="48" height="2" fill="#3498db" opacity="0.6"/>
-          <!-- React logo pixel hint -->
-          <rect x="240" y="50" width="50" height="50" fill="#1a2a4a" opacity="0.8"/>
-          <rect x="262" y="70" width="6" height="6" fill="#00d9b5"/>
-          <rect x="250" y="65" width="30" height="3" fill="#00d9b5" opacity="0.5"/>
-          <rect x="250" y="78" width="30" height="3" fill="#00d9b5" opacity="0.5"/>
-          <rect x="255" y="60" width="3" height="22" fill="#00d9b5" opacity="0.3"/>
-          <rect x="272" y="60" width="3" height="22" fill="#00d9b5" opacity="0.3"/>
-          <text x="160" y="16" font-family="monospace" font-size="7" fill="#3498db" text-anchor="middle">APP DEVELOPMENT</text>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge" style="background:var(--blue);color:#fff;">APP DEV</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0a1628"/><rect x="20" y="15" width="3" height="3" fill="#fff" opacity="0.6"/><rect x="280" y="20" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="110" y="20" width="100" height="145" fill="#1a2a4a" rx="8"/><rect x="113" y="23" width="94" height="139" fill="#0d1a30" rx="6"/><rect x="116" y="30" width="88" height="120" fill="#0a1628"/><rect x="145" y="28" width="30" height="6" fill="#1a2a4a" rx="3"/><rect x="118" y="32" width="84" height="8" fill="#0d1a30"/><rect x="120" y="34" width="20" height="4" fill="#3498db" opacity="0.6"/><rect x="190" y="34" width="10" height="4" fill="#2ecc71" opacity="0.8"/><rect x="120" y="45" width="20" height="20" fill="#ff6eb4" rx="4"/><rect x="144" y="45" width="20" height="20" fill="#3498db" rx="4"/><rect x="168" y="45" width="20" height="20" fill="#2ecc71" rx="4"/><rect x="192" y="45" width="20" height="20" fill="#ffe066" rx="4"/><rect x="120" y="70" width="20" height="20" fill="#9b59b6" rx="4"/><rect x="144" y="70" width="20" height="20" fill="#e74c3c" rx="4"/><rect x="168" y="70" width="20" height="20" fill="#00d9b5" rx="4"/><rect x="192" y="70" width="20" height="20" fill="#e67e22" rx="4"/><rect x="120" y="96" width="92" height="40" fill="#1a2a4a" rx="3"/><rect x="118" y="140" width="84" height="8" fill="#1a2a4a"/><rect x="20" y="80" width="70" height="50" fill="#1a2a4a" opacity="0.8"/><rect x="23" y="83" width="50" height="3" fill="#ff6eb4" opacity="0.7"/><rect x="23" y="89" width="60" height="2" fill="#3498db" opacity="0.6"/><rect x="23" y="94" width="40" height="2" fill="#2ecc71" opacity="0.6"/><text x="160" y="16" font-family="monospace" font-size="7" fill="#3498db" text-anchor="middle">APP DEVELOPMENT</text></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">APP DEVELOPMENT</div>
-        <div class="card-meta">Personal Projects · 2021–Present</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:95%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">APP DEVELOPMENT</div><div class="card-meta">Personal Projects · 2021–Present</div><div class="hp-bar"><div class="hp-fill" style="width:95%"></div></div></div>
     </a>
 
-    <!-- 3. Blockchain / To-Do Dapp — blockchain cubes + Ethereum -->
     <a href="./blockchain.html" class="p-card blockchain">
-      <div class="card-art">
-        <span class="card-cat-badge" style="background:var(--yellow);color:var(--dark);">BLOCKCHAIN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#0a1a0a"/>
-          <!-- Grid lines -->
-          <line x1="0" y1="40" x2="320" y2="40" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="0" y1="80" x2="320" y2="80" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="0" y1="120" x2="320" y2="120" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="0" y1="160" x2="320" y2="160" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="80" y1="0" x2="80" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="160" y1="0" x2="160" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <line x1="240" y1="0" x2="240" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/>
-          <!-- Block chain cubes isometric -->
-          <!-- Block 1 -->
-          <rect x="40" y="90" width="40" height="40" fill="#1a3a1a"/>
-          <rect x="40" y="86" width="40" height="8" fill="#2ecc71"/>
-          <rect x="76" y="86" width="8" height="40" fill="#27ae60"/>
-          <text x="60" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#001</text>
-          <!-- Chain link -->
-          <rect x="80" y="106" width="20" height="4" fill="#ffe066"/>
-          <rect x="84" y="102" width="4" height="12" fill="#ffe066"/>
-          <rect x="92" y="102" width="4" height="12" fill="#ffe066"/>
-          <!-- Block 2 -->
-          <rect x="100" y="90" width="40" height="40" fill="#1a3a1a"/>
-          <rect x="100" y="86" width="40" height="8" fill="#2ecc71"/>
-          <rect x="136" y="86" width="8" height="40" fill="#27ae60"/>
-          <text x="120" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#002</text>
-          <!-- Chain link -->
-          <rect x="140" y="106" width="20" height="4" fill="#ffe066"/>
-          <rect x="144" y="102" width="4" height="12" fill="#ffe066"/>
-          <rect x="152" y="102" width="4" height="12" fill="#ffe066"/>
-          <!-- Block 3 -->
-          <rect x="160" y="90" width="40" height="40" fill="#1a3a1a"/>
-          <rect x="160" y="86" width="40" height="8" fill="#2ecc71"/>
-          <rect x="196" y="86" width="8" height="40" fill="#27ae60"/>
-          <text x="180" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#003</text>
-          <!-- Chain link -->
-          <rect x="200" y="106" width="20" height="4" fill="#ffe066"/>
-          <rect x="204" y="102" width="4" height="12" fill="#ffe066"/>
-          <rect x="212" y="102" width="4" height="12" fill="#ffe066"/>
-          <!-- Block 4 -->
-          <rect x="220" y="90" width="40" height="40" fill="#1a3a1a"/>
-          <rect x="220" y="86" width="40" height="8" fill="#ff6eb4"/>
-          <rect x="256" y="86" width="8" height="40" fill="#dd4a90"/>
-          <text x="240" y="112" font-family="monospace" font-size="5" fill="#ff6eb4" text-anchor="middle">#NEW</text>
-          <!-- ETH diamond pixel art -->
-          <rect x="148" y="30" width="8" height="8" fill="#627eea"/>
-          <rect x="144" y="34" width="16" height="4" fill="#627eea"/>
-          <rect x="140" y="36" width="24" height="4" fill="#8a9ff0"/>
-          <rect x="144" y="42" width="16" height="4" fill="#627eea"/>
-          <rect x="148" y="46" width="8" height="6" fill="#4a5db8"/>
-          <rect x="144" y="40" width="16" height="4" fill="#9baef5"/>
-          <!-- Solidity code bits -->
-          <rect x="16" y="20" width="80" height="55" fill="#0d200d" opacity="0.8"/>
-          <text x="20" y="34" font-family="monospace" font-size="5" fill="#2ecc71">pragma solidity</text>
-          <text x="20" y="44" font-family="monospace" font-size="5" fill="#ffe066">^0.8.0;</text>
-          <text x="20" y="54" font-family="monospace" font-size="5" fill="#ff6eb4">contract ToDo {</text>
-          <text x="20" y="64" font-family="monospace" font-size="5" fill="#fff" opacity="0.5">  mapping...</text>
-          <text x="20" y="74" font-family="monospace" font-size="5" fill="#2ecc71">}</text>
-          <!-- Hash strings floating -->
-          <text x="200" y="25" font-family="monospace" font-size="4" fill="#2ecc71" opacity="0.5">0x4a8f...</text>
-          <text x="230" y="65" font-family="monospace" font-size="4" fill="#627eea" opacity="0.6">0xf3c9...</text>
-          <text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">TO-DO DAPP</text>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge" style="background:var(--yellow);color:var(--dark);">BLOCKCHAIN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0a1a0a"/><line x1="0" y1="40" x2="320" y2="40" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="0" y1="80" x2="320" y2="80" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="0" y1="120" x2="320" y2="120" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="80" y1="0" x2="80" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="160" y1="0" x2="160" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="240" y1="0" x2="240" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><rect x="40" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="40" y="86" width="40" height="8" fill="#2ecc71"/><rect x="76" y="86" width="8" height="40" fill="#27ae60"/><text x="60" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#001</text><rect x="80" y="106" width="20" height="4" fill="#ffe066"/><rect x="84" y="102" width="4" height="12" fill="#ffe066"/><rect x="92" y="102" width="4" height="12" fill="#ffe066"/><rect x="100" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="100" y="86" width="40" height="8" fill="#2ecc71"/><rect x="136" y="86" width="8" height="40" fill="#27ae60"/><text x="120" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#002</text><rect x="140" y="106" width="20" height="4" fill="#ffe066"/><rect x="144" y="102" width="4" height="12" fill="#ffe066"/><rect x="152" y="102" width="4" height="12" fill="#ffe066"/><rect x="160" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="160" y="86" width="40" height="8" fill="#2ecc71"/><rect x="196" y="86" width="8" height="40" fill="#27ae60"/><text x="180" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#003</text><rect x="200" y="106" width="20" height="4" fill="#ffe066"/><rect x="204" y="102" width="4" height="12" fill="#ffe066"/><rect x="212" y="102" width="4" height="12" fill="#ffe066"/><rect x="220" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="220" y="86" width="40" height="8" fill="#ff6eb4"/><rect x="256" y="86" width="8" height="40" fill="#dd4a90"/><text x="240" y="112" font-family="monospace" font-size="5" fill="#ff6eb4" text-anchor="middle">#NEW</text><rect x="148" y="30" width="8" height="8" fill="#627eea"/><rect x="144" y="34" width="16" height="4" fill="#627eea"/><rect x="140" y="36" width="24" height="4" fill="#8a9ff0"/><rect x="144" y="42" width="16" height="4" fill="#627eea"/><rect x="148" y="46" width="8" height="6" fill="#4a5db8"/><rect x="16" y="20" width="80" height="55" fill="#0d200d" opacity="0.8"/><text x="20" y="34" font-family="monospace" font-size="5" fill="#2ecc71">pragma solidity</text><text x="20" y="44" font-family="monospace" font-size="5" fill="#ffe066">^0.8.0;</text><text x="20" y="54" font-family="monospace" font-size="5" fill="#ff6eb4">contract ToDo {</text><text x="20" y="64" font-family="monospace" font-size="5" fill="#fff" opacity="0.5">  mapping...</text><text x="20" y="74" font-family="monospace" font-size="5" fill="#2ecc71">}</text><text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">TO-DO DAPP</text></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">TO-DO DAPP</div>
-        <div class="card-meta">Blockchain Dev · May 2022</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">TO-DO DAPP</div><div class="card-meta">Blockchain Dev · May 2022</div><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div>
     </a>
 
-    <!-- 4. Hotel Management — pixel hotel building -->
     <a href="./Adevu.html" class="p-card web">
-      <div class="card-art">
-        <span class="card-cat-badge">DESIGN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#0d1a2e"/>
-          <!-- Night sky -->
-          <rect x="20" y="10" width="3" height="3" fill="#fff" opacity="0.5"/>
-          <rect x="80" y="20" width="2" height="2" fill="#fff" opacity="0.4"/>
-          <rect x="250" y="15" width="3" height="3" fill="#fff" opacity="0.5"/>
-          <rect x="290" y="8" width="2" height="2" fill="#fff" opacity="0.3"/>
-          <!-- Moon -->
-          <rect x="270" y="10" width="20" height="20" fill="#ffe066" opacity="0.3" rx="10"/>
-          <rect x="274" y="14" width="12" height="12" fill="#ffe066" opacity="0.6" rx="6"/>
-          <!-- Ground -->
-          <rect y="150" width="320" height="30" fill="#1a0a2e"/>
-          <rect y="148" width="320" height="4" fill="#ff6eb4"/>
-          <!-- Hotel building -->
-          <rect x="80" y="40" width="160" height="112" fill="#1a2a4a"/>
-          <!-- Roof -->
-          <rect x="76" y="36" width="168" height="8" fill="#2d3a5e"/>
-          <rect x="140" y="20" width="40" height="20" fill="#253a6e"/>
-          <!-- HOTEL sign -->
-          <rect x="100" y="48" width="120" height="20" fill="#ff6eb4" opacity="0.9"/>
-          <text x="160" y="62" font-family="monospace" font-size="8" fill="#1a0a2e" text-anchor="middle" font-weight="bold">HOTEL</text>
-          <!-- Windows row 1 -->
-          <rect x="90" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/>
-          <rect x="92" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="102" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="116" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/>
-          <rect x="118" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="128" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="150" y="75" width="20" height="16" fill="#3498db" opacity="0.8"/>
-          <rect x="152" y="77" width="7" height="12" fill="#7ac8ff"/>
-          <rect x="161" y="77" width="7" height="12" fill="#7ac8ff"/>
-          <rect x="184" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/>
-          <rect x="186" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="196" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="210" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/>
-          <rect x="212" y="77" width="8" height="12" fill="#fff8aa"/>
-          <rect x="222" y="77" width="8" height="12" fill="#fff8aa"/>
-          <!-- Windows row 2 -->
-          <rect x="90" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/>
-          <rect x="92" y="102" width="8" height="12" fill="#fff8aa" opacity="0.8"/>
-          <rect x="102" y="102" width="8" height="12" fill="#fff8aa" opacity="0.8"/>
-          <rect x="116" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/>
-          <rect x="150" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/>
-          <rect x="184" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/>
-          <rect x="186" y="102" width="8" height="12" fill="#fff8aa" opacity="0.8"/>
-          <rect x="196" y="102" width="8" height="12" fill="#fff8aa" opacity="0.8"/>
-          <rect x="210" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/>
-          <!-- Entrance -->
-          <rect x="140" y="120" width="40" height="32" fill="#0a1628"/>
-          <rect x="142" y="122" width="16" height="30" fill="#1a2a4a"/>
-          <rect x="162" y="122" width="16" height="30" fill="#1a2a4a"/>
-          <!-- Entrance arch -->
-          <rect x="140" y="118" width="40" height="6" fill="#2d3a5e"/>
-          <!-- Door handles -->
-          <rect x="155" y="135" width="4" height="4" fill="#ffe066"/>
-          <rect x="163" y="135" width="4" height="4" fill="#ffe066"/>
-          <!-- Street lamps -->
-          <rect x="50" y="100" width="4" height="52" fill="#2d3a5e"/>
-          <rect x="44" y="98" width="16" height="6" fill="#2d3a5e"/>
-          <rect x="44" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/>
-          <rect x="258" y="100" width="4" height="52" fill="#2d3a5e"/>
-          <rect x="252" y="98" width="16" height="6" fill="#2d3a5e"/>
-          <rect x="252" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0d1a2e"/><rect x="20" y="10" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="250" y="15" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="270" y="10" width="20" height="20" fill="#ffe066" opacity="0.3" rx="10"/><rect x="274" y="14" width="12" height="12" fill="#ffe066" opacity="0.6" rx="6"/><rect y="150" width="320" height="30" fill="#1a0a2e"/><rect y="148" width="320" height="4" fill="#ff6eb4"/><rect x="80" y="40" width="160" height="112" fill="#1a2a4a"/><rect x="76" y="36" width="168" height="8" fill="#2d3a5e"/><rect x="140" y="20" width="40" height="20" fill="#253a6e"/><rect x="100" y="48" width="120" height="20" fill="#ff6eb4" opacity="0.9"/><text x="160" y="62" font-family="monospace" font-size="8" fill="#1a0a2e" text-anchor="middle" font-weight="bold">HOTEL</text><rect x="90" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="116" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="150" y="75" width="20" height="16" fill="#3498db" opacity="0.8"/><rect x="184" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="210" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="90" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="116" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/><rect x="150" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="184" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="210" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/><rect x="140" y="120" width="40" height="32" fill="#0a1628"/><rect x="50" y="100" width="4" height="52" fill="#2d3a5e"/><rect x="44" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/><rect x="258" y="100" width="4" height="52" fill="#2d3a5e"/><rect x="252" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">HOTEL MANAGEMENT</div>
-        <div class="card-meta">ADEVU · Jun 2023–Mar 2024</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:88%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">HOTEL MANAGEMENT</div><div class="card-meta">ADEVU · Jun 2023–Mar 2024</div><div class="hp-bar"><div class="hp-fill" style="width:88%"></div></div></div>
     </a>
 
-    <!-- 5. Gemstone Admin Panel — gem inventory dashboard -->
     <a href="Techbiz.html" class="p-card web">
-      <div class="card-art">
-        <span class="card-cat-badge">DESIGN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#1a0a20"/>
-          <!-- Admin panel chrome -->
-          <rect x="10" y="15" width="300" height="155" fill="#0d0520" rx="4"/>
-          <!-- Sidebar -->
-          <rect x="10" y="15" width="60" height="155" fill="#150a2a"/>
-          <!-- Sidebar items -->
-          <rect x="14" y="30" width="52" height="12" fill="#ff6eb4" rx="2"/>
-          <text x="40" y="39" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">GEMS</text>
-          <rect x="14" y="46" width="52" height="12" fill="#2d1a4e" rx="2"/>
-          <text x="40" y="55" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">ORDERS</text>
-          <rect x="14" y="62" width="52" height="12" fill="#2d1a4e" rx="2"/>
-          <text x="40" y="71" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">STOCK</text>
-          <rect x="14" y="78" width="52" height="12" fill="#2d1a4e" rx="2"/>
-          <text x="40" y="87" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">SALES</text>
-          <!-- Top bar -->
-          <rect x="70" y="15" width="240" height="16" fill="#1a0a30"/>
-          <text x="80" y="26" font-family="monospace" font-size="5" fill="#ff6eb4">TECHBIZ GEMSTONE ADMIN</text>
-          <!-- Gem cards row -->
-          <rect x="74" y="36" width="52" height="52" fill="#1a0a30" rx="3"/>
-          <!-- Ruby pixel gem -->
-          <rect x="93" y="44" width="8" height="4" fill="#e74c3c"/>
-          <rect x="89" y="48" width="16" height="8" fill="#ff6b6b"/>
-          <rect x="91" y="56" width="12" height="8" fill="#e74c3c"/>
-          <rect x="95" y="64" width="4" height="4" fill="#c0392b"/>
-          <text x="100" y="82" font-family="monospace" font-size="4" fill="#e74c3c" text-anchor="middle">RUBY</text>
-          <rect x="130" y="36" width="52" height="52" fill="#1a0a30" rx="3"/>
-          <!-- Sapphire pixel gem -->
-          <rect x="149" y="44" width="8" height="4" fill="#3498db"/>
-          <rect x="145" y="48" width="16" height="8" fill="#5dade2"/>
-          <rect x="147" y="56" width="12" height="8" fill="#3498db"/>
-          <rect x="151" y="64" width="4" height="4" fill="#2471a3"/>
-          <text x="156" y="82" font-family="monospace" font-size="4" fill="#3498db" text-anchor="middle">SAPPHIRE</text>
-          <rect x="186" y="36" width="52" height="52" fill="#1a0a30" rx="3"/>
-          <!-- Emerald pixel gem -->
-          <rect x="205" y="44" width="8" height="4" fill="#2ecc71"/>
-          <rect x="201" y="48" width="16" height="8" fill="#58d68d"/>
-          <rect x="203" y="56" width="12" height="8" fill="#2ecc71"/>
-          <rect x="207" y="64" width="4" height="4" fill="#1e8449"/>
-          <text x="212" y="82" font-family="monospace" font-size="4" fill="#2ecc71" text-anchor="middle">EMERALD</text>
-          <rect x="242" y="36" width="52" height="52" fill="#1a0a30" rx="3"/>
-          <!-- Diamond pixel gem -->
-          <rect x="261" y="44" width="8" height="4" fill="#a8e6f8"/>
-          <rect x="257" y="48" width="16" height="8" fill="#d6f0f9"/>
-          <rect x="259" y="56" width="12" height="8" fill="#a8e6f8"/>
-          <rect x="263" y="64" width="4" height="4" fill="#7fcfe8"/>
-          <text x="268" y="82" font-family="monospace" font-size="4" fill="#a8e6f8" text-anchor="middle">DIAMOND</text>
-          <!-- Chart area -->
-          <rect x="74" y="96" width="150" height="65" fill="#0d0520" rx="3"/>
-          <text x="80" y="107" font-family="monospace" font-size="5" fill="#888">SALES CHART</text>
-          <!-- Chart bars -->
-          <rect x="82" y="130" width="12" height="25" fill="#e74c3c" opacity="0.8"/>
-          <rect x="98" y="118" width="12" height="37" fill="#3498db" opacity="0.8"/>
-          <rect x="114" y="122" width="12" height="33" fill="#2ecc71" opacity="0.8"/>
-          <rect x="130" y="110" width="12" height="45" fill="#ff6eb4" opacity="0.8"/>
-          <rect x="146" y="120" width="12" height="35" fill="#ffe066" opacity="0.8"/>
-          <rect x="162" y="115" width="12" height="40" fill="#9b59b6" opacity="0.8"/>
-          <rect x="74" y="155" width="150" height="2" fill="#333"/>
-          <!-- Stats -->
-          <rect x="230" y="96" width="80" height="30" fill="#0d0520" rx="3"/>
-          <text x="235" y="107" font-family="monospace" font-size="5" fill="#ffe066">TOTAL: 1,248</text>
-          <text x="235" y="118" font-family="monospace" font-size="4" fill="#888">gems in stock</text>
-          <rect x="230" y="130" width="80" height="30" fill="#0d0520" rx="3"/>
-          <text x="235" y="141" font-family="monospace" font-size="5" fill="#2ecc71">REV: $48.2K</text>
-          <text x="235" y="152" font-family="monospace" font-size="4" fill="#888">this quarter</text>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a0a20"/><rect x="10" y="15" width="300" height="155" fill="#0d0520" rx="4"/><rect x="10" y="15" width="60" height="155" fill="#150a2a"/><rect x="14" y="30" width="52" height="12" fill="#ff6eb4" rx="2"/><text x="40" y="39" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">GEMS</text><rect x="14" y="46" width="52" height="12" fill="#2d1a4e" rx="2"/><text x="40" y="55" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">ORDERS</text><rect x="14" y="62" width="52" height="12" fill="#2d1a4e" rx="2"/><text x="40" y="71" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">STOCK</text><rect x="70" y="15" width="240" height="16" fill="#1a0a30"/><text x="80" y="26" font-family="monospace" font-size="5" fill="#ff6eb4">TECHBIZ GEMSTONE ADMIN</text><rect x="74" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="93" y="44" width="8" height="4" fill="#e74c3c"/><rect x="89" y="48" width="16" height="8" fill="#ff6b6b"/><rect x="91" y="56" width="12" height="8" fill="#e74c3c"/><text x="100" y="82" font-family="monospace" font-size="4" fill="#e74c3c" text-anchor="middle">RUBY</text><rect x="130" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="149" y="44" width="8" height="4" fill="#3498db"/><rect x="145" y="48" width="16" height="8" fill="#5dade2"/><rect x="147" y="56" width="12" height="8" fill="#3498db"/><text x="156" y="82" font-family="monospace" font-size="4" fill="#3498db" text-anchor="middle">SAPPHIRE</text><rect x="186" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="205" y="44" width="8" height="4" fill="#2ecc71"/><rect x="201" y="48" width="16" height="8" fill="#58d68d"/><text x="212" y="82" font-family="monospace" font-size="4" fill="#2ecc71" text-anchor="middle">EMERALD</text><rect x="74" y="96" width="150" height="65" fill="#0d0520" rx="3"/><rect x="82" y="130" width="12" height="25" fill="#e74c3c" opacity="0.8"/><rect x="98" y="118" width="12" height="37" fill="#3498db" opacity="0.8"/><rect x="114" y="122" width="12" height="33" fill="#2ecc71" opacity="0.8"/><rect x="130" y="110" width="12" height="45" fill="#ff6eb4" opacity="0.8"/><rect x="146" y="120" width="12" height="35" fill="#ffe066" opacity="0.8"/></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">GEMSTONE ADMIN PANEL</div>
-        <div class="card-meta">Techbiz · Oct 2021–Apr 2022</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:80%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">GEMSTONE ADMIN PANEL</div><div class="card-meta">Techbiz · Oct 2021–Apr 2022</div><div class="hp-bar"><div class="hp-fill" style="width:80%"></div></div></div>
     </a>
 
-    <!-- 6. United Navigation App — pixel map with routes -->
     <a href="./United.html" class="p-card web">
-      <div class="card-art">
-        <span class="card-cat-badge">DESIGN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#0d1a10"/>
-          <!-- Map grid -->
-          <rect width="320" height="180" fill="#1a2a1a"/>
-          <!-- Roads horizontal -->
-          <rect x="0" y="60" width="320" height="8" fill="#2d3a2d"/>
-          <rect x="0" y="62" width="320" height="4" fill="#3d4a3d"/>
-          <rect x="0" y="120" width="320" height="8" fill="#2d3a2d"/>
-          <rect x="0" y="122" width="320" height="4" fill="#3d4a3d"/>
-          <!-- Roads vertical -->
-          <rect x="80" y="0" width="8" height="180" fill="#2d3a2d"/>
-          <rect x="82" y="0" width="4" height="180" fill="#3d4a3d"/>
-          <rect x="200" y="0" width="8" height="180" fill="#2d3a2d"/>
-          <rect x="202" y="0" width="4" height="180" fill="#3d4a3d"/>
-          <!-- Route highlight -->
-          <rect x="84" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/>
-          <rect x="84" y="120" width="120" height="4" fill="#ffe066" opacity="0.7"/>
-          <rect x="200" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/>
-          <!-- Buildings -->
-          <rect x="10" y="10" width="64" height="46" fill="#253a25"/>
-          <rect x="10" y="8" width="64" height="6" fill="#2ecc71" opacity="0.6"/>
-          <rect x="16" y="16" width="12" height="14" fill="#ffe066" opacity="0.7"/>
-          <rect x="32" y="16" width="12" height="14" fill="#3498db" opacity="0.7"/>
-          <rect x="48" y="16" width="12" height="14" fill="#ffe066" opacity="0.5"/>
-          <rect x="16" y="34" width="12" height="14" fill="#ffe066" opacity="0.5"/>
-          <rect x="32" y="34" width="12" height="14" fill="#ffe066" opacity="0.7"/>
-          <rect x="48" y="34" width="12" height="14" fill="#ff6eb4" opacity="0.6"/>
-          <rect x="96" y="10" width="96" height="46" fill="#1e2e1e"/>
-          <rect x="96" y="8" width="96" height="6" fill="#2ecc71" opacity="0.4"/>
-          <rect x="210" y="10" width="100" height="46" fill="#253a25"/>
-          <rect x="210" y="8" width="100" height="6" fill="#2ecc71" opacity="0.5"/>
-          <!-- Various windows on buildings -->
-          <rect x="218" y="18" width="10" height="10" fill="#ffe066" opacity="0.8"/>
-          <rect x="232" y="18" width="10" height="10" fill="#ffe066" opacity="0.6"/>
-          <rect x="246" y="18" width="10" height="10" fill="#3498db" opacity="0.7"/>
-          <rect x="260" y="18" width="10" height="10" fill="#ffe066" opacity="0.8"/>
-          <rect x="274" y="18" width="10" height="10" fill="#ff6eb4" opacity="0.6"/>
-          <rect x="218" y="34" width="10" height="10" fill="#ffe066" opacity="0.5"/>
-          <rect x="232" y="34" width="10" height="10" fill="#3498db" opacity="0.7"/>
-          <!-- Bottom buildings -->
-          <rect x="10" y="132" width="64" height="44" fill="#253a25"/>
-          <rect x="96" y="132" width="96" height="44" fill="#1e2e1e"/>
-          <rect x="210" y="132" width="100" height="44" fill="#253a25"/>
-          <!-- Location pin START -->
-          <rect x="80" y="42" width="12" height="18" fill="#2ecc71"/>
-          <rect x="78" y="38" width="16" height="8" fill="#2ecc71" rx="4"/>
-          <rect x="84" y="56" width="4" height="6" fill="#2ecc71"/>
-          <rect x="82" y="42" width="8" height="8" fill="#fff" rx="3"/>
-          <!-- Location pin END -->
-          <rect x="200" y="100" width="12" height="18" fill="#ff6eb4"/>
-          <rect x="198" y="96" width="16" height="8" fill="#ff6eb4" rx="4"/>
-          <rect x="204" y="114" width="4" height="6" fill="#ff6eb4"/>
-          <rect x="202" y="100" width="8" height="8" fill="#fff" rx="3"/>
-          <!-- Phone mockup -->
-          <rect x="128" y="74" width="56" height="44" fill="#0d1218" rx="4"/>
-          <rect x="131" y="77" width="50" height="36" fill="#1a2a1a"/>
-          <!-- Map on phone screen (mini) -->
-          <rect x="133" y="79" width="46" height="28" fill="#1e2e1e"/>
-          <rect x="133" y="90" width="46" height="3" fill="#2d3a2d"/>
-          <rect x="148" y="79" width="3" height="28" fill="#2d3a2d"/>
-          <rect x="148" y="90" width="3" height="17" fill="#ffe066" opacity="0.8"/>
-          <rect x="148" y="79" width="20" height="3" fill="#ffe066" opacity="0.8"/>
-          <rect x="148" y="86" width="6" height="4" fill="#2ecc71" rx="1"/>
-          <rect x="166" y="100" width="6" height="4" fill="#ff6eb4" rx="1"/>
-          <!-- Navigation arrow -->
-          <rect x="152" y="105" width="4" height="4" fill="#ffe066"/>
-          <rect x="148" y="109" width="12" height="3" fill="#ffe066"/>
-          <text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">NAVIGATION APP</text>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a2a1a"/><rect x="0" y="60" width="320" height="8" fill="#2d3a2d"/><rect x="0" y="120" width="320" height="8" fill="#2d3a2d"/><rect x="80" y="0" width="8" height="180" fill="#2d3a2d"/><rect x="200" y="0" width="8" height="180" fill="#2d3a2d"/><rect x="84" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/><rect x="84" y="120" width="120" height="4" fill="#ffe066" opacity="0.7"/><rect x="200" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/><rect x="10" y="10" width="64" height="46" fill="#253a25"/><rect x="96" y="10" width="96" height="46" fill="#1e2e1e"/><rect x="210" y="10" width="100" height="46" fill="#253a25"/><rect x="80" y="42" width="12" height="18" fill="#2ecc71"/><rect x="78" y="38" width="16" height="8" fill="#2ecc71" rx="4"/><rect x="82" y="42" width="8" height="8" fill="#fff" rx="3"/><rect x="200" y="100" width="12" height="18" fill="#ff6eb4"/><rect x="198" y="96" width="16" height="8" fill="#ff6eb4" rx="4"/><rect x="202" y="100" width="8" height="8" fill="#fff" rx="3"/><rect x="128" y="74" width="56" height="44" fill="#0d1218" rx="4"/><rect x="131" y="77" width="50" height="36" fill="#1a2a1a"/><text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">NAVIGATION APP</text></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">UNITED NAVIGATION APP</div>
-        <div class="card-meta">Microsoft Challenge · Feb 2022</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">UNITED NAVIGATION APP</div><div class="card-meta">Microsoft Challenge · Feb 2022</div><div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div></div>
     </a>
 
-    <!-- 7. Zedd Labz Website Redesign — pixel browser/website mockup -->
     <a href="zedd-labz.html" class="p-card web">
-      <div class="card-art">
-        <span class="card-cat-badge">DESIGN</span>
-        <div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-          <rect width="320" height="180" fill="#050510"/>
-          <!-- Monitor -->
-          <rect x="30" y="10" width="260" height="145" fill="#0d0d20" rx="4"/>
-          <rect x="33" y="13" width="254" height="139" fill="#080818" rx="2"/>
-          <!-- Browser chrome -->
-          <rect x="33" y="13" width="254" height="18" fill="#1a1a30"/>
-          <!-- Browser dots -->
-          <rect x="37" y="18" width="8" height="8" fill="#e74c3c" rx="3"/>
-          <rect x="49" y="18" width="8" height="8" fill="#ffe066" rx="3"/>
-          <rect x="61" y="18" width="8" height="8" fill="#2ecc71" rx="3"/>
-          <!-- URL bar -->
-          <rect x="75" y="18" width="170" height="8" fill="#0d0d20" rx="2"/>
-          <text x="80" y="25" font-family="monospace" font-size="4" fill="#2ecc71">zedd-labz.com</text>
-          <!-- Website content area -->
-          <!-- Hero section -->
-          <rect x="33" y="31" width="254" height="55" fill="#0a0a1e"/>
-          <!-- Hero gradient bg -->
-          <rect x="33" y="31" width="254" height="55" fill="url(#heroGrad)" opacity="0.4"/>
-          <defs><linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b59b6"/><stop offset="100%" stop-color="#3498db"/></linearGradient></defs>
-          <!-- Nav links in hero -->
-          <rect x="36" y="34" width="30" height="6" fill="#1a1a30"/>
-          <text x="40" y="39" font-family="monospace" font-size="4" fill="#fff" opacity="0.8">ZEDD</text>
-          <rect x="200" y="34" width="20" height="5" fill="none"/>
-          <text x="202" y="39" font-family="monospace" font-size="4" fill="#ccc">HOME</text>
-          <text x="224" y="39" font-family="monospace" font-size="4" fill="#ccc">LABS</text>
-          <text x="246" y="39" font-family="monospace" font-size="4" fill="#ff6eb4">JOIN</text>
-          <!-- Hero headline -->
-          <text x="160" y="58" font-family="monospace" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">ZEDD LABZ</text>
-          <text x="160" y="70" font-family="monospace" font-size="5" fill="#aaa" text-anchor="middle">Innovation Lab Redesign</text>
-          <!-- CTA button -->
-          <rect x="130" y="74" width="60" height="10" fill="#ff6eb4" rx="2"/>
-          <text x="160" y="82" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">EXPLORE</text>
-          <!-- Feature cards row -->
-          <rect x="36" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/>
-          <rect x="36" y="92" width="74" height="6" fill="#9b59b6" rx="2"/>
-          <text x="73" y="105" font-family="monospace" font-size="4" fill="#ccc" text-anchor="middle">RESEARCH</text>
-          <rect x="39" y="108" width="64" height="3" fill="#555"/>
-          <rect x="39" y="113" width="50" height="3" fill="#555"/>
-          <rect x="39" y="118" width="58" height="3" fill="#555"/>
-          <rect x="116" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/>
-          <rect x="116" y="92" width="74" height="6" fill="#3498db" rx="2"/>
-          <text x="153" y="105" font-family="monospace" font-size="4" fill="#ccc" text-anchor="middle">DEVELOP</text>
-          <rect x="119" y="108" width="64" height="3" fill="#555"/>
-          <rect x="119" y="113" width="44" height="3" fill="#555"/>
-          <rect x="119" y="118" width="58" height="3" fill="#555"/>
-          <rect x="196" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/>
-          <rect x="196" y="92" width="74" height="6" fill="#2ecc71" rx="2"/>
-          <text x="233" y="105" font-family="monospace" font-size="4" fill="#ccc" text-anchor="middle">LAUNCH</text>
-          <rect x="199" y="108" width="64" height="3" fill="#555"/>
-          <rect x="199" y="113" width="50" height="3" fill="#555"/>
-          <rect x="199" y="118" width="40" height="3" fill="#555"/>
-          <!-- Footer of website -->
-          <rect x="33" y="138" width="254" height="14" fill="#06060f"/>
-          <text x="160" y="148" font-family="monospace" font-size="4" fill="#555" text-anchor="middle">© 2021 Zedd Labz · Redesigned by Shraboni</text>
-          <!-- Monitor stand -->
-          <rect x="145" y="155" width="30" height="10" fill="#0d0d20"/>
-          <rect x="130" y="163" width="60" height="6" fill="#0d0d20"/>
-        </svg>
+      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#050510"/><rect x="30" y="10" width="260" height="145" fill="#0d0d20" rx="4"/><rect x="33" y="13" width="254" height="139" fill="#080818" rx="2"/><rect x="33" y="13" width="254" height="18" fill="#1a1a30"/><rect x="37" y="18" width="8" height="8" fill="#e74c3c" rx="3"/><rect x="49" y="18" width="8" height="8" fill="#ffe066" rx="3"/><rect x="61" y="18" width="8" height="8" fill="#2ecc71" rx="3"/><rect x="75" y="18" width="170" height="8" fill="#0d0d20" rx="2"/><text x="80" y="25" font-family="monospace" font-size="4" fill="#2ecc71">zedd-labz.com</text><rect x="33" y="31" width="254" height="55" fill="#0a0a1e"/><defs><linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b59b6"/><stop offset="100%" stop-color="#3498db"/></linearGradient></defs><rect x="33" y="31" width="254" height="55" fill="url(#heroGrad)" opacity="0.4"/><text x="160" y="58" font-family="monospace" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">ZEDD LABZ</text><text x="160" y="70" font-family="monospace" font-size="5" fill="#aaa" text-anchor="middle">Innovation Lab Redesign</text><rect x="130" y="74" width="60" height="10" fill="#ff6eb4" rx="2"/><text x="160" y="82" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">EXPLORE</text><rect x="36" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="36" y="92" width="74" height="6" fill="#9b59b6" rx="2"/><rect x="116" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="116" y="92" width="74" height="6" fill="#3498db" rx="2"/><rect x="196" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="196" y="92" width="74" height="6" fill="#2ecc71" rx="2"/><rect x="145" y="155" width="30" height="10" fill="#0d0d20"/><rect x="130" y="163" width="60" height="6" fill="#0d0d20"/></svg>
       </div>
-      <div class="card-body">
-        <div class="card-title">ZEDD LABZ REDESIGN</div>
-        <div class="card-meta">Internship · Jun–Jul 2021</div>
-        <div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div>
-      </div>
+      <div class="card-body"><div class="card-title">ZEDD LABZ REDESIGN</div><div class="card-meta">Internship · Jun–Jul 2021</div><div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div></div>
     </a>
 
   </div>
@@ -786,31 +383,16 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
   <div class="about-grid">
     <div class="reveal">
       <div class="os-window">
-        <div class="os-titlebar">
-          <span class="os-title">shraboni_banerjee.exe</span>
-          <div class="os-btns"><span>_</span><span>□</span><span>✕</span></div>
-        </div>
+        <div class="os-titlebar"><span class="os-title">shraboni_banerjee.exe</span><div class="os-btns"><span>_</span><span>□</span><span>✕</span></div></div>
         <div class="os-body">
           <div class="sprite-scene">
-            <div class="sprite-anim">
-              <svg width="64" height="80" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
-                <rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/>
-                <rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/>
-                <rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/>
-                <rect x="18" y="14" width="12" height="2" fill="#e07060"/>
-                <rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/>
-                <rect x="12" y="22" width="24" height="20" fill="#2ecc71"/>
-                <rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/>
-                <rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/>
-                <rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/>
-              </svg>
-            </div>
+            <div class="sprite-anim"><svg width="64" height="80" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/><rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/><rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="18" y="14" width="12" height="2" fill="#e07060"/><rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/><rect x="12" y="22" width="24" height="20" fill="#2ecc71"/><rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/><rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/></svg></div>
             <span class="sprite-lbl">shraboni_banerjee</span>
             <div class="bubble">SOFTWARE ENGINEER</div>
           </div>
           <div class="os-content">
             <h3>Hello, I'm Shraboni</h3>
-            <p>Software Engineer from Bengaluru, India. B.E. in Computer Science & Engineering + Diploma in Computer Science & Technology. Currently shipping production code at Tech Sprint on RestoGenius — an AI-powered cloud POS for Australian hospitality venues.</p>
+            <p>Software Engineer from Bengaluru, India. B.E. in Computer Science &amp; Engineering + Diploma in CS&amp;T. Currently shipping production code at Tech Sprint on RestoGenius — an AI-powered cloud POS for Australian hospitality venues.</p>
             <p>I love building clean, thoughtful software and designing experiences that feel effortless. Off the clock, you'll find me at the chessboard ♟</p>
             <div class="contact-section">
               <p class="contact-head">⇒ CONTACT ME ⇐</p>
@@ -845,12 +427,11 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
         <h2 class="info-head">★ SKILLS</h2>
         <div class="skill-item"><div class="skill-lbl"><span>FRONTEND (React / TypeScript / Angular)</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
         <div class="skill-item"><div class="skill-lbl"><span>BACKEND (Python / C#)</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
-        <div class="skill-item"><div class="skill-lbl"><span>MOBILE (React Native / Swift UI / Kotlin / Flutter )</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-item"><div class="skill-lbl"><span>MOBILE (React Native / SwiftUI / Kotlin / Flutter)</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
         <div class="skill-item"><div class="skill-lbl"><span>DEVOPS / CLOUD</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
-        <div class="skill-item"><div class="skill-lbl"><span>DATA STRUCTURES AND ALGORITHMS (Python) </span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
-      
-       </div>
-      <a href="/assets/img/SDE.pdf" class="px-btn px-btn-yellow">★ DOWNLOAD RESUME ★</a>
+        <div class="skill-item"><div class="skill-lbl"><span>DSA (Python)</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+      </div>
+      <a href="assets/img/SDE.pdf" class="px-btn px-btn-yellow">★ DOWNLOAD RESUME ★</a>
     </div>
   </div>
 </section>
@@ -879,12 +460,13 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     <a href="https://www.behance.net/shilpabanerjee">Behance</a>
     <a href="https://www.youtube.com/@shilpabanerjee">YouTube</a>
   </div>
-  <p class="game-over">— INSERT COIN TO CONTINUE ●●● —</p>
+  <p class="game-over-footer">— INSERT COIN TO CONTINUE ●●● —</p>
 </footer>
 
 <a href="#" class="back-top">▲ TOP</a>
 
 <script>
+// ── Stars ─────────────────────────────────────────────────
 const sl=document.getElementById('starsLayer');
 for(let i=0;i<70;i++){
   const s=document.createElement('div');s.className='star-px';
@@ -892,6 +474,8 @@ for(let i=0;i<70;i++){
   s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;`;
   sl.appendChild(s);
 }
+
+// ── Portfolio filters ──────────────────────────────────────
 document.querySelectorAll('.f-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
@@ -902,15 +486,245 @@ document.querySelectorAll('.f-btn').forEach(btn=>{
     });
   });
 });
+
+// ── Scroll reveal ──────────────────────────────────────────
 const obs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*100);});
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-let k=[];const kc=[38,38,40,40,37,39,37,39,66,65];
-document.addEventListener('keydown',e=>{
-  k.push(e.keyCode);k=k.slice(-10);
-  if(JSON.stringify(k)===JSON.stringify(kc)){document.body.style.filter='hue-rotate(180deg) saturate(2)';setTimeout(()=>document.body.style.filter='',3000);}
-});
+
+// ══════════════════════════════════════════════════════════
+//  MINI GAME
+// ══════════════════════════════════════════════════════════
+(function(){
+  const canvas   = document.getElementById('gameCanvas');
+  const ctx      = canvas.getContext('2d');
+  const heroSec  = document.getElementById('hero');
+  const hudEl    = document.getElementById('gameHud');
+  const scoreEl  = document.getElementById('scoreVal');
+  const hiEl     = document.getElementById('hiVal');
+  const livesEl  = document.getElementById('livesHud');
+  const startSc  = document.getElementById('startScreen');
+  const goScreen = document.getElementById('gameOverScreen');
+  const goScoreEl= document.getElementById('goScore');
+  const goBestEl = document.getElementById('goBest');
+  const retryBtn = document.getElementById('retryBtn');
+  const sbPanel  = document.getElementById('scoreboard');
+  const sbRows   = document.getElementById('sbRows');
+
+  const GH = 108; // ground height (matches CSS)
+  let W, H, gY;
+
+  function resize(){
+    W = canvas.width  = heroSec.offsetWidth;
+    H = canvas.height = heroSec.offsetHeight;
+    gY = H - GH;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ── session scoreboard ──────────────────────────────────
+  const leaderboard = [];
+  function addScore(s){
+    leaderboard.push(s);
+    leaderboard.sort((a,b)=>b-a);
+    leaderboard.splice(5);
+    sbRows.innerHTML = leaderboard.map((v,i)=>`
+      <div class="sb-row"><span>#${i+1}</span><span style="color:var(--yellow)">${v}</span></div>`).join('');
+  }
+
+  // ── state ────────────────────────────────────────────────
+  let state='start', frame=0, score=0, hiscore=0, lives=3;
+  let speed, spawnT, coinT, invT;
+  let player, coins, monsters, particles;
+
+  function init(){
+    gY=H-GH; speed=3.5; score=0; lives=3;
+    frame=0; spawnT=80; coinT=40; invT=0;
+    coins=[]; monsters=[]; particles=[];
+    player={x:80,y:gY-64,w:48,h:64,vy:0,ground:true,wf:0,wt:0};
+  }
+
+  // ── input ────────────────────────────────────────────────
+  function doJump(){
+    if(state==='start'){
+      startSc.style.display='none';
+      hudEl.style.display='flex';
+      sbPanel.style.display='block';
+      state='play'; init(); return;
+    }
+    if(state==='over'){ restart(); return; }
+    if(player.ground){ player.vy=-16; player.ground=false; }
+  }
+  function restart(){
+    goScreen.style.display='none';
+    state='play'; init();
+  }
+
+  document.addEventListener('keydown',e=>{
+    if(e.code==='Space'||e.code==='ArrowUp'){ e.preventDefault(); doJump(); }
+  });
+  canvas.addEventListener('click', doJump);
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();doJump();},{passive:false});
+  retryBtn.addEventListener('click', restart);
+
+  // ── pixel draw helpers ───────────────────────────────────
+  function px(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(Math.round(x),Math.round(y),w,h); }
+
+  function drawPlayer(x,y,wf,inv){
+    if(inv && Math.floor(Date.now()/80)%2===0) return;
+    px(x+14,y+2, 20,6, '#2a1a0a'); px(x+12,y+4,4,4,'#2a1a0a');
+    px(x+14,y+4, 20,16,'#f5c5a0');
+    px(x+16,y+8, 4,4,'#1a0a2e'); px(x+26,y+8,4,4,'#1a0a2e');
+    px(x+18,y+14,12,2,'#e07060');
+    px(x+16,y+18,16,4,'#f5c5a0');
+    px(x+12,y+22,24,20,'#2ecc71');
+    const ao=wf===1?-3:wf===2?3:0;
+    px(x+6, y+22+ao,6,14,'#f5c5a0'); px(x+36,y+22-ao,6,14,'#f5c5a0');
+    const lo=wf===1?-4:wf===2?4:0;
+    px(x+16,y+42,    6,14+lo,'#27ae60'); px(x+26,y+42,    6,14-lo,'#27ae60');
+    px(x+14,y+54+lo,10,6,  '#2a1a0a'); px(x+24,y+54-lo,10,6,  '#2a1a0a');
+  }
+
+  function drawCoin(x,y,sz,t){
+    const scx=Math.abs(Math.sin(t*0.09))*0.65+0.35;
+    const w=sz*scx, off=(sz-w)/2;
+    px(x+off,y,         w,sz*0.15,'#ffe066');
+    px(x+off,y+sz*0.15, w,sz*0.7, '#ffcc00');
+    px(x+off,y+sz*0.85, w,sz*0.15,'#ffe066');
+    if(scx>0.5){
+      ctx.fillStyle='rgba(255,255,200,0.4)';
+      ctx.fillRect(Math.round(x+off+w*0.2),Math.round(y+sz*0.15),Math.round(w*0.25),Math.round(sz*0.35));
+    }
+  }
+
+  function drawMonster(x,y,w,h,t){
+    const b=Math.sin(t*0.12)*2;
+    // horns
+    px(x+8, y+b-16, 6,10,'#c0392b'); px(x+w-14,y+b-16,6,10,'#c0392b');
+    // body
+    px(x,   y+b,    w,  h*0.7,'#e74c3c');
+    px(x+4, y+b-8,  w-8,12,  '#e74c3c');
+    px(x+6, y+b-12, w-12,8,  '#c0392b');
+    // eyes
+    px(x+8, y+b+4,  8,8,'#fff'); px(x+w-16,y+b+4,8,8,'#fff');
+    px(x+10,y+b+6,  4,4,'#1a0a2e'); px(x+w-14,y+b+6,4,4,'#1a0a2e');
+    // mouth angry
+    px(x+10,y+b+16, 4,3,'#7a0000'); px(x+16,y+b+14,4,3,'#7a0000'); px(x+22,y+b+16,4,3,'#7a0000');
+    // feet
+    px(x+2, y+b+h*0.7,10,6,'#c0392b'); px(x+w-12,y+b+h*0.7,10,6,'#c0392b');
+  }
+
+  function burst(x,y,color,n){
+    for(let i=0;i<n;i++){
+      const a=(Math.PI*2/n)*i+Math.random()*0.5, sp=2+Math.random()*4;
+      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,life:36+Math.random()*18,color,sz:4+Math.random()*4});
+    }
+  }
+
+  function updateHUD(){
+    if(score>hiscore) hiscore=score;
+    scoreEl.textContent=score;
+    hiEl.textContent=hiscore;
+    livesEl.textContent='♥'.repeat(Math.max(0,lives))+'♡'.repeat(Math.max(0,3-lives));
+  }
+
+  // ── ground tiles ─────────────────────────────────────────
+  function drawGround(){
+    for(let tx=0;tx<W;tx+=16){
+      ctx.fillStyle=tx%32===0?'#5cad3c':'#4a9a2e'; ctx.fillRect(tx,gY,16,4);
+      ctx.fillStyle=tx%32===0?'#8B6340':'#7a5530'; ctx.fillRect(tx,gY+4,16,32);
+      ctx.fillStyle=tx%32===0?'#6b4a2a':'#5a3a1a'; ctx.fillRect(tx,gY+36,16,80);
+    }
+    ctx.fillStyle='#2d6a1a'; ctx.fillRect(0,gY,W,4);
+    ctx.fillStyle='#5a3a1a'; ctx.fillRect(0,gY+4,W,2);
+  }
+
+  // ── main loop ─────────────────────────────────────────────
+  function loop(){
+    requestAnimationFrame(loop);
+    ctx.clearRect(0,0,W,H);
+    if(state==='start') return;
+
+    frame++;
+    gY=H-GH;
+
+    if(state==='play'){
+      score++;
+      speed=3.5+score*0.004;
+
+      // spawn monsters
+      spawnT--;
+      if(spawnT<=0){
+        const mh=44+Math.random()*22, mw=36+Math.random()*18;
+        monsters.push({x:W+40,y:gY-mh,w:mw,h:mh,t:0});
+        spawnT=Math.max(30, 60+Math.random()*80-score/220);
+      }
+
+      // spawn coins
+      coinT--;
+      if(coinT<=0){
+        const rows=[0,-55,-110];
+        const row=rows[Math.floor(Math.random()*3)];
+        const n=1+Math.floor(Math.random()*4);
+        for(let i=0;i<n;i++) coins.push({x:W+40+i*36,y:gY-58+row,sz:24,t:frame+i*8,col:false});
+        coinT=45+Math.random()*55;
+      }
+    }
+
+    // physics
+    if(state==='play'||invT>0){
+      player.vy+=0.75; player.y+=player.vy;
+      if(player.y>=gY-player.h){ player.y=gY-player.h; player.vy=0; player.ground=true; }
+      player.wt++; if(player.wt>8){player.wt=0;player.wf=(player.wf+1)%3;}
+    }
+
+    // scroll
+    coins=coins.filter(c=>c.x>-40); coins.forEach(c=>{c.x-=speed*0.9;c.t++;});
+    monsters=monsters.filter(m=>m.x>-80); monsters.forEach(m=>{m.x-=speed;m.t++;});
+
+    // collect coins
+    if(state==='play') coins.forEach(c=>{
+      if(c.col) return;
+      if(player.x+8<c.x+c.sz&&player.x+player.w-8>c.x&&player.y+8<c.y+c.sz&&player.y+player.h-8>c.y){
+        c.col=true; score+=50; burst(c.x+c.sz/2,c.y+c.sz/2,'#ffe066',8);
+      }
+    });
+    coins=coins.filter(c=>!c.col);
+
+    // monster collision
+    if(state==='play'&&invT<=0) monsters.forEach(m=>{
+      if(player.x+14<m.x+m.w-6&&player.x+player.w-14>m.x+6&&player.y+10<m.y+m.h&&player.y+player.h>m.y+10){
+        lives--; burst(player.x+24,player.y+32,'#ff6eb4',14);
+        if(lives<=0){
+          state='over';
+          addScore(score);
+          goScreen.style.display='flex';
+          goScoreEl.textContent=score; goBestEl.textContent=hiscore;
+        } else { invT=100; }
+      }
+    });
+    if(invT>0) invT--;
+
+    // draw
+    drawGround();
+    coins.forEach(c=>drawCoin(c.x,c.y,c.sz,c.t));
+    monsters.forEach(m=>drawMonster(m.x,m.y,m.w,m.h,m.t));
+    drawPlayer(player.x,player.y,player.wf,invT>0);
+
+    // particles
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.vy+=0.3;p.life--;
+      ctx.globalAlpha=Math.max(0,p.life/50);
+      ctx.fillStyle=p.color;ctx.fillRect(Math.round(p.x),Math.round(p.y),p.sz,p.sz);
+    });
+    ctx.globalAlpha=1;
+    particles=particles.filter(p=>p.life>0);
+
+    updateHUD();
+  }
+  loop();
+})();
 </script>
 </body>
 </html>
