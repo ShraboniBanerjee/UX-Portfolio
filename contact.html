@@ -1,152 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Shraboni Banerjee</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pink: #ff6eb4; --yellow: #ffe066; --dark: #1a0a2e;
+      --green: #2ecc71; --blue: #3498db;
+      --pixel: 'Press Start 2P', monospace; --vt: 'VT323', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: #1a0a2e; font-family: var(--vt); image-rendering: pixelated; overflow-x: hidden; min-height: 100vh; }
+    #pixel-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-sky { position: absolute; inset: 0; background: linear-gradient(180deg,#08081e 0%,#1a1a5e 18%,#2d5aa0 38%,#5ec8f0 58%,#a8e6f8 72%,#c8f0b0 82%,#5cad3c 88%,#4a9a2e 92%,#8B6340 96%,#6b4a2a 100%); }
+    .bg-stars { position: absolute; top: 0; left: 0; width: 100%; height: 50%; }
+    .star { position: absolute; background: #fff; animation: twinkle 2s infinite; }
+    @keyframes twinkle { 0%,100%{opacity:1;} 50%{opacity:0.1;} }
+    .bg-clouds { position: absolute; top: 6%; left: 0; width: 200%; height: 80px; animation: cloudScroll 40s linear infinite; }
+    @keyframes cloudScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+    .cloud-wrap { display: inline-block; margin-right: 180px; vertical-align: top; }
+    .bg-mountains { position: absolute; bottom: 14%; left: 0; right: 0; height: 200px; }
+    .bg-mountains svg { width: 100%; height: 100%; }
+    .bg-trees { position: absolute; bottom: 12%; left: 0; right: 0; height: 80px; }
+    .tree-item { position: absolute; bottom: 0; }
+    .tree-top { width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 40px solid #2d8a20; margin: 0 auto; position: relative; }
+    .tree-top::after { content: ''; position: absolute; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 28px solid #3aaa28; top: -18px; left: -12px; }
+    .tree-trunk { width: 10px; height: 18px; background: #7a5530; margin: 0 auto; }
+    .walker { position: absolute; bottom: 13.5%; animation: walkAcross 12s linear infinite; }
+    @keyframes walkAcross { 0%{left:-60px;} 100%{left:110%;} }
+    .bg-ground { position: absolute; bottom: 0; left: 0; right: 0; }
+    .bg-grass { height: 26px; background: repeating-linear-gradient(90deg,#5cad3c 0,#5cad3c 16px,#4a9a2e 16px,#4a9a2e 32px); border-top: 4px solid #2d6a1a; }
+    .bg-dirt { height: 32px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; }
+    .bg-earth { height: 80px; background: repeating-linear-gradient(90deg,#6b4a2a 0,#6b4a2a 16px,#5a3a1a 16px,#5a3a1a 32px); }
+    .bg-scanlines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px); }
+    .px-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; background: #0a0518; border-bottom: 4px solid var(--pink); padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .px-nav-brand { font-family: var(--pixel); font-size: 0.52rem; color: var(--yellow); text-decoration: none; text-shadow: 2px 2px 0 var(--pink); }
+    .px-nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .px-nav-links a { font-family: var(--pixel); font-size: 0.4rem; color: #ccc; text-decoration: none; padding: 0.3rem 0.5rem; transition: background 0.1s,color 0.1s; }
+    .px-nav-links a:hover { background: var(--pink); color: var(--dark); }
+    .coin-badge { position: fixed; top: 58px; right: 1rem; z-index: 199; font-family: var(--pixel); font-size: 0.38rem; color: var(--yellow); background: rgba(0,0,0,0.88); padding: 0.35rem 0.7rem; border: 2px solid var(--yellow); display: flex; align-items: center; gap: 6px; }
+    .coin { width: 12px; height: 12px; background: var(--yellow); border-radius: 50%; border: 2px solid #b8860b; display: inline-block; animation: coinSpin 1s linear infinite; }
+    @keyframes coinSpin { 0%{transform:scaleX(1);} 25%{transform:scaleX(0.2);} 50%{transform:scaleX(1);} 75%{transform:scaleX(0.2);} 100%{transform:scaleX(1);} }
+    #main-content { position: relative; z-index: 10; padding-top: 80px; min-height: 100vh; }
+    .content-panel { background: rgba(10,5,30,0.88); border: 3px solid rgba(255,110,180,0.25); border-top: 4px solid var(--pink); backdrop-filter: blur(4px); margin: 2rem; padding: 2.5rem; }
+    .page-title-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 2px dashed rgba(255,110,180,0.3); }
+    .page-title-bar h2 { font-family: var(--pixel); font-size: clamp(0.5rem,1.8vw,0.85rem); color: var(--yellow); text-shadow: 3px 3px 0 var(--pink); letter-spacing: 0.05em; line-height: 1.6; }
+    .title-icon { font-family: var(--pixel); font-size: 0.5rem; background: var(--pink); color: var(--dark); padding: 0.4rem 0.8rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; white-space: nowrap; }
+    .layout-main { display: grid; grid-template-columns: 1fr 260px; gap: 2.5rem; align-items: start; }
+    @media(max-width:900px){ .layout-main{grid-template-columns:1fr;} }
+    .sidebar-card { background: #0d0520; border: 3px solid #3a1a5e; box-shadow: 5px 5px 0 #000; padding: 1.5rem; position: sticky; top: 90px; }
+    .sidebar-card .s-label { font-family: var(--pixel); font-size: 0.42rem; color: var(--pink); margin-bottom: 0.4rem; display: block; letter-spacing: 0.05em; }
+    .sidebar-card .s-value { font-family: var(--vt); font-size: 1.05rem; color: #ccc; margin-bottom: 1.2rem; line-height: 1.6; }
+    .sidebar-card ul { font-family: var(--vt); font-size: 1.05rem; color: #ccc; padding-left: 1rem; margin-bottom: 1.2rem; }
+    .sidebar-card ul li { margin-bottom: 0.25rem; }
+    .sidebar-card ul li::marker { color: var(--pink); }
+    .sidebar-divider { border: none; border-top: 2px dashed rgba(255,110,180,0.25); margin: 0.8rem 0; }
+    .case-section { margin-bottom: 2.5rem; }
+    .section-pill { display: inline-block; font-family: var(--pixel); font-size: 0.45rem; background: transparent; color: var(--yellow); border: 2px solid var(--yellow); padding: 0.3rem 0.8rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; letter-spacing: 0.06em; }
+    .case-section p { font-family: var(--vt); font-size: 1.15rem; color: #bbb; line-height: 1.8; margin-bottom: 0.75rem; }
+    .case-section ul { font-family: var(--vt); font-size: 1.1rem; color: #bbb; padding-left: 1.3rem; margin-bottom: 0.75rem; line-height: 1.8; }
+    .case-section ul li { margin-bottom: 0.5rem; }
+    .case-section ul li::marker { color: var(--pink); }
+    .case-section ul li strong { color: var(--yellow); font-weight: normal; }
+    .case-section img.img-fluid, .case-section video { border: 4px solid #3a1a5e; box-shadow: 4px 4px 0 #000; display: block; max-width: 100%; height: auto; margin-top: 1rem; }
+    .case-section img.img-fluid:hover, .case-section video:hover { border-color: var(--pink); }
+    a.readmore { font-family: var(--pixel); font-size: 0.38rem; color: var(--dark); background: var(--green); padding: 0.4rem 0.8rem; border: 2px solid #000; box-shadow: 2px 2px 0 #000; text-decoration: none; display: inline-block; margin: 0.75rem 0; letter-spacing: 0.05em; transition: transform 0.1s,box-shadow 0.1s; }
+    a.readmore:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+    .hp-bar { height: 8px; background: #050215; border: 2px solid #333; overflow: hidden; margin-top: 1.5rem; }
+    .hp-fill { height: 100%; background: repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px); animation: hpPulse 2s ease-in-out infinite alternate; }
+    @keyframes hpPulse { from{filter:brightness(1);} to{filter:brightness(1.5);} }
+    .px-rule { border: none; border-top: 2px dashed rgba(255,110,180,0.15); margin: 2rem 0; }
+    .px-footer { position: relative; z-index: 10; background: #0a0518; border-top: 4px solid var(--pink); text-align: center; padding: 1.5rem; }
+    .footer-dirt { height: 24px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; margin-bottom: 1.5rem; }
+    .px-footer p { font-family: var(--pixel); font-size: 0.35rem; color: #555; letter-spacing: 0.06em; }
+    .back-top { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; font-family: var(--pixel); font-size: 0.38rem; background: var(--pink); color: var(--dark); padding: 0.45rem 0.7rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; text-decoration: none; transition: transform 0.1s,box-shadow 0.1s; }
+    .back-top:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 #000; }
+    @media(max-width:768px){ .px-nav{padding:0.5rem 1rem;} .px-nav-links{display:none;} .content-panel{margin:0.5rem;padding:1.2rem 1rem;} }
 
-  <title>Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-   <!-- Boxicons -->
-   <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  .contact-wrapper { max-width: 600px; margin: 0 auto; }
+  .contact-intro { font-family: var(--pixel); font-size: 0.45rem; color: var(--yellow); margin-bottom: 2rem; line-height: 2; }
+  .px-form-group { margin-bottom: 1.5rem; }
+  .px-form-group label { font-family: var(--pixel); font-size: 0.38rem; color: var(--pink); display: block; margin-bottom: 0.5rem; letter-spacing: 0.06em; }
+  .px-form-group input, .px-form-group textarea {
+    width: 100%; background: #0d0520; color: #eee;
+    border: 3px solid #3a1a5e; padding: 0.6rem 0.8rem;
+    font-family: var(--vt); font-size: 1.1rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .px-form-group input:focus, .px-form-group textarea:focus { border-color: var(--pink); }
+  .px-form-group textarea { resize: vertical; min-height: 120px; }
+  .px-submit { font-family: var(--pixel); font-size: 0.42rem; background: var(--pink); color: var(--dark); padding: 0.7rem 2rem; border: 3px solid #000; box-shadow: 4px 4px 0 #000; cursor: pointer; letter-spacing: 0.06em; transition: transform 0.1s, box-shadow 0.1s; display: block; margin: 2rem auto 0; }
+  .px-submit:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 #000; }
+  .social-row { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px dashed rgba(255,110,180,0.3); }
+  .social-row a { font-family: var(--pixel); font-size: 0.38rem; background: var(--yellow); color: var(--dark); padding: 0.4rem 0.75rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+  .social-row a:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 #000; background: var(--pink); }
+</style>
 </head>
-
 <body>
 
-  <!-- ======= Navbar ======= -->
-  <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
-    <div class="container py-2 py-md-5">
-      <div class="row align-items-start">
-        <div class="col-md-2">
-          <ul class="custom-menu">
-            <li><a href="index.html">Works</a></li>
-   <li class="active"><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 d-none d-md-block  mr-auto">
-          <div class="tweet d-flex">
-           <span class="bi bi-behance text-white mt-2 mr-3"></span>
-            <div>
-          <p><em>For more details, please download my resume from below. <br> <a href="#"></a></em></p>
-         
-          <p><a href="assets/img/SDE.pdf" class="readmore">DOWNLOAD MY RESUME</a></p>
-        
-        </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-none d-md-block">
-          <h3>About Me</h3>
-       <p>  I'm a self-taught designer and software developer from Bangalore, India. With a Bachelors degree in Computer Science & Engineering and 3 years Diploma degree in Computer Science and Technology, I'm passionate about creating attractive, user-friendly designs. I have a keen interest in UI/UX, focusing on visually appealing and intuitive designs. I actively study and apply UX principles to enhance the user experience. Additionally, I enjoy photography and content creation, which brings a creative touch to my design work.
-      </p> 
-        </div>
-      </div>
-
-    </div>
+<div id="pixel-bg">
+  <div class="bg-sky"></div>
+  <div class="bg-stars" id="bgStars"></div>
+  <div class="bg-clouds">
+    <span class="cloud-wrap" style="margin-top:20px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:44px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:14px;"><svg width="56" height="28" viewBox="0 0 56 28" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="40" height="14" fill="white"/><rect x="14" y="6" width="28" height="14" fill="white"/><rect x="20" y="0" width="16" height="10" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:36px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:22px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
   </div>
-
-  <nav class="navbar navbar-light custom-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">SHRABONI BANERJEE</a>
-      <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
-        <span></span>
-      </a>
+  <div class="bg-mountains"><svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><polygon points="0,200 100,80 200,150 340,50 480,130 600,30 720,110 860,45 1000,125 1140,35 1280,100 1440,55 1440,200" fill="#2a5a20" opacity="0.55"/><polygon points="0,200 80,100 200,170 360,80 490,150 620,55 740,120 880,50 1010,130 1160,65 1300,120 1440,80 1440,200" fill="#3a7a28"/></svg></div>
+  <div class="bg-trees">
+    <div class="tree-item" style="left:3%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:10%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:18%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:70%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:82%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:91%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+  </div>
+  <div class="walker"><svg width="48" height="64" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/><rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/><rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="18" y="14" width="12" height="2" fill="#e07060"/><rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/><rect x="12" y="22" width="24" height="20" fill="#2ecc71"/><rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/><rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/></svg></div>
+  <div class="bg-ground"><div class="bg-grass"></div><div class="bg-dirt"></div><div class="bg-earth"></div></div>
+  <div class="bg-scanlines"></div>
+</div>
+<div class="coin-badge"><span class="coin"></span>CONTACT.EXE</div>
+<nav class="px-nav">
+  <a class="px-nav-brand" href="index.html">★ SB PORTFOLIO ★</a>
+  <ul class="px-nav-links">
+    <li><a href="index.html">[ WORKS ]</a></li>
+    <li><a href="contact.html">[ CONTACT ]</a></li>
+    <li><a href="/assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
+  </ul>
+</nav>
+<div id="main-content">
+<div class="content-panel">
+<div class="page-title-bar"><span class="title-icon">CONNECT</span><h2>CONTACT ME</h2></div>
+<div class="contact-wrapper">
+  <p class="contact-intro">To know more about me, please get in touch!</p>
+  <form id="contact-form" method="post" action="mailto:shrabonibanerjee1998@gmail.com">
+    <div class="px-form-group">
+      <label for="name">YOUR NAME</label>
+      <input type="text" name="name" id="name" required>
     </div>
-  </nav>
-
-  <main id="main">
-
-    <section class="section pb-5">
-      <div class="container">
-
-        <div class="row mb-5 align-items-end">
-          <div class="col-md-6" data-aos="fade-up">
-            <h2>Contact Me</h2>
-            <p class="mb-0"> To know more about me, please get in touch.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="row">
-        
-          <div class="col-md-4 ml-auto order-2" data-aos="fade-up">
-            <div>
-
-              
-                <form id="contact-form" method="post" action="mailto:shilpabanerjee50@gmail.com">
-
-                <div class="form-group" style="padding: 1rem;">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" required>
-                </div>
-                <div class="form-group" style="padding: 1rem;">
-                  <label for="email">Your Email</label>
-                  <input type="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group" style="padding: 1rem;">
-                  <label for="message">Message</label>
-                  <textarea name="message" class="form-control" rows="5" required></textarea>
-                </div>
-                <div class="text-center" style="padding: 2rem;">
-                  <button type="submit" class="btn btn-primary" >Send Message</button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <p class="mb-1">&copy; Copyright Shraboni Banerjee. All Rights Reserved</p>
-      
-        </div>
-        <div class="col-sm-6 social text-md-end">
-          <a href="https://www.linkedin.com/in/shraboni-banerjee-b96253196"><span class="bi bi-linkedin"></span></a>
-          <a href="https://www.behance.net/shilpabanerjee"><span class="bx bxl-behance"></span></a>
-          <a href="https://www.instagram.com/imshilpabanerjee/"><span class="bi bi-instagram"></span></a>
-          <a href="https://github.com/ShraboniBanerjee"><span class="bi bi-github"></span></a>
-          <a href="https://medium.com/@shilpabanerjee50"><span class="bx bxl-medium"></span></a>
-       
-        </div>
-      </div>
+    <div class="px-form-group">
+      <label for="email">YOUR EMAIL</label>
+      <input type="email" name="email" id="email" required>
     </div>
-  </footer>
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <div class="px-form-group">
+      <label for="message">MESSAGE</label>
+      <textarea name="message" id="message" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="px-submit">★ SEND MESSAGE ★</button>
+  </form>
+  <div class="social-row">
+    <a href="https://www.linkedin.com/in/shraboni-banerjee-b96253196">LinkedIn</a>
+    <a href="https://github.com/ShraboniBanerjee">GitHub</a>
+    <a href="https://www.behance.net/shilpabanerjee">Behance</a>
+    <a href="https://www.youtube.com/@shilpabanerjee">YouTube</a>
+  </div>
+</div>
+</div>
+</div>
+<footer class="px-footer"><div class="footer-dirt"></div><p>© SHRABONI BANERJEE — ALL RIGHTS RESERVED — INSERT COIN TO CONTINUE ●●●</p></footer>
+<a href="#" class="back-top">▲ TOP</a>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  const sl=document.getElementById('bgStars');
+  for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const sz=[2,2,2,4,4,6][Math.floor(Math.random()*6)];s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;`;sl.appendChild(s);}
+</script>
 </body>
-
 </html>

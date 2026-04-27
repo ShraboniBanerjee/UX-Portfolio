@@ -1,279 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <title>Techbiz — Shraboni Banerjee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pink: #ff6eb4;
+      --yellow: #ffe066;
+      --dark: #1a0a2e;
+      --green: #2ecc71;
+      --blue: #3498db;
+      --pixel: 'Press Start 2P', monospace;
+      --vt: 'VT323', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #1a0a2e;
+      font-family: var(--vt);
+      image-rendering: pixelated;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* ===== FIXED PIXEL BACKGROUND ===== */
+    #pixel-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .bg-sky {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        #08081e 0%, #1a1a5e 18%, #2d5aa0 38%,
+        #5ec8f0 58%, #a8e6f8 72%, #c8f0b0 82%,
+        #5cad3c 88%, #4a9a2e 92%, #8B6340 96%, #6b4a2a 100%);
+    }
+    .bg-stars { position: absolute; top: 0; left: 0; width: 100%; height: 50%; }
+    .star { position: absolute; background: #fff; animation: twinkle 2s infinite; }
+    @keyframes twinkle { 0%,100%{opacity:1;} 50%{opacity:0.1;} }
+
+    .bg-clouds {
+      position: absolute; top: 6%; left: 0; width: 200%; height: 80px;
+      animation: cloudScroll 40s linear infinite;
+    }
+    @keyframes cloudScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+    .cloud-wrap { display: inline-block; margin-right: 180px; vertical-align: top; }
+
+    .bg-mountains { position: absolute; bottom: 14%; left: 0; right: 0; height: 200px; }
+    .bg-mountains svg { width: 100%; height: 100%; }
+
+    .bg-trees { position: absolute; bottom: 12%; left: 0; right: 0; height: 80px; }
+    .tree-item { position: absolute; bottom: 0; }
+    .tree-top { width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 40px solid #2d8a20; margin: 0 auto; position: relative; }
+    .tree-top::after { content: ''; position: absolute; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 28px solid #3aaa28; top: -18px; left: -12px; }
+    .tree-trunk { width: 10px; height: 18px; background: #7a5530; margin: 0 auto; }
+
+    .walker { position: absolute; bottom: 13.5%; animation: walkAcross 12s linear infinite; }
+    @keyframes walkAcross { 0%{left:-60px;} 100%{left:110%;} }
+
+    .bg-ground { position: absolute; bottom: 0; left: 0; right: 0; }
+    .bg-grass { height: 26px; background: repeating-linear-gradient(90deg,#5cad3c 0,#5cad3c 16px,#4a9a2e 16px,#4a9a2e 32px); border-top: 4px solid #2d6a1a; }
+    .bg-dirt  { height: 32px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; }
+    .bg-earth { height: 80px; background: repeating-linear-gradient(90deg,#6b4a2a 0,#6b4a2a 16px,#5a3a1a 16px,#5a3a1a 32px); }
+
+    .bg-scanlines {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px);
+    }
+
+    /* ===== NAV ===== */
+    .px-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      background: #0a0518; border-bottom: 4px solid var(--pink);
+      padding: 0.7rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .px-nav-brand { font-family: var(--pixel); font-size: 0.52rem; color: var(--yellow); text-decoration: none; text-shadow: 2px 2px 0 var(--pink); }
+    .px-nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .px-nav-links a { font-family: var(--pixel); font-size: 0.4rem; color: #ccc; text-decoration: none; padding: 0.3rem 0.5rem; transition: background 0.1s, color 0.1s; }
+    .px-nav-links a:hover { background: var(--pink); color: var(--dark); }
+
+    .coin-badge { position: fixed; top: 58px; right: 1rem; z-index: 199; font-family: var(--pixel); font-size: 0.38rem; color: var(--yellow); background: rgba(0,0,0,0.88); padding: 0.35rem 0.7rem; border: 2px solid var(--yellow); display: flex; align-items: center; gap: 6px; }
+    .coin { width: 12px; height: 12px; background: var(--yellow); border-radius: 50%; border: 2px solid #b8860b; display: inline-block; animation: coinSpin 1s linear infinite; }
+    @keyframes coinSpin { 0%{transform:scaleX(1);} 25%{transform:scaleX(0.2);} 50%{transform:scaleX(1);} 75%{transform:scaleX(0.2);} 100%{transform:scaleX(1);} }
+
+    /* ===== MAIN CONTENT ===== */
+    #main-content { position: relative; z-index: 10; padding-top: 80px; min-height: 100vh; }
+
+    .content-panel {
+      background: rgba(10, 5, 30, 0.88);
+      border: 3px solid rgba(255,110,180,0.25);
+      border-top: 4px solid var(--pink);
+      backdrop-filter: blur(4px);
+      margin: 2rem; padding: 2.5rem;
+    }
+
+    /* Page title bar */
+    .page-title-bar {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2.5rem; padding-bottom: 1rem;
+      border-bottom: 2px dashed rgba(255,110,180,0.3);
+    }
+    .page-title-bar h2 { font-family: var(--pixel); font-size: clamp(0.55rem, 1.8vw, 0.85rem); color: var(--yellow); text-shadow: 3px 3px 0 var(--pink); letter-spacing: 0.05em; line-height: 1.6; }
+    .title-icon { font-family: var(--pixel); font-size: 0.5rem; background: var(--pink); color: var(--dark); padding: 0.4rem 0.8rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; white-space: nowrap; }
+
+    /* ===== TWO-COLUMN LAYOUT ===== */
+    .layout-main { display: grid; grid-template-columns: 1fr 280px; gap: 2.5rem; align-items: start; }
+    @media(max-width: 900px) { .layout-main { grid-template-columns: 1fr; } }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar-card {
+      background: #0d0520; border: 3px solid #3a1a5e;
+      box-shadow: 5px 5px 0 #000; padding: 1.5rem;
+      position: sticky; top: 90px;
+    }
+    .sidebar-card .s-label { font-family: var(--pixel); font-size: 0.42rem; color: var(--pink); margin-bottom: 0.4rem; display: block; letter-spacing: 0.05em; }
+    .sidebar-card .s-value { font-family: var(--vt); font-size: 1.05rem; color: #ccc; margin-bottom: 1.2rem; line-height: 1.6; }
+    .sidebar-card ul { font-family: var(--vt); font-size: 1.05rem; color: #ccc; padding-left: 1rem; margin-bottom: 1.2rem; }
+    .sidebar-card ul li { margin-bottom: 0.25rem; }
+    .sidebar-card ul li::marker { color: var(--pink); }
+    .sidebar-divider { border: none; border-top: 2px dashed rgba(255,110,180,0.25); margin: 0.8rem 0; }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .case-section { margin-bottom: 2.5rem; }
+
+    /* Section heading pill */
+    .section-pill {
+      display: inline-block; font-family: var(--pixel); font-size: 0.45rem;
+      background: transparent; color: var(--yellow);
+      border: 2px solid var(--yellow); padding: 0.3rem 0.8rem;
+      box-shadow: 3px 3px 0 #000; margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .case-section p {
+      font-family: var(--vt); font-size: 1.15rem;
+      color: #bbb; line-height: 1.8; margin-bottom: 0.75rem;
+    }
+    .case-section ul {
+      font-family: var(--vt); font-size: 1.1rem;
+      color: #bbb; padding-left: 1.3rem; margin-bottom: 0.75rem; line-height: 1.8;
+    }
+    .case-section ul li { margin-bottom: 0.5rem; }
+    .case-section ul li::marker { color: var(--pink); }
+    .case-section ul li strong { color: var(--yellow); font-weight: normal; }
+
+    /* Images & videos — keep original, add pixel border */
+    .case-section img.img-fluid,
+    .case-section video {
+      border: 4px solid #3a1a5e;
+      box-shadow: 4px 4px 0 #000;
+      display: block; max-width: 100%; height: auto;
+    }
+    .case-section img.img-fluid:hover,
+    .case-section video:hover { border-color: var(--pink); }
+
+    /* visit website button */
+    a.readmore {
+      font-family: var(--pixel); font-size: 0.38rem;
+      color: var(--dark); background: var(--green);
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #000; box-shadow: 2px 2px 0 #000;
+      text-decoration: none; display: inline-block; margin: 0.5rem 0;
+      letter-spacing: 0.05em; transition: transform 0.1s, box-shadow 0.1s;
+    }
+    a.readmore:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
+
+    /* HP bar */
+    .hp-bar { height: 8px; background: #050215; border: 2px solid #333; overflow: hidden; margin-top: 1.5rem; }
+    .hp-fill { height: 100%; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 8px, var(--yellow) 8px, var(--yellow) 16px); animation: hpPulse 2s ease-in-out infinite alternate; }
+    @keyframes hpPulse { from{filter:brightness(1);} to{filter:brightness(1.5);} }
+
+    /* Section divider */
+    .px-rule { border: none; border-top: 2px dashed rgba(255,110,180,0.15); margin: 2rem 0; }
+
+    /* ===== FOOTER ===== */
+    .px-footer { position: relative; z-index: 10; background: #0a0518; border-top: 4px solid var(--pink); text-align: center; padding: 1.5rem; }
+    .footer-dirt { height: 24px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; margin-bottom: 1.5rem; }
+    .px-footer p { font-family: var(--pixel); font-size: 0.35rem; color: #555; letter-spacing: 0.06em; }
+
+    .back-top { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; font-family: var(--pixel); font-size: 0.38rem; background: var(--pink); color: var(--dark); padding: 0.45rem 0.7rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+    .back-top:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 #000; }
+
+    @media(max-width: 768px) {
+      .px-nav { padding: 0.5rem 1rem; }
+      .px-nav-links { display: none; }
+      .content-panel { margin: 0.5rem; padding: 1.2rem 1rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Navbar ======= -->
-  <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
-    <div class="container py-2 py-md-5">
-      <div class="row align-items-start">
-        <div class="col-md-2">
-          <ul class="custom-menu">
-            <li><a href="index.html">Works</a></li> 
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 d-none d-md-block  mr-auto">
-          <div class="tweet d-flex">
-           <span class="bi bi-behance text-white mt-2 mr-3"></span>
-            <div>
-          <p><em>For more details, please download my resume from below. <br> <a href="#"></a></em></p>
-          <p><a href="assets/img/SDE.pdf" class="readmore">DOWNLOAD MY RESUME</a></p>
-        
-        </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-none d-md-block">
-          <h3>About Me</h3>
-          <p>  I'm a self-taught designer and software developer from Bangalore, India. With a Bachelors degree in Computer Science & Engineering and 3 years Diploma degree in Computer Science and Technology, I'm passionate about creating attractive, user-friendly designs. I have a keen interest in UI/UX, focusing on visually appealing and intuitive designs. I actively study and apply UX principles to enhance the user experience. Additionally, I enjoy photography and content creation, which brings a creative touch to my design work.
-          </p> 
-        </div>
-      </div>
+<!-- ===== PIXEL BACKGROUND ===== -->
+<div id="pixel-bg">
+  <div class="bg-sky"></div>
+  <div class="bg-stars" id="bgStars"></div>
 
-    </div>
+  <div class="bg-clouds">
+    <span class="cloud-wrap" style="margin-top:20px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:44px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:14px;"><svg width="56" height="28" viewBox="0 0 56 28" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="40" height="14" fill="white"/><rect x="14" y="6" width="28" height="14" fill="white"/><rect x="20" y="0" width="16" height="10" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:36px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:22px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
+    <span class="cloud-wrap" style="margin-top:18px;"><svg width="56" height="28" viewBox="0 0 56 28" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="40" height="14" fill="white"/><rect x="14" y="6" width="28" height="14" fill="white"/><rect x="20" y="0" width="16" height="10" fill="white"/></svg></span>
   </div>
 
-  <nav class="navbar navbar-light custom-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">SHRABONI BANERJEE</a>
-      <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
-        <span></span>
-      </a>
+  <div class="bg-mountains">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,200 100,80 200,150 340,50 480,130 600,30 720,110 860,45 1000,125 1140,35 1280,100 1440,55 1440,200" fill="#2a5a20" opacity="0.55"/>
+      <polygon points="0,200 80,100 200,170 360,80 490,150 620,55 740,120 880,50 1010,130 1160,65 1300,120 1440,80 1440,200" fill="#3a7a28"/>
+    </svg>
+  </div>
+
+  <div class="bg-trees">
+    <div class="tree-item" style="left:3%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:10%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:18%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:25%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:70%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:78%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:86%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
+    <div class="tree-item" style="left:93%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+  </div>
+
+  <div class="walker">
+    <svg width="48" height="64" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;">
+      <rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/>
+      <rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/>
+      <rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/>
+      <rect x="18" y="14" width="12" height="2" fill="#e07060"/>
+      <rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/>
+      <rect x="12" y="22" width="24" height="20" fill="#2ecc71"/>
+      <rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/>
+      <rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/>
+      <rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/>
+    </svg>
+  </div>
+
+  <div class="bg-ground">
+    <div class="bg-grass"></div>
+    <div class="bg-dirt"></div>
+    <div class="bg-earth"></div>
+  </div>
+  <div class="bg-scanlines"></div>
+</div>
+
+<!-- COIN BADGE -->
+<div class="coin-badge"><span class="coin"></span>TECHBIZ.EXE</div>
+
+<!-- NAV -->
+<nav class="px-nav">
+  <a class="px-nav-brand" href="index.html">★ SB PORTFOLIO ★</a>
+  <ul class="px-nav-links">
+    <li><a href="index.html">[ WORKS ]</a></li>
+    <li><a href="contact.html">[ CONTACT ]</a></li>
+    <li><a href="/assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+  <div class="content-panel">
+
+    <!-- Page title -->
+    <div class="page-title-bar">
+      <span class="title-icon">STAGE 05</span>
+      <h2>GEMSTONE ADMIN PANEL</h2>
     </div>
-  </nav>
 
-  <main id="main">
+    <div class="layout-main">
 
-             <section class="section">
-              <div class="container">
-                <div class="row mb-4 align-items-center">
-                  <div class="col-md-6" data-aos="fade-up">
-                   <span style="font-weight: 500; color:#000000; font-size: 25px;">My Role</span>
-                    <p style="color:#28282b; font-size:20px; margin:1rem">
-                      During my six-month internship as a Software Engineer and UI/UX Design intern at Techbiz Innovators, I contributed to the development of the Keystar Gemstone Admin Panel. My role involved research, UI design, prototyping, and frontend development to create an intuitive gemstone management tool for the internal team.
-                     </p>
-                  </div>
-                </div>
-              </div>
-        
-          </div>
+      <!-- ===== LEFT: CASE STUDY CONTENT ===== -->
+      <div>
+
+        <!-- My Role -->
+        <div class="case-section">
+          <span class="section-pill">★ MY ROLE</span>
+          <p>During my six-month internship as a Software Engineer and UI/UX Design intern at Techbiz Innovators, I contributed to the development of the Keystar Gemstone Admin Panel. My role involved research, UI design, prototyping, and frontend development to create an intuitive gemstone management tool for the internal team.</p>
+        </div>
+
+        <!-- Hero video -->
+        <div class="case-section">
+          <video loop autoplay src="./assets/img/Techbiz-Prototype.mp4" class="img-fluid" style="padding:0"></video>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Brief -->
+        <div class="case-section">
+          <span class="section-pill">★ BRIEF</span>
+          <p>During my 6-month internship at Techbiz Innovators, an Australian IT startup, I contributed to the development of the Keystar Gemstone Admin Panel — a web-based application designed to streamline gemstone inventory management for Keystar, a renowned gemstone supplier.</p>
+          <p>As a Software Engineer and UI/UX Designer, I conducted research, designed the UI, created prototypes, and implemented frontend development to ensure an intuitive and efficient user experience for the internal team at Keystar.</p>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Problems -->
+        <div class="case-section">
+          <span class="section-pill">★ PROBLEMS</span>
+          <ul>
+            <li><strong>Complex Data Management:</strong> The system had to handle vast amounts of gemstone data including type, carat weight, cut, clarity, color, and origin. Organizing this data effectively was crucial for accurate inventory tracking.</li>
+            <li><strong>User-Friendly Interface:</strong> The Admin Panel needed to allow Keystar's internal team to easily add, edit, and search for gemstones with intuitive navigation and clear functionalities.</li>
+            <li><strong>Security and Access Control:</strong> As the Admin Panel contained sensitive information, robust security measures and access control had to be implemented to protect data from unauthorized access.</li>
+          </ul>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Goals -->
+        <div class="case-section">
+          <span class="section-pill">★ GOALS</span>
+          <ul>
+            <li><strong>Streamlined Data Entry:</strong> A simplified and structured data entry system enabling the Keystar team to enter gemstone details efficiently, ensuring accuracy and reducing errors.</li>
+            <li><strong>Advanced Search and Filtering:</strong> Robust search and filtering functionality allowing users to quickly locate specific gemstones based on various criteria, enhancing productivity.</li>
+            <li><strong>Role-Based Access Control:</strong> A role-based access control system granting different levels of permissions to users based on their roles, ensuring sensitive data is only accessible to authorized personnel.</li>
+          </ul>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- User Research -->
+        <div class="case-section">
+          <span class="section-pill">★ USER RESEARCH</span>
+          <p>To gain insights into target users' preferences, needs, and pain points, user research activities were conducted — including interviews, surveys, and usability testing with individuals who would be using the admin panel regularly. The research aimed to identify user workflows, pain points, and opportunities for improvement.</p>
+          <img src="./assets/img/Techbiz-User-Research.jpg" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Competitive Analysis -->
+        <div class="case-section">
+          <span class="section-pill">★ COMPETITIVE ANALYSIS</span>
+          <p>A comprehensive competitive analysis was conducted to understand the landscape and identify opportunities for differentiation. The analysis focused on key competitors in the gemstone inventory management software market and evaluated their strengths and weaknesses.</p>
+          <img src="./assets/img/Techbiz-Competitive-Analysis.jpg" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Ideation -->
+        <div class="case-section">
+          <span class="section-pill">★ IDEATION</span>
+          <p>Based on user research and competitive analysis, the following features were proposed:</p>
+          <ul>
+            <li><strong>User Experience:</strong> Highly intuitive and user-friendly interface to minimize learning curve and enhance ease of use.</li>
+            <li><strong>Real-time Updates:</strong> Real-time inventory updates and notifications for accurate stock management and efficient order fulfillment.</li>
+            <li><strong>Customization:</strong> Flexible customization options to cater to the specific needs of gemstone inventory management at Keystar.</li>
+            <li><strong>Integration Capabilities:</strong> Seamless integration with CRM systems, e-commerce platforms, and other business systems.</li>
+            <li><strong>Reporting and Analytics:</strong> Advanced reporting and analytics features to provide insights into inventory performance and trends.</li>
+          </ul>
+          <p>After the ideation phase, the team approved the proposed features. Due to limited time, the focus shifted to creating the sitemap, user flow, wireframe, and UI design process — allowing for a streamlined workflow to deliver a well-structured product within the given timeframe.</p>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Sitemap -->
+        <div class="case-section">
+          <span class="section-pill">★ SITEMAP</span>
+          <p>The sitemap provides a hierarchical structure of the different sections and features within the Keystar Gemstone Admin Panel. It serves as a visual representation of the information architecture.</p>
+          <img src="./assets/img/Techbiz-Site-Map.jpg" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- User Flow -->
+        <div class="case-section">
+          <span class="section-pill">★ USER FLOW</span>
+          <p>This user flow outlines the steps a user would take to add a new gemstone shape to the inventory within the Keystar Gemstone Admin Panel — a sequential representation of user actions and corresponding system responses.</p>
+          <img src="./assets/img/Techbiz-User-Flow.jpg" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Wireframes -->
+        <div class="case-section">
+          <span class="section-pill">★ WIREFRAMES</span>
+          <p>Wireframes were created as a visual representation of the interface structure and functionality, outlining the placement of key elements such as navigation menus, content sections, forms, buttons, and interactive components.</p>
+          <img src="./assets/img/Techbiz-Wireframes.png" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Frontend Development -->
+        <div class="case-section">
+          <span class="section-pill">★ FRONTEND DEVELOPMENT</span>
+          <p>The development team collectively decided to use HTML, CSS, and JavaScript for the frontend development of the Keystar Gems project — chosen for versatility, widespread adoption, and compatibility with web standards.</p>
+          <img src="./assets/img/Techbiz-Frontend-Development.png" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Dark/Light Mode -->
+        <div class="case-section">
+          <span class="section-pill">★ DARK / LIGHT MODE</span>
+          <p>The dark-light mode feature added to Keystar Gems enhances the user experience by providing a visually appealing and comfortable viewing option. It improves accessibility and allows users to personalize their experience based on preferences.</p>
+          <img src="./assets/img/Techbiz-Dark-Light-Mode.png" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- UI Screens -->
+        <div class="case-section">
+          <span class="section-pill">★ UI SCREENS</span>
+          <p>The UI screens showcase the final visual design, incorporating colors, typography, and imagery for a user-friendly experience. These screens bridge the gap between wireframes and implementation, aligning stakeholders and design teams.</p>
+          <img src="./assets/img/Techbiz-UI.png" class="img-fluid" style="padding:0; margin-top:1rem;">
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Prototype -->
+        <div class="case-section">
+          <span class="section-pill">★ PROTOTYPE</span>
+          <video loop autoplay src="./assets/img/Techbiz-Prototype.mp4" class="img-fluid" style="padding:0"></video>
+          <p style="margin-top:1rem;"><a href="https://shrabonibanerjee.github.io/Keystar-Admin/index.html" class="readmore">▶ Visit Website</a></p>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Impact -->
+        <div class="case-section">
+          <span class="section-pill">★ IMPACT</span>
+          <p>As a Software Engineer and UI/UX Designer Intern, my contributions to the Keystar Gems project were well received by the development team, design team and stakeholders. The client expressed satisfaction with the intuitive and visually appealing interface created for the gemstone inventory management application.</p>
+        </div>
+
+        <hr class="px-rule">
+
+        <!-- Reflection -->
+        <div class="case-section">
+          <span class="section-pill">★ REFLECTION</span>
+          <p>My involvement in the Keystar Gems project has provided valuable learning experiences — gaining insights into the importance of user research, effective collaboration with design and development teams, and attention to detail in frontend development. These learnings will shape my future work, enabling me to create more impactful and user-centered solutions.</p>
+          <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div>
+        </div>
+
+      </div>
+
+      <!-- ===== RIGHT: SIDEBAR ===== -->
+      <div>
+        <div class="sidebar-card">
+          <span class="s-label">INDUSTRY</span>
+          <div class="s-value">Jewelry &amp; Gemstone</div>
+
+          <hr class="sidebar-divider">
+
+          <span class="s-label">ROLE</span>
+          <div class="s-value">Software Developer &amp; UI/UX Designer</div>
+
+          <hr class="sidebar-divider">
+
+          <span class="s-label">DURATION</span>
+          <div class="s-value">Oct 2021 – Apr 2022</div>
+
+          <hr class="sidebar-divider">
+
+          <span class="s-label">TOOLS</span>
+          <ul>
+            <li>Figma</li>
+            <li>Adobe XD</li>
+            <li>Miro</li>
+            <li>HTML, CSS, JS</li>
+            <li>Bootstrap</li>
+            <li>Github</li>
+          </ul>
+
+          <hr class="sidebar-divider">
+
+          <span class="s-label">COMPANY</span>
+          <div class="s-value">Techbiz Innovators (AU)</div>
+
+          <hr class="sidebar-divider">
+
+          <a href="https://shrabonibanerjee.github.io/Keystar-Admin/index.html" class="readmore" style="width:100%;text-align:center;">▶ Visit Website</a>
         </div>
       </div>
 
-      <div class="site-section pb-0">
-        <div class="container">
-          <div class="row align-items-stretch">
-            <div class="col-md-8" data-aos="fade-up">
-              <video loop autoplay src="./assets/img/Techbiz-Prototype.mp4" alt="Image" class="img-fluid" style="padding:2rem"></video>
-            </div>
-          
-              <div class="col-md-3 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <div class="sticky-content">
-              
-                <p class="mb-4"><span style="font-size: 25px; color:#000000">Industry: </span>
-                </br>
-                  <span>Jewelry and Gemstone</span>
-                   </p>
-
-                   <p class="mb-4"><span style="font-size: 25px; color:#000000">Role: </span>
-                   </br>
-                     <span>Software Developer & UI/UX Designer</span>
-                      </p>
-         
-      
-                   <p class="mb-4"><span style="font-size: 25px; color:#000000">Tools: </span>
-                   
-              <li>Figma</li>
-                    <li>Adobe XD</li>
-                    <li>Miro</li>
-                  <li>Frontend: Html, CSS, JS, Bootstrap</li>
-                  <li>Github</li>     
-                </p>
-
-                <h1 class="mb-4" style="font-size: 25px; color:#000000">Duration:</h1>
-                  <p class="mb-4"><span>Oct 2021 - Apr 2022</span></p>
-               
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div>
-            <span style="font-weight: 500; color:#000000; font-size: 25px;">Brief</span>
-            <p style="font-size:20px; margin:1rem">
-             
-              During my 6-month internship at Techbiz Innovators, an Australian IT startup, I actively contributed to the development of the Keystar Gemstone Admin Panel. This web-based application was designed to streamline gemstone inventory management for Keystar, a renowned gemstone supplier. 
-              As a Software Engineer and UI/UX Designer, I conducted research, designed the UI, created prototypes, 
-              and implemented frontend development to ensure an intuitive and efficient user experience for the internal team at Keystar. Techbiz Innovators focuses on user-centric design and innovative solutions for businesses, emphasizing the importance of cutting-edge technologies. My contributions aimed to enhance usability and operational efficiency for the Keystar team.
-            </p>
-  
-            <span style="font-weight: 500; color:#000000; font-size: 25px;">Problems</span>
-          
-<ul style="font-size:20px; margin:1rem;">
-  <li><span style="font-weight:600">Complex Data Management:</span> The system had to handle a vast amount of gemstone data, including details such as type, carat weight, cut, clarity, color, and origin. Organizing and managing this data effectively was crucial to ensure accurate inventory tracking.</li>
-  <li><span style="font-weight:800">User-Friendly Interface:</span> The Admin Panel needed to provide a user-friendly interface that allowed Keystar's internal team to easily add, edit, and search for gemstones. Intuitive navigation and clear functionalities were essential to ensure a seamless user experience.</li>
-  <li><span style="font-weight:800">Security and Access Control: </span> As the Admin Panel contained sensitive information, robust security measures and access control had to be implemented to protect the data from unauthorized access or manipulation. </li>
-</ul>
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Goals</span>
-          
-<ul style="font-size:20px; margin:1rem;">
-  <li><span style="font-weight:600">Streamlined Data Entry: </span> The Admin Panel featured a simplified and structured data entry system. This enabled the Keystar team to enter gemstone details efficiently, ensuring accuracy and reducing the likelihood of errors.
-  </li>
-  <li><span style="font-weight:800">Advanced Search and Filtering: </span> A robust search and filtering functionality allowed users to quickly locate specific gemstones based on various criteria. This enhanced productivity and reduced the time spent on manual searching.
-  </li>
-  <li><span style="font-weight:800">Role-Based Access Control:  </span> The Admin Panel implemented a role-based access control system, granting different levels of permissions to users based on their roles within the company. This ensured that sensitive data was only accessible to authorized personnel. </li>
-
-
-</ul>
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">User Research</span>
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  To gain insights into the target users' preferences, needs, and pain points, user research activities were conducted. This involved interviews, surveys, and usability testing with individuals who would be using the admin panel on a regular basis. The research aimed to identify user workflows, pain points, and opportunities for improvement.
-</p>
-<img src="./assets/img/Techbiz-User-Research.jpg" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Competitive Analysis</span>
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  In order to understand the competitive landscape and identify opportunities for differentiation, a comprehensive competitive analysis was conducted for the Keystar Gemstone Admin Panel. The analysis focused on identifying key competitors in the gemstone inventory management software market and evaluating their strengths and weaknesses. 
-</p>
-<img src="./assets/img//Techbiz-Competitive-Analysis.jpg" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Ideation</span>
-          
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  Based on the user research and competitive analysis conducted for the Keystar Gemstone Admin Panel, here are proposed features:
-</p>
-
-<ul style="font-size:20px; margin:1rem;">
-  <li><span style="font-weight:600">User Experience:  </span> Focus on providing a highly intuitive and user-friendly interface to minimize the learning curve and enhance ease of use.
-  </li>
-  <li><span style="font-weight:800">Real-time Updates: </span> Offer real-time inventory updates and notifications to enable accurate stock management and efficient order fulfillment.
-  </li>
-  <li><span style="font-weight:800">Customization: </span> Provide flexible customization options to cater to the specific needs of gemstone inventory management at Keystar.
-  </li>
-
-  <li><span style="font-weight:800">Integration Capabilities:  </span> Ensure seamless integration with CRM systems, e-commerce platforms, and other business systems to streamline data synchronization and enhance operational efficiency.
-  </li>
-
-  <li><span style="font-weight:800">Reporting and Analytics:  </span> Incorporate advanced reporting and analytics features to provide valuable insights into gemstone inventory performance and trends.
-
-  </li>
-<p style="color:#28282b; font-size:20px; margin:1rem"> After the ideation phase, the team and clients approved the proposed features. However, due to limited time, the focus shifted to creating the sitemap, user flow, wireframe, and UI design process. As I was responsible for both design and development, this approach allowed for a streamlined workflow. The objective was to deliver a well-structured website that met the project requirements within the given timeframe. This decision optimized time management and ensured steady progress towards achieving the final product.
-</p>
-</ul>
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Sitemap</span>
-          
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  The sitemap provides a hierarchical structure of the different sections and features within the Keystar Gemstone Admin Panel. It serves as a visual representation of the information architecture and helps stakeholders understand the overall organization and flow of the application.  
-</p>
-
-
-<img src="./assets/img/Techbiz-Site-Map.jpg" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">User Flow</span>
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  This user flow outlines the steps a user would take to add a new gemstone shape to the inventory within the Keystar Gemstone Admin Panel. It provides a sequential representation of the user's actions and the corresponding system responses, ensuring a clear understanding of the process. 
-</p>
-
-<img src="./assets/img/Techbiz-User-Flow.jpg" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Wireframes</span>
-
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  I have created wireframes for the Keystar Gems application. These wireframes serve as a visual representation of the interface structure and functionality. They outline the placement of key elements such as navigation menus, content sections, forms, buttons, and interactive components. The wireframes prioritize user flow, information hierarchy, and overall usability. </p>
-
-</p>
-<img src="./assets/img/Techbiz-Wireframes.png" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Frontend Development</span>
-
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  The development team and I collectively decided to use the tech stack of HTML, CSS, and JavaScript for the frontend development of the Keystar Gems project. This choice was made based on the versatility, widespread adoption, and compatibility of these technologies with web standards. The combination of HTML for content structure, CSS for styling and layout, JavaScript for interactivity ensured an efficient and effective development process, resulting in a user-friendly and visually appealing application.
-</p>
-
-<img src="./assets/img/Techbiz-Frontend-Development.png" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Dark/Light Mode Feature</span>
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  The dark-light mode feature added to the Keystar Gems application enhances the user experience by providing a visually appealing and comfortable viewing option. It improves accessibility and allows users to personalize their experience based on their preferences.
-</p>
-<img src="./assets/img/Techbiz-Dark-Light-Mode.png" class="img-fluid" style="padding:2rem">
-
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">UI Screens</span>
-
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  The UI screens for Keystar Gems showcase the final visual design, incorporating colors, typography, and imagery for a user-friendly experience. They cover different aspects of the application and ensure consistency and clarity. These screens bridge the gap between wireframes and implementation, aligning stakeholders and design teams.
-</p>
-<img src="./assets/img/Techbiz-UI.png" class="img-fluid" style="padding:2rem">
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Prototype</span>
-<video loop autoplay src="./assets/img/Techbiz-Prototype.mp4" alt="Image" class="img-fluid" style="padding:2rem"></video>
-          
-<p style="padding: 1rem;"><a href="https://shrabonibanerjee.github.io/Keystar-Admin/index.html" class="readmore">Visit Website</a></p> 
-       
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Impact</span>
-
-<p style="color:#28282b; font-size:20px; margin:1rem">As a Software Engineer and UI/UX Designer Intern, my contributions to the Keystar Gems project have been well received by my development team, design team and stakeholders. The client has expressed satisfaction with the intuitive and visually appealing interface I have created for the gemstone inventory management application. The positive feedback from these key parties reflects the successful outcome of my work and the value it brings to the project.</p>
-
-<span style="font-weight: 500; color:#000000; font-size: 25px;">Reflection: </span>
-
-<p style="color:#28282b; font-size:20px; margin:1rem">
-  My involvement in the Keystar Gems project as a Software Engineer and UI/UX Designer has provided valuable learning experiences. I gained insights into the importance of user research, effective collaboration with design and development teams, and attention to detail in frontend development. These learnings will shape my future work, enabling me to create more impactful and user-centered solutions.
-  </p>
+    </div><!-- end layout-main -->
+  </div><!-- end content-panel -->
 </div>
 
- </div>        
-</section>
+<!-- FOOTER -->
+<footer class="px-footer">
+  <div class="footer-dirt"></div>
+  <p>© SHRABONI BANERJEE — ALL RIGHTS RESERVED — INSERT COIN TO CONTINUE ●●●</p>
+</footer>
 
-    </main>
+<a href="#" class="back-top">▲ TOP</a>
 
-    <!-- End #main -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  const starsEl = document.getElementById('bgStars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const sz = [2,2,2,4,4,6][Math.floor(Math.random()*6)];
+    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;`;
+    starsEl.appendChild(s);
+  }
+</script>
 </body>
-
 </html>
