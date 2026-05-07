@@ -1,135 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --cream:#f7f0e6; --parchment:#efe5d3; --sand:#e8d5b7; --linen:#f2ebe0;
+    --bark:#3d2b1f; --brown:#5c3d2e; --umber:#7a4f38;
+    --terra:#c45e2a; --rust:#b84a1e; --amber:#d4891a; --gold:#c9860e;
+    --teal:#3a8a82; --sage:#5a7a5c; --muted:#8a6a55;
+    --serif:'Cormorant Garamond',serif;
+    --sans:'Jost',sans-serif;
+    --display:'Cinzel',serif;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);overflow-x:hidden;min-height:100vh;
+    background-color:#c8844a;
+    background-image:url('assets/img/scenary1.jpeg');
+    background-size:cover;background-position:center;background-attachment:fixed;
+    color:var(--bark);
+  }
+  /* Fixed bg overlay */
+  .bg-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(to right,rgba(25,14,6,0.35) 0%,rgba(25,14,6,0.1) 50%,transparent 100%),
+               linear-gradient(to top,rgba(15,8,3,0.25) 0%,transparent 40%);}
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(247,240,230,0.75);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(196,94,42,0.18);
+    padding:0.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .nav-brand{font-family:var(--display);font-size:0.85rem;color:var(--terra);text-decoration:none;letter-spacing:0.12em;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{font-family:var(--sans);font-size:0.72rem;color:var(--brown);text-decoration:none;
+    letter-spacing:0.14em;text-transform:uppercase;font-weight:300;transition:color 0.3s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
+    background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .nav-links a:hover{color:var(--terra);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-register{font-family:var(--sans);font-size:0.7rem;color:var(--terra);text-decoration:none;
+    letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--terra);
+    padding:0.4rem 1.1rem;transition:background 0.3s,color 0.3s;}
+  .nav-register:hover{background:var(--terra);color:var(--cream);}
+  /* MAIN CONTENT */
+  #main-content{position:relative;z-index:2;padding-top:80px;min-height:100vh;}
+  .content-panel{
+    background:rgba(247,240,230,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.5);border-top:3px solid rgba(196,94,42,0.4);
+    margin:2rem;padding:2.5rem;border-radius:4px;
+  }
+  /* PAGE TITLE */
+  .page-title-bar{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;
+    padding-bottom:1rem;border-bottom:1px solid rgba(196,94,42,0.2);}
+  .page-title-bar h2{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.4rem);
+    color:var(--bark);font-weight:400;letter-spacing:0.02em;line-height:1.3;}
+  .title-icon{font-family:var(--sans);font-size:0.62rem;background:var(--terra);color:var(--cream);
+    padding:0.35rem 0.9rem;border:none;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;}
+  /* LAYOUT */
+  .layout-main{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start;}
+  @media(max-width:900px){.layout-main{grid-template-columns:1fr;}}
+  /* SIDEBAR */
+  .sidebar-card{
+    background:rgba(255,255,255,0.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(196,94,42,0.18);padding:1.5rem;position:sticky;top:90px;border-radius:4px;
+  }
+  .sidebar-card .s-label{font-family:var(--sans);font-size:0.62rem;color:var(--terra);
+    margin-bottom:0.35rem;display:block;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
+  .sidebar-card .s-value{font-family:var(--sans);font-size:0.82rem;color:var(--bark);
+    margin-bottom:1.2rem;line-height:1.7;font-weight:300;}
+  .sidebar-card ul{font-family:var(--sans);font-size:0.78rem;color:var(--brown);
+    padding-left:1rem;margin-bottom:1.2rem;line-height:1.7;}
+  .sidebar-card ul li{margin-bottom:0.25rem;}
+  .sidebar-card ul li::marker{color:var(--terra);}
+  .sidebar-divider{border:none;border-top:1px solid rgba(196,94,42,0.15);margin:0.8rem 0;}
+  /* SECTION HEADINGS */
+  .sec-head{font-family:var(--serif);font-size:1.5rem;color:var(--bark);font-weight:400;
+    margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(196,94,42,0.2);}
+  /* BODY TEXT */
+  p,li{font-family:var(--sans);font-size:0.82rem;color:var(--bark);line-height:1.8;font-weight:300;}
+  strong,b{color:var(--rust);font-weight:500;}
+  a{color:var(--terra);transition:color 0.3s;}
+  a:hover{color:var(--rust);}
+  /* TECH TAGS */
+  .tech-tag,.tag-item,.stack-tag{font-family:var(--sans);font-size:0.6rem;
+    background:rgba(247,240,230,0.7);color:var(--bark);
+    padding:0.2rem 0.65rem;border:1px solid rgba(196,94,42,0.3);
+    letter-spacing:0.06em;text-transform:uppercase;display:inline-block;margin:2px;}
+  /* IMAGE PANELS */
+  .img-panel,.screen-img,.mockup-wrap{
+    border:1px solid rgba(196,94,42,0.15);border-radius:4px;overflow:hidden;
+    background:rgba(255,255,255,0.4);}
+  .img-panel img,.screen-img img{width:100%;height:auto;display:block;}
+  /* FEATURE CARDS */
+  .feat-card,.info-card,.detail-card{
+    background:rgba(255,255,255,0.45);backdrop-filter:blur(8px);
+    border:1px solid rgba(196,94,42,0.15);border-radius:4px;
+    padding:1.2rem;margin-bottom:1rem;}
+  .feat-card h4,.info-card h4,.detail-card h4{font-family:var(--serif);font-size:1.1rem;
+    color:var(--bark);font-weight:400;margin-bottom:0.5rem;}
+  /* BACK BUTTON */
+  .back-btn,.btn-back{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--sans);font-size:0.68rem;color:var(--terra);
+    border:1px solid var(--terra);padding:0.5rem 1.2rem;text-decoration:none;
+    letter-spacing:0.14em;text-transform:uppercase;transition:background 0.3s,color 0.3s;background:transparent;}
+  .back-btn:hover,.btn-back:hover{background:var(--terra);color:var(--cream);}
+  /* PIXEL-STYLE overrides for any leftover pixel classes */
+  .px-btn,.px-tag{font-family:var(--sans);font-size:0.68rem;background:transparent;
+    color:var(--terra);border:1px solid var(--terra);padding:0.5rem 1.2rem;
+    letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;
+    transition:background 0.3s,color 0.3s;}
+  .px-btn:hover,.px-tag:hover{background:var(--terra);color:var(--cream);}
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--terra);border-radius:2px;}
+  /* FOOTER */
+  footer{position:relative;z-index:2;background:rgba(61,43,31,0.6);backdrop-filter:blur(12px);
+    border-top:1px solid rgba(196,94,42,0.2);padding:2rem 2.5rem;text-align:center;}
+  footer p,footer a{font-family:var(--sans);font-size:0.65rem;color:rgba(232,213,183,0.65);
+    letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;}
+  footer a:hover{color:var(--sand);}
+
+  /* ── BETTER BUTTON STYLES ── */
+  .readmore, a.readmore {
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--sans);font-size:0.7rem;
+    color:var(--cream);background:var(--terra);
+    border:1px solid var(--terra);
+    padding:0.6rem 1.4rem;text-decoration:none;
+    letter-spacing:0.14em;text-transform:uppercase;font-weight:400;
+    transition:background 0.3s,transform 0.2s,box-shadow 0.3s;
+    border-radius:2px;margin-top:0.8rem;
+    box-shadow:0 2px 12px rgba(196,94,42,0.25);
+  }
+  .readmore:hover, a.readmore:hover {
+    background:var(--rust);border-color:var(--rust);
+    transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,74,30,0.35);
+    color:var(--cream);
+  }
+  /* GitHub button variant */
+  .readmore.github-btn, a.readmore[href*="github"] {
+    background:rgba(61,43,31,0.85);border-color:rgba(196,94,42,0.5);color:var(--cream);
+  }
+  .readmore.github-btn:hover, a.readmore[href*="github"]:hover {
+    background:var(--bark);border-color:var(--terra);
+  }
+  /* Visit Website variant */
+  a.readmore[href*="http"]:not([href*="github"]) {
+    background:var(--teal);border-color:var(--teal);
+  }
+  a.readmore[href*="http"]:not([href*="github"]):hover {
+    background:#2e706a;border-color:#2e706a;
+  }
+  /* Section pills */
+  .section-pill {
+    display:inline-block;
+    font-family:var(--sans);font-size:0.6rem;
+    color:var(--terra);background:rgba(196,94,42,0.08);
+    border:1px solid rgba(196,94,42,0.25);
+    padding:0.2rem 0.7rem;letter-spacing:0.14em;text-transform:uppercase;
+    margin-bottom:0.7rem;border-radius:2px;font-weight:500;
+  }
+  .case-section { margin-bottom:2rem; }
+  .px-rule { border:none;border-top:1px solid rgba(196,94,42,0.12);margin:1.5rem 0; }
+  /* hp-bar warm */
+  .hp-bar{margin-top:0.8rem;height:2px;background:rgba(122,79,56,0.12);overflow:hidden;}
+  .hp-fill{height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));}
+  /* Back top */
+  .back-top{position:fixed;bottom:2rem;right:2rem;z-index:100;
+    font-family:var(--sans);font-size:0.6rem;
+    background:rgba(247,240,230,0.88);color:var(--terra);
+    padding:0.5rem 0.8rem;border:1px solid rgba(196,94,42,0.3);
+    text-decoration:none;transition:background 0.3s;letter-spacing:0.1em;
+    backdrop-filter:blur(12px);}
+  .back-top:hover{background:rgba(196,94,42,0.12);}
+  /* Images */
+  .img-fluid{max-width:100%;height:auto;border-radius:4px;
+    border:1px solid rgba(196,94,42,0.12);display:block;margin:1rem 0;}
+
+  /* ── CONTACT PAGE ── */
+  .contact-wrapper{max-width:640px;margin:0 auto;}
+  .contact-intro{font-family:var(--serif);font-size:1.3rem;color:var(--bark);
+    font-weight:300;margin-bottom:2rem;letter-spacing:0.02em;}
+  .px-form-group{margin-bottom:1.4rem;}
+  .px-form-group label{display:block;font-family:var(--sans);font-size:0.62rem;
+    color:var(--terra);letter-spacing:0.16em;text-transform:uppercase;font-weight:500;
+    margin-bottom:0.4rem;}
+  .px-form-group input, .px-form-group textarea{
+    width:100%;font-family:var(--sans);font-size:0.82rem;color:var(--bark);
+    background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);
+    border:1px solid rgba(196,94,42,0.25);border-radius:3px;
+    padding:0.7rem 0.9rem;outline:none;
+    transition:border-color 0.3s,background 0.3s;
+    resize:vertical;
+  }
+  .px-form-group input:focus, .px-form-group textarea:focus{
+    border-color:var(--terra);background:rgba(255,255,255,0.75);
+  }
+  .px-submit{
+    font-family:var(--sans);font-size:0.72rem;
+    background:var(--terra);color:var(--cream);
+    border:none;padding:0.8rem 2.5rem;
+    letter-spacing:0.18em;text-transform:uppercase;font-weight:400;
+    cursor:pointer;border-radius:2px;
+    transition:background 0.3s,transform 0.2s,box-shadow 0.3s;
+    box-shadow:0 2px 16px rgba(196,94,42,0.3);
+    width:100%;margin-top:0.5rem;
+  }
+  .px-submit:hover{background:var(--rust);transform:translateY(-2px);
+    box-shadow:0 6px 24px rgba(184,74,30,0.4);}
+  .social-row{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;
+    border-top:1px solid rgba(196,94,42,0.15);}
+  .social-row a{
+    font-family:var(--sans);font-size:0.65rem;color:var(--brown);
+    padding:0.4rem 1rem;border:1px solid rgba(196,94,42,0.25);
+    text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
+    transition:color 0.3s,border-color 0.3s,background 0.3s;border-radius:2px;
+  }
+  .social-row a:hover{color:var(--cream);background:var(--terra);border-color:var(--terra);}
+  /* footer */
+  .px-footer{position:relative;z-index:2;background:rgba(61,43,31,0.6);
+    backdrop-filter:blur(12px);border-top:1px solid rgba(196,94,42,0.2);
+    padding:1.5rem 2.5rem;text-align:center;}
+  .px-footer p{font-family:var(--sans);font-size:0.62rem;color:rgba(232,213,183,0.5);
+    letter-spacing:0.12em;text-transform:uppercase;}
+  .footer-dirt{display:none;}
+  /* nav link cleanup */
+  .nav-links a{text-decoration:none;}
+
+  </style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blockchain To-Do DApp — Shraboni Banerjee</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style>  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --pink: #ff6eb4; --yellow: #ffe066; --dark: #1a0a2e;
-      --green: #2ecc71; --blue: #3498db;
-      --pixel: 'Press Start 2P', monospace; --vt: 'VT323', monospace;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: #1a0a2e; font-family: var(--vt); image-rendering: pixelated; overflow-x: hidden; min-height: 100vh; }
-    #pixel-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .bg-sky { position: absolute; inset: 0; background: linear-gradient(180deg,#08081e 0%,#1a1a5e 18%,#2d5aa0 38%,#5ec8f0 58%,#a8e6f8 72%,#c8f0b0 82%,#5cad3c 88%,#4a9a2e 92%,#8B6340 96%,#6b4a2a 100%); }
-    .bg-stars { position: absolute; top: 0; left: 0; width: 100%; height: 50%; }
-    .star { position: absolute; background: #fff; animation: twinkle 2s infinite; }
-    @keyframes twinkle { 0%,100%{opacity:1;} 50%{opacity:0.1;} }
-    .bg-clouds { position: absolute; top: 6%; left: 0; width: 200%; height: 80px; animation: cloudScroll 40s linear infinite; }
-    @keyframes cloudScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
-    .cloud-wrap { display: inline-block; margin-right: 180px; vertical-align: top; }
-    .bg-mountains { position: absolute; bottom: 14%; left: 0; right: 0; height: 200px; }
-    .bg-mountains svg { width: 100%; height: 100%; }
-    .bg-trees { position: absolute; bottom: 12%; left: 0; right: 0; height: 80px; }
-    .tree-item { position: absolute; bottom: 0; }
-    .tree-top { width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 40px solid #2d8a20; margin: 0 auto; position: relative; }
-    .tree-top::after { content: ''; position: absolute; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 28px solid #3aaa28; top: -18px; left: -12px; }
-    .tree-trunk { width: 10px; height: 18px; background: #7a5530; margin: 0 auto; }
-    .walker { position: absolute; bottom: 13.5%; animation: walkAcross 12s linear infinite; }
-    @keyframes walkAcross { 0%{left:-60px;} 100%{left:110%;} }
-    .bg-ground { position: absolute; bottom: 0; left: 0; right: 0; }
-    .bg-grass { height: 26px; background: repeating-linear-gradient(90deg,#5cad3c 0,#5cad3c 16px,#4a9a2e 16px,#4a9a2e 32px); border-top: 4px solid #2d6a1a; }
-    .bg-dirt { height: 32px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; }
-    .bg-earth { height: 80px; background: repeating-linear-gradient(90deg,#6b4a2a 0,#6b4a2a 16px,#5a3a1a 16px,#5a3a1a 32px); }
-    .bg-scanlines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px); }
-    .px-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; background: #0a0518; border-bottom: 4px solid var(--pink); padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-    .px-nav-brand { font-family: var(--pixel); font-size: 0.52rem; color: var(--yellow); text-decoration: none; text-shadow: 2px 2px 0 var(--pink); }
-    .px-nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .px-nav-links a { font-family: var(--pixel); font-size: 0.4rem; color: #ccc; text-decoration: none; padding: 0.3rem 0.5rem; transition: background 0.1s,color 0.1s; }
-    .px-nav-links a:hover { background: var(--pink); color: var(--dark); }
-    .coin-badge { position: fixed; top: 58px; right: 1rem; z-index: 199; font-family: var(--pixel); font-size: 0.38rem; color: var(--yellow); background: rgba(0,0,0,0.88); padding: 0.35rem 0.7rem; border: 2px solid var(--yellow); display: flex; align-items: center; gap: 6px; }
-    .coin { width: 12px; height: 12px; background: var(--yellow); border-radius: 50%; border: 2px solid #b8860b; display: inline-block; animation: coinSpin 1s linear infinite; }
-    @keyframes coinSpin { 0%{transform:scaleX(1);} 25%{transform:scaleX(0.2);} 50%{transform:scaleX(1);} 75%{transform:scaleX(0.2);} 100%{transform:scaleX(1);} }
-    #main-content { position: relative; z-index: 10; padding-top: 80px; min-height: 100vh; }
-    .content-panel { background: rgba(10,5,30,0.88); border: 3px solid rgba(255,110,180,0.25); border-top: 4px solid var(--pink); backdrop-filter: blur(4px); margin: 2rem; padding: 2.5rem; }
-    .page-title-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 2px dashed rgba(255,110,180,0.3); }
-    .page-title-bar h2 { font-family: var(--pixel); font-size: clamp(0.5rem,1.8vw,0.85rem); color: var(--yellow); text-shadow: 3px 3px 0 var(--pink); letter-spacing: 0.05em; line-height: 1.6; }
-    .title-icon { font-family: var(--pixel); font-size: 0.5rem; background: var(--pink); color: var(--dark); padding: 0.4rem 0.8rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; white-space: nowrap; }
-    .layout-main { display: grid; grid-template-columns: 1fr 260px; gap: 2.5rem; align-items: start; }
-    @media(max-width:900px){ .layout-main{grid-template-columns:1fr;} }
-    .sidebar-card { background: #0d0520; border: 3px solid #3a1a5e; box-shadow: 5px 5px 0 #000; padding: 1.5rem; position: sticky; top: 90px; }
-    .sidebar-card .s-label { font-family: var(--pixel); font-size: 0.42rem; color: var(--pink); margin-bottom: 0.4rem; display: block; letter-spacing: 0.05em; }
-    .sidebar-card .s-value { font-family: var(--vt); font-size: 1.05rem; color: #ccc; margin-bottom: 1.2rem; line-height: 1.6; }
-    .sidebar-card ul { font-family: var(--vt); font-size: 1.05rem; color: #ccc; padding-left: 1rem; margin-bottom: 1.2rem; }
-    .sidebar-card ul li { margin-bottom: 0.25rem; }
-    .sidebar-card ul li::marker { color: var(--pink); }
-    .sidebar-divider { border: none; border-top: 2px dashed rgba(255,110,180,0.25); margin: 0.8rem 0; }
-    .case-section { margin-bottom: 2.5rem; }
-    .section-pill { display: inline-block; font-family: var(--pixel); font-size: 0.45rem; background: transparent; color: var(--yellow); border: 2px solid var(--yellow); padding: 0.3rem 0.8rem; box-shadow: 3px 3px 0 #000; margin-bottom: 1rem; letter-spacing: 0.06em; }
-    .case-section p { font-family: var(--vt); font-size: 1.15rem; color: #bbb; line-height: 1.8; margin-bottom: 0.75rem; }
-    .case-section ul { font-family: var(--vt); font-size: 1.1rem; color: #bbb; padding-left: 1.3rem; margin-bottom: 0.75rem; line-height: 1.8; }
-    .case-section ul li { margin-bottom: 0.5rem; }
-    .case-section ul li::marker { color: var(--pink); }
-    .case-section ul li strong { color: var(--yellow); font-weight: normal; }
-    .case-section img.img-fluid, .case-section video { border: 4px solid #3a1a5e; box-shadow: 4px 4px 0 #000; display: block; max-width: 100%; height: auto; margin-top: 1rem; }
-    .case-section img.img-fluid:hover, .case-section video:hover { border-color: var(--pink); }
-    a.readmore { font-family: var(--pixel); font-size: 0.38rem; color: var(--dark); background: var(--green); padding: 0.4rem 0.8rem; border: 2px solid #000; box-shadow: 2px 2px 0 #000; text-decoration: none; display: inline-block; margin: 0.75rem 0; letter-spacing: 0.05em; transition: transform 0.1s,box-shadow 0.1s; }
-    a.readmore:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 #000; }
-    .hp-bar { height: 8px; background: #050215; border: 2px solid #333; overflow: hidden; margin-top: 1.5rem; }
-    .hp-fill { height: 100%; background: repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px); animation: hpPulse 2s ease-in-out infinite alternate; }
-    @keyframes hpPulse { from{filter:brightness(1);} to{filter:brightness(1.5);} }
-    .px-rule { border: none; border-top: 2px dashed rgba(255,110,180,0.15); margin: 2rem 0; }
-    .px-footer { position: relative; z-index: 10; background: #0a0518; border-top: 4px solid var(--pink); text-align: center; padding: 1.5rem; }
-    .footer-dirt { height: 24px; background: repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px); border-top: 4px solid #5a3a1a; margin-bottom: 1.5rem; }
-    .px-footer p { font-family: var(--pixel); font-size: 0.35rem; color: #555; letter-spacing: 0.06em; }
-    .back-top { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; font-family: var(--pixel); font-size: 0.38rem; background: var(--pink); color: var(--dark); padding: 0.45rem 0.7rem; border: 3px solid #000; box-shadow: 3px 3px 0 #000; text-decoration: none; transition: transform 0.1s,box-shadow 0.1s; }
-    .back-top:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 #000; }
-    @media(max-width:768px){ .px-nav{padding:0.5rem 1rem;} .px-nav-links{display:none;} .content-panel{margin:0.5rem;padding:1.2rem 1rem;} }
-</style>
+
 </head>
 <body>
+<div class="bg-overlay"></div>
 
-<div id="pixel-bg">
-  <div class="bg-sky"></div>
-  <div class="bg-stars" id="bgStars"></div>
-  <div class="bg-clouds">
-    <span class="cloud-wrap" style="margin-top:20px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
-    <span class="cloud-wrap" style="margin-top:44px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
-    <span class="cloud-wrap" style="margin-top:14px;"><svg width="56" height="28" viewBox="0 0 56 28" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="40" height="14" fill="white"/><rect x="14" y="6" width="28" height="14" fill="white"/><rect x="20" y="0" width="16" height="10" fill="white"/></svg></span>
-    <span class="cloud-wrap" style="margin-top:36px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
-    <span class="cloud-wrap" style="margin-top:22px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
+
+  
+  
   </div>
-  <div class="bg-mountains"><svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><polygon points="0,200 100,80 200,150 340,50 480,130 600,30 720,110 860,45 1000,125 1140,35 1280,100 1440,55 1440,200" fill="#2a5a20" opacity="0.55"/><polygon points="0,200 80,100 200,170 360,80 490,150 620,55 740,120 880,50 1010,130 1160,65 1300,120 1440,80 1440,200" fill="#3a7a28"/></svg></div>
-  <div class="bg-trees">
-    <div class="tree-item" style="left:3%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
-    <div class="tree-item" style="left:10%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
-    <div class="tree-item" style="left:18%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
-    <div class="tree-item" style="left:70%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
-    <div class="tree-item" style="left:82%"><div class="tree-top"></div><div class="tree-trunk"></div></div>
-    <div class="tree-item" style="left:91%"><div class="tree-top" style="border-bottom-color:#3aaa28"></div><div class="tree-trunk"></div></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
   </div>
-  <div class="walker"><svg width="48" height="64" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/><rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/><rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="18" y="14" width="12" height="2" fill="#e07060"/><rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/><rect x="12" y="22" width="24" height="20" fill="#2ecc71"/><rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/><rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/></svg></div>
-  <div class="bg-ground"><div class="bg-grass"></div><div class="bg-dirt"></div><div class="bg-earth"></div></div>
-  <div class="bg-scanlines"></div>
+  
+  </div>
+  
 </div>
-<div class="coin-badge"><span class="coin"></span>BLOCKCHAIN.EXE</div>
-<nav class="px-nav">
-  <a class="px-nav-brand" href="index.html">★ SB PORTFOLIO ★</a>
-  <ul class="px-nav-links">
-    <li><a href="index.html">[ WORKS ]</a></li>
-    <li><a href="contact.html">[ CONTACT ]</a></li>
-    <li><a href="assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
+<nav>
+  <a class="nav-brand" href="index.html">SB Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="index.html#works">Works</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#stats">Stats</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
+  <a class="nav-register" href="assets/img/SDE.pdf">Resume ↗</a>
 </nav>
 <div id="main-content">
 <div class="content-panel">
 <div class="page-title-bar"><span class="title-icon">STAGE 03</span><h2>TO-DO DAPP — SOLIDITY + REACT</h2></div>
 <div class="layout-main">
-<div><div class="case-section"><span class="section-pill">★ OVERVIEW</span><p>A To-Do List application integrating Solidity smart contracts deployed using Hardhat, with a React frontend for user interaction. Fully decentralised and tamper-proof.</p></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ HERO IMAGE</span><img src="./assets/img/Solidity-Todo-4.png" class="img-fluid" style="padding:0;"></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ PROBLEM STATEMENT</span><p>Traditional To-Do apps rely on centralised databases, making them vulnerable to:</p><ul><li><strong>Data Manipulation & Loss:</strong> Users have no real ownership of their tasks. Data can be lost due to server failures or security breaches.</li><li><strong>Lack of Transparency:</strong> No verifiable record of task modifications or completions. Users must trust the service provider.</li></ul></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ USER RESEARCH</span><p>Users seek a secure, transparent, and decentralised task management solution to ensure data integrity, ownership, and verifiable task history without relying on centralised services.</p></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ SOLUTION</span><ul><li><strong>Decentralised Task Management:</strong> Smart contracts on Ethereum ensure tasks are immutable and tamper-proof. Users have full control without a central authority.</li><li><strong>Gasless Transactions:</strong> Meta-transactions (Gasless UX) reduce gas fees, making frequent task updates affordable.</li><li><strong>Transparent Task History:</strong> Each task update stored on-chain ensures auditable history. Users can verify who created, updated or completed a task.</li></ul></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ OUTPUT</span><p>A fully functional decentralised To-Do List DApp where users can securely add, update, and track tasks on the blockchain with MetaMask integration and a React-based UI.</p><img src="./assets/img/Solidity-Todo1.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo2.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo3.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo-4.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo-5.png" class="img-fluid" style="padding:0;"></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ FUTURE IMPROVEMENTS</span><p>Enhance UI with better styling, add 'Mark as Completed' and task filtering, enable persistent storage, and improve error handling for a smoother user experience.</p><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div></div>
+<div><div class="case-section"><span class="section-pill">★ OVERVIEW</span><p>A To-Do List application integrating Solidity smart contracts deployed using Hardhat, with a React frontend for user interaction. Fully decentralised and tamper-proof.</p></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ PROTOTYPE</span><img src="./assets/img/Solidity-Todo-4.png" class="img-fluid" style="padding:0;"></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ PROBLEM STATEMENT</span><p>Traditional To-Do apps rely on centralised databases, making them vulnerable to:</p><ul><li><strong>Data Manipulation & Loss:</strong> Users have no real ownership of their tasks. Data can be lost due to server failures or security breaches.</li><li><strong>Lack of Transparency:</strong> No verifiable record of task modifications or completions. Users must trust the service provider.</li></ul></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ USER RESEARCH</span><p>Users seek a secure, transparent, and decentralised task management solution to ensure data integrity, ownership, and verifiable task history without relying on centralised services.</p></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ SOLUTION</span><ul><li><strong>Decentralised Task Management:</strong> Smart contracts on Ethereum ensure tasks are immutable and tamper-proof. Users have full control without a central authority.</li><li><strong>Gasless Transactions:</strong> Meta-transactions (Gasless UX) reduce gas fees, making frequent task updates affordable.</li><li><strong>Transparent Task History:</strong> Each task update stored on-chain ensures auditable history. Users can verify who created, updated or completed a task.</li></ul></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ OUTPUT</span><p>A fully functional decentralised To-Do List DApp where users can securely add, update, and track tasks on the blockchain with MetaMask integration and a React-based UI.</p><img src="./assets/img/Solidity-Todo1.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo2.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo3.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo-4.png" class="img-fluid" style="padding:0;"><img src="./assets/img/Solidity-Todo-5.png" class="img-fluid" style="padding:0;"></div><hr class="px-rule"><div class="case-section"><span class="section-pill">★ FUTURE IMPROVEMENTS</span><p>Enhance UI with better styling, add 'Mark as Completed' and task filtering, enable persistent storage, and improve error handling for a smoother user experience.</p><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div></div>
 <div><div class="sidebar-card"><span class="s-label">INDUSTRY</span><div class="s-value">Blockchain & Web3 Development</div><hr class="sidebar-divider"><span class="s-label">STACK</span><ul><li>Solidity (Smart Contracts)</li><li>Hardhat (Dev & Testing)</li><li>React, Node.js (Frontend)</li><li>MetaMask (Wallet)</li><li>VSCode</li></ul><hr class="sidebar-divider"><span class="s-label">TYPE</span><div class="s-value">Decentralised App (DApp)</div><hr class="sidebar-divider"><span class="s-label">NETWORK</span><div class="s-value">Ethereum / Hardhat Local</div><hr class="sidebar-divider"></div></div>
 </div>
 </div>
 </div>
-<footer class="px-footer"><div class="footer-dirt"></div><p>© SHRABONI BANERJEE — ALL RIGHTS RESERVED — INSERT COIN TO CONTINUE ●●●</p></footer>
+<footer class="px-footer"><div class="footer-dirt"></div><p>© SHRABONI BANERJEE — ALL RIGHTS RESERVED </p></footer>
 <a href="#" class="back-top">▲ TOP</a>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script>
-  const sl=document.getElementById('bgStars');
-  for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const sz=[2,2,2,4,4,6][Math.floor(Math.random()*6)];s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;`;sl.appendChild(s);}
-</script>
+
 </body>
 </html>

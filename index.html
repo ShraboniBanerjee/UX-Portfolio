@@ -3,385 +3,961 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHRABONI</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
+<title>Shraboni Banerjee — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --pink:#ff6eb4;--yellow:#ffe066;--dark:#1a0a2e;
-  --green:#2ecc71;--blue:#3498db;--red:#e74c3c;--purple:#9b59b6;--teal:#00d9b5;
-  --pixel:'Press Start 2P',monospace;
-  --vt:'VT323',monospace;
+  /* ── Warm earthy palette from illustration ── */
+  --cream:#f7f0e6;
+  --parchment:#efe5d3;
+  --sand:#e8d5b7;
+  --linen:#f2ebe0;
+  --bark:#3d2b1f;
+  --brown:#5c3d2e;
+  --umber:#7a4f38;
+  --terra:#c45e2a;
+  --rust:#b84a1e;
+  --orange:#e07030;
+  --amber:#d4891a;
+  --gold:#c9860e;
+  --teal:#3a8a82;
+  --sage:#5a7a5c;
+  --muted:#8a6a55;
+  --light-muted:#b09478;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Jost',sans-serif;
+  --display:'Cinzel',serif;
 }
 html{scroll-behavior:smooth;}
-body{background:#1a0a2e;font-family:var(--pixel);image-rendering:pixelated;overflow-x:hidden;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='8' height='8' fill='%23ff6eb4'/%3E%3Crect x='8' y='8' width='8' height='8' fill='%23ff6eb4'/%3E%3C/svg%3E") 0 0,auto;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0a0518;border-bottom:4px solid var(--pink);padding:0.7rem 2rem;display:flex;align-items:center;justify-content:space-between;}
-.nav-brand{font-family:var(--pixel);font-size:0.52rem;color:var(--yellow);text-decoration:none;text-shadow:2px 2px 0 var(--pink);}
-.nav-links{display:flex;gap:1.5rem;list-style:none;}
-.nav-links a{font-family:var(--pixel);font-size:0.4rem;color:#ccc;text-decoration:none;padding:0.3rem 0.5rem;transition:background 0.1s,color 0.1s;}
-.nav-links a:hover{background:var(--pink);color:var(--dark);}
-
-/* COIN */
-.coin-badge{position:fixed;top:58px;right:1rem;z-index:199;font-family:var(--pixel);font-size:0.38rem;color:var(--yellow);background:rgba(0,0,0,0.88);padding:0.35rem 0.7rem;border:2px solid var(--yellow);display:flex;align-items:center;gap:6px;}
-.coin{width:12px;height:12px;background:var(--yellow);border-radius:50%;border:2px solid #b8860b;display:inline-block;animation:coinSpin 1s linear infinite;}
-@keyframes coinSpin{0%{transform:scaleX(1);}25%{transform:scaleX(0.2);}50%{transform:scaleX(1);}75%{transform:scaleX(0.2);}100%{transform:scaleX(1);}}
-
-/* HERO */
-#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding-top:52px;}
-.sky-bg{position:absolute;inset:0;background:linear-gradient(180deg,#08081e 0%,#1a1a5e 20%,#2d5aa0 40%,#5ec8f0 62%,#a8e6f8 76%,#c8f0b0 85%);z-index:0;}
-.stars-layer{position:absolute;top:0;left:0;width:100%;height:55%;z-index:1;pointer-events:none;}
-.star-px{position:absolute;background:#fff;animation:twinkle 2s infinite;}
-@keyframes twinkle{0%,100%{opacity:1;}50%{opacity:0.1;}}
-.clouds{position:absolute;top:8%;left:0;width:200%;z-index:2;pointer-events:none;animation:cloudScroll 40s linear infinite;}
-@keyframes cloudScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.cloud-px{display:inline-block;margin-right:200px;vertical-align:top;}
-.mountains-layer{position:absolute;bottom:20%;left:0;right:0;z-index:3;height:200px;pointer-events:none;}
-.mountains-layer svg{width:100%;height:100%;}
-.trees-layer{position:absolute;bottom:18%;left:0;right:0;z-index:4;height:90px;pointer-events:none;}
-.tree-px{position:absolute;bottom:0;}
-.tree-top-px{width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:44px solid #2d8a20;margin:0 auto;position:relative;}
-.tree-top-px::after{content:'';position:absolute;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:32px solid #3aaa28;top:-20px;left:-14px;}
-.tree-trunk-px{width:12px;height:20px;background:#7a5530;margin:0 auto;}
-.ground-block{position:relative;z-index:7;flex-shrink:0;}
-.g-top{height:28px;background:repeating-linear-gradient(90deg,#5cad3c 0,#5cad3c 16px,#4a9a2e 16px,#4a9a2e 32px);border-top:4px solid #2d6a1a;}
-.g-mid{height:36px;background:repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px);border-top:4px solid #5a3a1a;}
-.g-bot{height:44px;background:repeating-linear-gradient(90deg,#6b4a2a 0,#6b4a2a 16px,#5a3a1a 16px,#5a3a1a 32px);}
-@keyframes titleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.hero-copy{position:absolute;bottom:3.5%;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--pixel);font-size:0.3rem;color:#666;letter-spacing:0.12em;white-space:nowrap;}
-
-/* ── GAME HUD ── */
-#gameHud{
-  position:absolute;top:62px;left:50%;transform:translateX(-50%);
-  z-index:12;display:none;gap:1.8rem;align-items:center;
-  background:rgba(0,0,0,0.7);padding:0.4rem 1.2rem;
-  border:2px solid rgba(255,110,180,0.4);
-  pointer-events:none;white-space:nowrap;
-}
-#gameHud span{font-family:var(--pixel);font-size:0.45rem;text-shadow:1px 1px 0 #000;}
-#scoreHud{color:var(--yellow);}
-#hiHud{color:#aaa;}
-#livesHud{color:var(--pink);}
-
-/* ── GAME CANVAS ── */
-#gameCanvas{
-  position:absolute;bottom:0;left:0;width:100%;z-index:6;
-  image-rendering:pixelated;cursor:none;display:block;
+/* ══════════════════════════════════════════════
+   FULL-PAGE FIXED BACKGROUND
+══════════════════════════════════════════════ */
+body{
+  font-family:var(--sans);
+  overflow-x:hidden;
+  color:var(--bark);
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='none' stroke='%23c45e2a' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23c45e2a'/%3E%3C/svg%3E") 10 10, auto;
+  /* background handled by .hero-slide inside #hero */
+  background-color: #c8844a;
+  transition: none;
 }
 
-/* ── START SCREEN ── */
-#startScreen{
-  position:absolute;inset:0;z-index:20;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:0.9rem;pointer-events:none;
-}
-.start-title{
-  font-family:var(--pixel);font-size:clamp(1.5rem,6vw,3.5rem);
-  color:var(--pink);
-  text-shadow:4px 4px 0 #a00060,-2px -2px 0 #a00060,2px -2px 0 #a00060,-2px 2px 0 #a00060,6px 6px 0 rgba(0,0,0,0.35);
-  animation:titleFloat 3s ease-in-out infinite;letter-spacing:0.03em;line-height:1.2;
-  text-align:center;
-}
-.start-name{font-family:var(--pixel);font-size:clamp(0.38rem,1.2vw,0.55rem);color:var(--yellow);text-shadow:2px 2px 0 rgba(0,0,0,0.6);letter-spacing:0.12em;}
-.start-role{font-family:var(--pixel);font-size:clamp(0.3rem,1vw,0.42rem);color:#a8e6f8;letter-spacing:0.1em;}
-.start-blink{font-family:var(--pixel);font-size:clamp(0.5rem,1.5vw,0.7rem);color:var(--yellow);text-shadow:2px 2px 0 #b8860b;animation:blink 1.1s step-end infinite;margin-top:0.4rem;}
-.start-hint{font-family:var(--pixel);font-size:0.33rem;color:#777;letter-spacing:0.06em;}
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:rgba(61,43,31,0.2);}
+::-webkit-scrollbar-thumb{background:var(--terra);border-radius:2px;}
 
-/* ── GAME OVER SCREEN ── */
-#gameOverScreen{
-  position:absolute;inset:0;z-index:20;
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:0.9rem;
-  background:rgba(8,5,20,0.93);
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(247,240,230,0.45);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(196,94,42,0.18);
+  padding:1rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.go-title{font-family:var(--pixel);font-size:clamp(1.2rem,4vw,2.5rem);color:var(--pink);text-shadow:4px 4px 0 #a00060;animation:titleFloat 1s ease-in-out infinite;}
-.go-row{font-family:var(--pixel);font-size:0.5rem;}
-.go-score{color:var(--yellow);}
-.go-best{color:#aaa;}
-.go-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem;}
-.px-game-btn{
-  font-family:var(--pixel);font-size:0.46rem;
-  padding:0.65rem 1.5rem;border:4px solid #000;box-shadow:4px 4px 0 #000;
-  cursor:pointer;letter-spacing:0.06em;
-  transition:transform 0.1s,box-shadow 0.1s;text-decoration:none;display:inline-block;
+.nav-brand{
+  font-family:var(--display);font-size:0.85rem;
+  color:var(--terra);text-decoration:none;
+  letter-spacing:0.12em;
 }
-.px-game-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
-.btn-green{background:var(--green);color:var(--dark);}
-.btn-muted{background:#2a1a4e;color:#aaa;border-color:#3a2a5e;box-shadow:4px 4px 0 #000;}
-.go-hint{font-family:var(--pixel);font-size:0.32rem;color:#555;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  font-family:var(--sans);font-size:0.72rem;
+  color:var(--brown);text-decoration:none;
+  letter-spacing:0.14em;text-transform:uppercase;
+  font-weight:300;transition:color 0.3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--terra);
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.nav-links a:hover{color:var(--terra);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-register{
+  font-family:var(--sans);font-size:0.7rem;
+  color:var(--terra);text-decoration:none;
+  letter-spacing:0.14em;text-transform:uppercase;
+  border:1px solid var(--terra);padding:0.4rem 1.1rem;
+  transition:background 0.3s,color 0.3s;
+}
+.nav-register:hover{background:var(--terra);color:var(--cream);}
 
-/* SCOREBOARD */
-#scoreboard{
-  position:absolute;bottom:120px;left:1rem;z-index:13;
-  background:rgba(0,0,0,0.82);border:2px solid var(--yellow);
-  padding:0.6rem 0.8rem;min-width:150px;display:none;
+/* ══════════════════════════════════════════════
+   FIXED BACKGROUND SYSTEM
+   Slides live OUTSIDE all stacking contexts so
+   backdrop-filter on sections doesn't hide them
+══════════════════════════════════════════════ */
+.bg-slide{
+  position:fixed;inset:0;
+  background-size:cover;background-position:center;
+  z-index:0;
+  opacity:0;
+  transition:opacity 1.4s cubic-bezier(0.4,0,0.2,1);
 }
-#musicBtn{
-  position:absolute;bottom:120px;right:1rem;z-index:13;
-  font-family:var(--pixel);font-size:0.38rem;
-  background:rgba(0,0,0,0.82);color:var(--yellow);
-  border:2px solid var(--yellow);padding:0.4rem 0.7rem;
-  cursor:pointer;display:none;letter-spacing:0.05em;
-  transition:background 0.1s,color 0.1s;
+.bg-slide.active{opacity:1;}
+/* Persistent dark gradient — only on hero left side for text contrast */
+.bg-overlay{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(25,14,6,0.45) 0%, rgba(25,14,6,0.15) 45%, transparent 70%),
+    linear-gradient(to top,   rgba(15,8,3,0.35)  0%, transparent 40%);
 }
-#musicBtn:hover{background:var(--yellow);color:var(--dark);}
-.sb-title{font-family:var(--pixel);font-size:0.38rem;color:var(--yellow);margin-bottom:0.5rem;display:block;text-align:center;}
-.sb-row{display:flex;justify-content:space-between;gap:1rem;font-family:var(--pixel);font-size:0.32rem;color:#aaa;margin-bottom:0.25rem;}
-.sb-row span:first-child{color:var(--pink);}
 
-/* ── REST OF PORTFOLIO ── */
-.welcome-bar{background:#000080;padding:0.8rem 2rem;text-align:center;border-bottom:4px solid var(--pink);position:relative;z-index:10;}
-.welcome-bar p{font-family:var(--pixel);font-size:0.48rem;color:#fff;letter-spacing:0.1em;}
-main{background:#1a0a2e;position:relative;z-index:10;}
-.section{padding:4rem 3rem;}
-.px-btn{display:inline-block;font-family:var(--pixel);font-size:0.52rem;padding:0.6rem 1.6rem;border:4px solid #000;box-shadow:4px 4px 0 #000;text-decoration:none;cursor:pointer;letter-spacing:0.06em;transition:transform 0.1s,box-shadow 0.1s;}
-.px-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;}
-.px-btn-pink{background:var(--pink);color:var(--dark);}
-.px-btn-green{background:var(--green);color:var(--dark);}
-.px-btn-yellow{background:var(--yellow);color:var(--dark);}
-.section-header{text-align:center;margin-bottom:2.5rem;}
-.sub-label{font-family:var(--pixel);font-size:0.38rem;color:#666;margin-top:0.75rem;letter-spacing:0.08em;}
-.filters-row{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;}
-.f-btn{font-family:var(--pixel);font-size:0.38rem;background:#0d0520;color:#888;padding:0.45rem 1rem;border:3px solid #3a1a5e;box-shadow:3px 3px 0 #000;cursor:pointer;letter-spacing:0.05em;transition:all 0.1s;}
-.f-btn:hover,.f-btn.active{background:var(--pink);color:var(--dark);border-color:#000;transform:translate(1px,1px);box-shadow:2px 2px 0 #000;}
-.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;max-width:1200px;margin:0 auto;}
-.p-card{background:#0a0520;border:4px solid #3a1a5e;box-shadow:6px 6px 0 #000;position:relative;overflow:hidden;text-decoration:none;display:block;transition:transform 0.1s,box-shadow 0.1s,border-color 0.1s;}
+/* ══════════════════════════════════════════════
+   ALL CONTENT sits above z-index:1
+══════════════════════════════════════════════ */
+nav{ z-index:200; }
+#hero{
+  position:relative;z-index:2;
+  min-height:100vh;display:flex;align-items:flex-end;
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 3.5rem 5rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.hero-dots{ z-index:2; }
+.hero-counter{ z-index:2; }
+main{ position:relative;z-index:2;background:transparent; }
+.welcome-bar{ position:relative;z-index:2; }
+footer{ position:relative;z-index:2; }
+
+@keyframes titleFade{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes shimmer{0%,100%{transform:translateX(-100%);}50%{transform:translateX(100%);}}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-size:0.68rem;
+  color:rgba(255,255,255,0.9);
+  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
+  animation:fadeIn 1s 0.3s both;
+  text-shadow:0 1px 6px rgba(0,0,0,0.4);
+}
+.hero-eyebrow svg{width:14px;height:14px;opacity:0.9;}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(4rem,10vw,8.5rem);
+  font-weight:300;line-height:0.92;color:#fff;
+  letter-spacing:-0.01em;
+  animation:titleFade 1.1s 0.1s both;
+  text-shadow:0 2px 24px rgba(0,0,0,0.5);
+}
+.hero-divider{
+  width:80px;height:1px;
+  background:rgba(255,220,160,0.7);
+  animation:fadeIn 1s 0.5s both;
+}
+.hero-desc{
+  max-width:420px;
+  font-family:var(--sans);font-size:0.82rem;
+  color:rgba(255,255,255,0.88);
+  line-height:1.8;font-weight:300;
+  animation:fadeIn 1s 0.6s both;
+  text-shadow:0 1px 8px rgba(0,0,0,0.4);
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-size:0.68rem;
+  color:#fff;letter-spacing:0.18em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.6);
+  padding:0.75rem 2rem;text-decoration:none;
+  transition:background 0.3s,border-color 0.3s;
+  width:fit-content;animation:fadeIn 1s 0.8s both;
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(4px);
+}
+.hero-cta:hover{background:rgba(255,255,255,0.18);border-color:#fff;}
+.hero-cta-arrow{font-size:0.6rem;transition:transform 0.3s;}
+.hero-cta:hover .hero-cta-arrow{transform:translateX(4px);}
+.hero-dots{
+  position:absolute;bottom:2.5rem;right:3.5rem;
+  z-index:10;display:flex;gap:8px;align-items:center;
+}
+.hero-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.4);
+  border:none;cursor:pointer;padding:0;
+  transition:background 0.3s,transform 0.3s;
+}
+.hero-dot.active{background:#fff;transform:scale(1.4);}
+.hero-counter{
+  position:absolute;bottom:2.5rem;left:3.5rem;z-index:10;
+  font-family:var(--sans);font-size:0.62rem;
+  color:rgba(255,255,255,0.55);letter-spacing:0.14em;
+  animation:fadeIn 1s 1s both;
+}
+
+/* ══════════════════════════════════════════════
+   GLASS PANEL — shared style for all sections
+══════════════════════════════════════════════ */
+.glass-panel{
+  background:rgba(247,240,230,0.82);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,255,255,0.6);
+  border-bottom:1px solid rgba(196,94,42,0.1);
+}
+
+/* ── WELCOME BAR ── */
+.welcome-bar{
+  background:rgba(239,229,211,0.45);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:1rem 2.5rem;text-align:center;
+  border-bottom:1px solid rgba(196,94,42,0.12);
+  position:relative;z-index:10;overflow:hidden;
+}
+.welcome-bar::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(196,94,42,0.06),transparent);
+  animation:shimmer 4s ease-in-out infinite;
+}
+.welcome-bar p{
+  font-family:var(--sans);font-size:0.72rem;
+  color:var(--bark);letter-spacing:0.2em;text-transform:uppercase;font-weight:400;
+}
+
+/* main wrapper — transparent so bg shows */
+/* main defined above */
+.section{padding:5rem 3.5rem;}
+
+/* ── WORKS SECTION glass ── */
+#works{
+  background:rgba(247,240,230,0.30);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.55);
+}
+
+/* ── BUTTONS ── */
+.px-btn{
+  display:inline-block;font-family:var(--sans);font-size:0.68rem;
+  padding:0.65rem 1.8rem;border:1px solid;text-decoration:none;cursor:pointer;
+  letter-spacing:0.16em;text-transform:uppercase;font-weight:300;
+  transition:background 0.3s,color 0.3s,border-color 0.3s;
+}
+.px-btn-pink{border-color:var(--rust);color:var(--rust);background:transparent;}
+.px-btn-pink:hover{background:var(--rust);color:var(--cream);}
+.px-btn-green{border-color:var(--teal);color:var(--teal);background:transparent;}
+.px-btn-green:hover{background:var(--teal);color:var(--cream);}
+.px-btn-yellow{border-color:var(--gold);color:var(--gold);background:transparent;}
+.px-btn-yellow:hover{background:var(--gold);color:var(--cream);}
+
+/* ── SECTION HEADER ── */
+.section-header{text-align:center;margin-bottom:3rem;}
+.section-number{
+  font-family:var(--sans);font-size:0.68rem;color:var(--terra);
+  letter-spacing:0.22em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:0.6rem;
+  text-shadow:0 1px 8px rgba(247,240,230,0.8);
+}
+.section-number::before,.section-number::after{
+  content:'';display:inline-block;width:30px;height:1px;background:rgba(196,94,42,0.5);
+}
+.section-title-large{
+  font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:400;color:var(--bark);letter-spacing:0.02em;line-height:1.1;
+  text-shadow:0 1px 16px rgba(247,240,230,0.9), 0 2px 4px rgba(247,240,230,0.6);
+}
+.sub-label{
+  font-family:var(--sans);font-size:0.65rem;
+  color:var(--brown);margin-top:0.8rem;
+  letter-spacing:0.16em;text-transform:uppercase;font-weight:300;
+  text-shadow:0 1px 8px rgba(247,240,230,0.7);
+}
+
+/* ── FILTERS ── */
+.filters-row{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
+.f-btn{
+  font-family:var(--sans);font-size:0.65rem;
+  background:rgba(255,255,255,0.4);color:var(--muted);
+  padding:0.4rem 1.2rem;
+  border:1px solid rgba(122,79,56,0.2);
+  cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
+  transition:all 0.3s;backdrop-filter:blur(8px);
+}
+.f-btn:hover,.f-btn.active{
+  background:rgba(196,94,42,0.15);color:var(--terra);border-color:rgba(196,94,42,0.5);
+}
+
+/* ── PROJECT GRID ── */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2px;max-width:1200px;margin:0 auto;}
+.p-card{
+  background:rgba(247,240,230,0.55);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  position:relative;overflow:hidden;text-decoration:none;display:block;
+  transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),box-shadow 0.3s;
+  border:1px solid rgba(255,255,255,0.5);
+}
 .p-card.hidden{display:none;}
-.p-card:hover{transform:translate(-4px,-4px);box-shadow:10px 10px 0 #000;border-color:var(--pink);}
-.p-card::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.1) 3px,rgba(0,0,0,0.1) 4px);pointer-events:none;z-index:4;}
-.p-card::before{content:'▶ OPEN STAGE';position:absolute;bottom:0;left:0;right:0;background:var(--pink);color:var(--dark);font-family:var(--pixel);font-size:0.38rem;text-align:center;padding:0.45rem;letter-spacing:0.1em;transform:translateY(100%);transition:transform 0.2s;z-index:5;}
+.p-card:hover{transform:translateY(-4px) scale(1.01);z-index:2;box-shadow:0 20px 60px rgba(61,43,31,0.18);}
+.p-card::before{
+  content:'VIEW PROJECT';position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(61,43,31,0.92),transparent);
+  color:var(--sand);font-family:var(--sans);font-size:0.62rem;
+  text-align:center;padding:2.5rem 0 1.2rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  transform:translateY(100%);transition:transform 0.4s ease;z-index:5;
+}
 .p-card:hover::before{transform:translateY(0);}
 .card-art{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.card-art svg{width:100%;height:100%;display:block;image-rendering:pixelated;}
-.card-art::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);transition:left 0.5s ease;z-index:3;pointer-events:none;}
-.p-card:hover .card-art::after{left:150%;}
-.card-cat-badge{position:absolute;top:8px;right:8px;z-index:4;font-family:var(--pixel);font-size:0.32rem;background:var(--pink);color:var(--dark);padding:0.22rem 0.5rem;border:2px solid #000;box-shadow:2px 2px 0 #000;}
-.card-art::before{content:'';position:absolute;top:6px;left:6px;width:14px;height:14px;border-top:3px solid var(--yellow);border-left:3px solid var(--yellow);z-index:4;pointer-events:none;}
-.corner-br{position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-bottom:3px solid var(--yellow);border-right:3px solid var(--yellow);z-index:4;pointer-events:none;}
-.card-body{padding:1rem 1.1rem 1.2rem;}
-.card-title{font-family:var(--pixel);font-size:0.46rem;color:var(--yellow);line-height:1.7;margin-bottom:0.4rem;}
-.card-meta{font-family:var(--vt);font-size:1rem;color:#666;}
-.hp-bar{margin-top:0.8rem;height:10px;background:#050215;border:2px solid #333;overflow:hidden;}
-.hp-fill{height:100%;background:repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px);animation:hpPulse 2s ease-in-out infinite alternate;}
-@keyframes hpPulse{from{filter:brightness(1);}to{filter:brightness(1.5);}}
-#about{background:#0d0520;border-top:4px solid var(--pink);}
-.about-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.7fr;gap:3rem;align-items:start;}
-.os-window{background:#c0c0c0;border:4px solid #000;box-shadow:6px 6px 0 #000;}
-.os-titlebar{background:linear-gradient(90deg,#000080,#1084d0);padding:0.35rem 0.6rem;display:flex;align-items:center;justify-content:space-between;}
-.os-title{font-family:var(--pixel);font-size:0.38rem;color:#fff;}
-.os-btns{display:flex;gap:3px;}
-.os-btns span{width:12px;height:12px;background:#c0c0c0;border:2px solid #000;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;color:#000;}
-.os-body{background:#fff;border-top:2px solid #888;}
-.sprite-scene{background:#87ceeb;padding:1.2rem 1rem 0.8rem;border-bottom:4px solid #5a9ebb;text-align:center;position:relative;min-height:160px;}
-.sprite-anim{display:inline-block;animation:spriteBob 0.9s steps(2) infinite;}
-@keyframes spriteBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
-.sprite-lbl{font-family:var(--pixel);font-size:0.36rem;color:#1a0a2e;display:block;margin-top:0.4rem;}
-.bubble{position:absolute;top:8px;right:8px;background:#fff;border:3px solid #000;padding:0.35rem 0.5rem;font-family:var(--pixel);font-size:0.32rem;line-height:2;color:#333;max-width:130px;box-shadow:3px 3px 0 #000;}
-.bubble::after{content:'';position:absolute;bottom:-11px;left:12px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:11px solid #000;}
-.os-content{padding:0.9rem;}
-.os-content h3{font-family:var(--pixel);font-size:0.42rem;color:#000080;margin-bottom:0.6rem;}
-.os-content p{font-family:var(--vt);font-size:1.05rem;color:#333;line-height:1.7;margin-bottom:0.6rem;}
-.os-content a{color:#000080;text-decoration:none;}
-.contact-section{border-top:2px solid #aaa;padding-top:0.7rem;margin-top:0.6rem;}
-.contact-head{font-family:var(--pixel);font-size:0.36rem;color:#000080;margin-bottom:0.5rem;}
-.c-row{display:flex;align-items:center;gap:6px;font-family:var(--vt);font-size:0.95rem;color:#333;margin-bottom:0.3rem;}
-.c-ico{width:14px;height:14px;background:#000080;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-style:normal;}
-.info-section{margin-bottom:2rem;}
-.info-head{font-family:var(--pixel);font-size:0.55rem;color:var(--yellow);margin-bottom:0.9rem;padding-bottom:0.4rem;border-bottom:2px dashed #3a1a5e;}
+.card-art svg{width:100%;height:100%;display:block;transition:transform 0.6s ease;}
+.p-card:hover .card-art svg{transform:scale(1.05);}
+.card-art::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(61,43,31,0.4) 100%);
+  pointer-events:none;z-index:2;
+}
+.card-cat-badge{
+  position:absolute;top:12px;right:12px;z-index:4;
+  font-family:var(--sans);font-size:0.58rem;
+  background:rgba(247,240,230,0.92);color:var(--terra);
+  padding:0.2rem 0.7rem;border:1px solid rgba(196,94,42,0.3);
+  letter-spacing:0.14em;text-transform:uppercase;backdrop-filter:blur(8px);
+}
+.corner-br{display:none;}
+.card-body{padding:1.2rem 1.4rem 1.4rem;}
+.card-title{
+  font-family:var(--serif);font-size:1.15rem;
+  color:var(--bark);font-weight:500;line-height:1.4;margin-bottom:0.35rem;
+  text-shadow:0 1px 8px rgba(247,240,230,0.9);
+}
+.card-meta{font-family:var(--sans);font-size:0.65rem;color:var(--brown);font-weight:300;letter-spacing:0.08em;}
+.hp-bar{margin-top:0.8rem;height:2px;background:rgba(122,79,56,0.12);overflow:hidden;}
+.hp-fill{height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));}
+
+/* ── ABOUT ── */
+#about{
+  background:rgba(239,229,211,0.30);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.5);
+}
+.about-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.7fr;gap:4rem;align-items:start;}
+
+.os-window{
+  background:rgba(255,255,255,0.35);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.7);
+  overflow:hidden;border-radius:8px;
+  box-shadow:0 8px 32px rgba(61,43,31,0.1);
+}
+.os-titlebar{
+  background:rgba(247,240,230,0.8);
+  padding:0.75rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(196,94,42,0.1);
+}
+.os-title{font-family:var(--sans);font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;}
+.os-btns{display:flex;gap:5px;}
+.os-btns span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+.os-btns span:nth-child(1){background:#e07070;opacity:0.7;}
+.os-btns span:nth-child(2){background:var(--amber);opacity:0.8;}
+.os-btns span:nth-child(3){background:var(--teal);opacity:0.7;}
+.os-body{background:transparent;}
+
+.avatar-scene{
+  padding:2rem 1.5rem 1.5rem;
+  border-bottom:1px solid rgba(196,94,42,0.1);
+  display:flex;align-items:center;gap:1.4rem;
+  background:rgba(232,213,183,0.35);
+}
+.avatar-wrap{
+  flex-shrink:0;width:80px;height:80px;border-radius:50%;
+  border:2px solid rgba(196,94,42,0.2);
+  background:rgba(232,213,183,0.5);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.avatar-info{flex:1;}
+.avatar-name{
+  font-family:var(--serif);font-size:1.25rem;
+  color:var(--bark);font-weight:500;line-height:1.2;margin-bottom:0.3rem;
+}
+.avatar-role{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:0.62rem;
+  color:var(--rust);letter-spacing:0.12em;text-transform:uppercase;
+  background:rgba(196,94,42,0.12);border:1px solid rgba(196,94,42,0.35);
+  padding:0.25rem 0.6rem;border-radius:2px;margin-bottom:0.5rem;font-weight:500;
+}
+.avatar-location{
+  font-family:var(--sans);font-size:0.68rem;
+  color:var(--brown);font-weight:400;display:flex;align-items:center;gap:5px;
+}
+.os-content{padding:1.4rem;}
+.os-content p{
+  font-family:var(--sans);font-size:0.78rem;
+  color:var(--bark);line-height:1.8;margin-bottom:0.7rem;font-weight:400;
+}
+.os-content a{color:var(--terra);text-decoration:none;transition:color 0.3s;font-weight:400;}
+.os-content a:hover{color:var(--rust);}
+.contact-section{border-top:1px solid rgba(196,94,42,0.2);padding-top:0.9rem;margin-top:0.8rem;}
+.contact-head{
+  font-family:var(--sans);font-size:0.65rem;color:var(--rust);
+  margin-bottom:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;
+}
+.c-row{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-size:0.72rem;
+  color:var(--bark);margin-bottom:0.45rem;font-weight:400;
+}
+.c-ico{
+  width:22px;height:22px;background:rgba(196,94,42,0.1);
+  border:1px solid rgba(196,94,42,0.2);border-radius:4px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--terra);font-style:normal;font-weight:500;
+}
+.info-section{margin-bottom:2.5rem;}
+.info-head{
+  font-family:var(--serif);font-size:1.3rem;color:var(--bark);font-weight:500;
+  margin-bottom:1rem;padding-bottom:0.5rem;
+  border-bottom:1px solid rgba(196,94,42,0.25);letter-spacing:0.04em;
+  text-shadow:0 1px 10px rgba(247,240,230,0.9);
+}
 .info-list{list-style:none;}
-.info-list li{font-family:var(--vt);font-size:1.05rem;color:#bbb;padding:0.25rem 0;display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
-.info-list li::before{content:'▸';color:var(--pink);font-size:0.7rem;flex-shrink:0;margin-top:2px;}
-.info-list li strong{color:var(--yellow);}
-.stack-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem;}
-.tag{font-family:var(--pixel);font-size:0.3rem;background:#0a0520;color:#aaa;padding:0.25rem 0.5rem;border:2px solid #3a1a5e;letter-spacing:0.04em;}
-.tag.hot{border-color:var(--pink);color:var(--pink);}
-.tag.warm{border-color:var(--yellow);color:var(--yellow);}
-.tag.cool{border-color:var(--blue);color:var(--blue);}
-.skill-item{margin-bottom:0.9rem;}
-.skill-lbl{font-family:var(--pixel);font-size:0.35rem;color:#888;margin-bottom:0.25rem;display:flex;justify-content:space-between;}
-.skill-bar{height:12px;background:#050215;border:2px solid #333;overflow:hidden;}
-.skill-fill{height:100%;background:repeating-linear-gradient(90deg,var(--pink) 0,var(--pink) 8px,var(--yellow) 8px,var(--yellow) 16px);}
-#stats{background:#0a0518;border-top:4px solid var(--yellow);padding:4rem 3rem;}
-.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
-.stat-card{background:#0d0520;border:4px solid #3a1a5e;box-shadow:5px 5px 0 #000;padding:1.5rem 1.2rem;text-align:center;transition:transform 0.1s,box-shadow 0.1s,border-color 0.1s;}
-.stat-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 #000;border-color:var(--yellow);}
-.stat-icon{font-size:1.5rem;display:block;margin-bottom:0.8rem;}
-.stat-value{font-family:var(--pixel);font-size:0.9rem;color:var(--yellow);display:block;margin-bottom:0.4rem;text-shadow:2px 2px 0 #b8860b;}
-.stat-label{font-family:var(--pixel);font-size:0.36rem;color:#666;letter-spacing:0.06em;}
-.stat-sub{font-family:var(--vt);font-size:0.9rem;color:#888;margin-top:0.3rem;display:block;}
-.chess-deco{display:inline-grid;grid-template-columns:repeat(4,12px);gap:0;margin-bottom:0.6rem;}
-.chess-sq{width:12px;height:12px;}
-.chess-sq.w{background:#fff;}.chess-sq.b{background:#1a0a2e;border:1px solid #333;}
-footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text-align:center;}
-.footer-dirt{height:28px;background:repeating-linear-gradient(90deg,#8B6340 0,#8B6340 16px,#7a5530 16px,#7a5530 32px);border-top:4px solid #5a3a1a;margin-bottom:2rem;}
-.footer-copy{font-family:var(--pixel);font-size:0.38rem;color:#555;margin-bottom:1.5rem;letter-spacing:0.06em;}
-.socials{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem;}
-.socials a{font-family:var(--pixel);font-size:0.38rem;background:var(--yellow);color:var(--dark);padding:0.4rem 0.75rem;border:3px solid #000;box-shadow:3px 3px 0 #000;text-decoration:none;transition:transform 0.1s,box-shadow 0.1s;}
-.socials a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000;background:var(--pink);}
-.game-over-footer{font-family:var(--pixel);font-size:0.35rem;color:#333;letter-spacing:0.1em;}
-.back-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;font-family:var(--pixel);font-size:0.38rem;background:var(--pink);color:var(--dark);padding:0.45rem 0.7rem;border:3px solid #000;box-shadow:3px 3px 0 #000;text-decoration:none;transition:transform 0.1s,box-shadow 0.1s;}
-.back-top:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000;}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s;}
+.info-list li{
+  font-family:var(--sans);font-size:0.78rem;color:var(--bark);
+  padding:0.35rem 0;display:flex;align-items:flex-start;gap:8px;
+  line-height:1.6;font-weight:400;
+}
+.info-list li::before{content:'—';color:rgba(196,94,42,0.6);flex-shrink:0;}
+.info-list li strong{color:var(--rust);}
+.stack-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.6rem;}
+.tag{
+  font-family:var(--sans);font-size:0.6rem;
+  background:rgba(247,240,230,0.65);color:var(--bark);
+  padding:0.2rem 0.65rem;border:1px solid rgba(122,79,56,0.3);
+  letter-spacing:0.06em;text-transform:uppercase;transition:all 0.3s;
+  font-weight:400;
+}
+.tag:hover{border-color:rgba(196,94,42,0.5);color:var(--terra);background:rgba(247,240,230,0.85);}
+.tag.hot{border-color:rgba(196,94,42,0.5);color:var(--rust);background:rgba(247,230,220,0.65);}
+.tag.warm{border-color:rgba(212,137,26,0.5);color:var(--brown);background:rgba(247,240,220,0.65);}
+.tag.cool{border-color:rgba(58,138,130,0.5);color:var(--teal);background:rgba(220,240,238,0.55);}
+.skill-item{margin-bottom:1rem;}
+.skill-lbl{
+  font-family:var(--sans);font-size:0.66rem;color:var(--bark);margin-bottom:0.35rem;
+  display:flex;justify-content:space-between;font-weight:400;letter-spacing:0.04em;
+  text-shadow:0 1px 6px rgba(247,240,230,0.8);
+}
+.skill-bar{height:2px;background:rgba(122,79,56,0.12);overflow:hidden;}
+.skill-fill{
+  height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));
+  transform-origin:left;animation:skillGrow 1.5s cubic-bezier(0.23,1,0.32,1) both;
+}
+@keyframes skillGrow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+
+/* ── STATS ── */
+#stats{
+  background:rgba(232,213,183,0.28);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.5);
+  padding:5rem 3.5rem;
+}
+.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;}
+.stat-card{
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.6);
+  padding:2.5rem 2rem;text-align:center;
+  position:relative;overflow:hidden;transition:background 0.4s,box-shadow 0.3s;
+}
+.stat-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(196,94,42,0.1),transparent 70%);
+  opacity:0;transition:opacity 0.4s;
+}
+.stat-card:hover{background:rgba(255,255,255,0.72);box-shadow:0 12px 40px rgba(61,43,31,0.12);}
+.stat-card:hover::before{opacity:1;}
+.stat-icon{font-size:1.2rem;display:block;margin-bottom:1rem;opacity:0.5;}
+.stat-value{font-family:var(--serif);font-size:2.2rem;color:var(--bark);display:block;margin-bottom:0.4rem;font-weight:400;text-shadow:0 1px 12px rgba(247,240,230,0.9);}
+.stat-label{font-family:var(--sans);font-size:0.62rem;color:var(--rust);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
+.stat-sub{font-family:var(--sans);font-size:0.65rem;color:var(--brown);margin-top:0.4rem;display:block;font-weight:300;}
+
+/* ── FOOTER ── */
+footer{
+  background:rgba(61,43,31,0.55);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid rgba(196,94,42,0.25);
+  padding:3rem 3.5rem;text-align:center;
+}
+.footer-dirt{display:none;}
+.footer-copy{font-family:var(--sans);font-size:0.62rem;color:rgba(232,213,183,0.35);margin-bottom:2rem;letter-spacing:0.14em;text-transform:uppercase;}
+.socials{display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;}
+.socials a{
+  font-family:var(--sans);font-size:0.65rem;background:transparent;
+  color:rgba(232,213,183,0.55);padding:0.4rem 1rem;
+  border:1px solid rgba(232,213,183,0.15);text-decoration:none;
+  transition:color 0.3s,border-color 0.3s;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
+}
+.socials a:hover{color:var(--sand);border-color:rgba(196,94,42,0.5);}
+.game-over-footer{font-family:var(--sans);font-size:0.6rem;color:rgba(232,213,183,0.18);letter-spacing:0.16em;text-transform:uppercase;}
+
+.back-top{
+  position:fixed;bottom:2rem;right:2rem;z-index:100;
+  font-family:var(--sans);font-size:0.6rem;
+  background:rgba(247,240,230,0.88);color:var(--terra);
+  padding:0.5rem 0.8rem;border:1px solid rgba(196,94,42,0.3);
+  text-decoration:none;transition:background 0.3s;letter-spacing:0.1em;
+  backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(61,43,31,0.15);
+}
+.back-top:hover{background:rgba(196,94,42,0.12);}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1);}
 .reveal.visible{opacity:1;transform:none;}
-@media(max-width:768px){nav{padding:0.5rem 1rem;}.nav-links{display:none;}.about-grid{grid-template-columns:1fr;}.section{padding:3rem 1.2rem;}.p-grid{grid-template-columns:1fr;}#stats{padding:3rem 1.2rem;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0.8rem 1.2rem;}
+  .nav-links{display:none;}
+  .about-grid{grid-template-columns:1fr;}
+  .section{padding:3.5rem 1.5rem;}
+  .p-grid{grid-template-columns:1fr;}
+  #stats{padding:3.5rem 1.5rem;}
+}
+
+/* ── GRAIN ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
 </style>
 </head>
 <body>
 
-<div class="coin-badge"><span class="coin"></span>SHRABONI.EXE</div>
+<!-- ═══ FIXED BACKGROUND SLIDES — must be FIRST in body, before any stacking context ═══ -->
+<div class="bg-slide active" style="background-image:url('assets/img/scenary1.jpeg')"></div>
+<div class="bg-slide" style="background-image:url('assets/img/scenary2.jpeg')"></div>
+<div class="bg-slide" style="background-image:url('assets/img/scenary3.jpeg')"></div>
+<!-- Fixed dark gradient overlay for text contrast -->
+<div class="bg-overlay"></div>
 
 <nav>
-  <a class="nav-brand" href="#">★ SB PORTFOLIO ★</a>
+  <a class="nav-brand" href="#">SB Portfolio</a>
   <ul class="nav-links">
-    <li><a href="#works">[ WORKS ]</a></li>
-    <li><a href="#about">[ ABOUT ]</a></li>
-    <li><a href="#stats">[ STATS ]</a></li>
-    <li><a href="contact.html">[ CONTACT ]</a></li>
-    <li><a href="assets/img/SDE.pdf">[ RESUME ↗ ]</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
+  <a class="nav-register" href="assets/img/SDE.pdf">Resume ↗</a>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!--  HERO + GAME                                           -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════ HERO ══ -->
 <section id="hero">
-  <div class="sky-bg"></div>
-  <div class="stars-layer" id="starsLayer"></div>
 
-  <!-- clouds -->
-  <div class="clouds">
-    <span class="cloud-px" style="margin-top:30px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
-    <span class="cloud-px" style="margin-top:50px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
-    <span class="cloud-px" style="margin-top:20px;"><svg width="56" height="28" viewBox="0 0 56 28" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="40" height="14" fill="white"/><rect x="14" y="6" width="28" height="14" fill="white"/><rect x="20" y="0" width="16" height="10" fill="white"/></svg></span>
-    <span class="cloud-px" style="margin-top:40px;"><svg width="64" height="32" viewBox="0 0 64 32" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="48" height="16" fill="white"/><rect x="16" y="8" width="32" height="16" fill="white"/><rect x="24" y="0" width="16" height="12" fill="white"/></svg></span>
-    <span class="cloud-px" style="margin-top:25px;"><svg width="80" height="40" viewBox="0 0 80 40" style="image-rendering:pixelated;" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="64" height="16" fill="white"/><rect x="16" y="12" width="48" height="20" fill="white"/><rect x="28" y="0" width="24" height="16" fill="white"/></svg></span>
-  </div>
-
-  <!-- mountains -->
-  <div class="mountains-layer"><svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><polygon points="0,200 100,80 200,150 340,50 480,130 600,30 720,110 860,45 1000,125 1140,35 1280,100 1440,55 1440,200" fill="#2a5a20" opacity="0.55"/><polygon points="0,200 80,100 200,170 360,80 490,150 620,55 740,120 880,50 1010,130 1160,65 1300,120 1440,80 1440,200" fill="#3a7a28"/></svg></div>
-
-  <!-- trees (behind game canvas, z-index 4) -->
-  <div class="trees-layer">
-    <div class="tree-px" style="left:4%"><div class="tree-top-px"></div><div class="tree-trunk-px"></div></div>
-    <div class="tree-px" style="left:12%"><div class="tree-top-px" style="border-bottom-color:#3aaa28;"></div><div class="tree-trunk-px"></div></div>
-    <div class="tree-px" style="left:20%"><div class="tree-top-px"></div><div class="tree-trunk-px"></div></div>
-    <div class="tree-px" style="left:72%"><div class="tree-top-px" style="border-bottom-color:#3aaa28;"></div><div class="tree-trunk-px"></div></div>
-    <div class="tree-px" style="left:82%"><div class="tree-top-px"></div><div class="tree-trunk-px"></div></div>
-    <div class="tree-px" style="left:91%"><div class="tree-top-px" style="border-bottom-color:#3aaa28;"></div><div class="tree-trunk-px"></div></div>
-  </div>
-
-  <!-- GAME CANVAS (z-index 6, above trees, below ground block) -->
-  <canvas id="gameCanvas"></canvas>
-
-  <!-- HUD (score / hi / lives) -->
-  <div id="gameHud">
-    <span id="scoreHud">SCORE: <span id="scoreVal">0</span></span>
-    <span id="hiHud">BEST: <span id="hiVal">0</span></span>
-    <span id="livesHud">♥♥♥</span>
-  </div>
-
-  <!-- SCOREBOARD (bottom-left) -->
-  <div id="scoreboard">
-    <span class="sb-title">★ SCOREBOARD ★</span>
-    <div id="sbRows"></div>
-  </div>
-
-  <!-- MUSIC TOGGLE (bottom-right) -->
-  <button id="musicBtn">♪ MUSIC: ON</button>
-
-  <!-- START SCREEN -->
-  <div id="startScreen">
-    <div class="start-title">PortFolio</div>
-    <div class="start-name">★ SHRABONI BANERJEE ★</div>
-    <div class="start-role">SOFTWARE ENGINEER · BENGALURU, INDIA</div>
-    <div class="start-blink">► PRESS START ◄</div>
-    <div class="start-hint">SPACE / TAP TO JUMP &nbsp;·&nbsp; COLLECT COINS &nbsp;·&nbsp; DODGE MONSTERS</div>
-  </div>
-
-  <!-- GAME OVER SCREEN -->
-  <div id="gameOverScreen">
-    <div class="go-title">GAME OVER</div>
-    <div class="go-row go-score">SCORE: <span id="goScore">0</span></div>
-    <div class="go-row go-best">BEST &nbsp;: <span id="goBest">0</span></div>
-    <div class="go-btns">
-      <button id="retryBtn" class="px-game-btn btn-green">► PLAY AGAIN</button>
-      <a href="#works" class="px-game-btn btn-muted">↓ SEE WORKS</a>
+  <!-- Text content bottom-left -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="6" width="14" height="2" fill="currentColor"/><rect x="6" y="0" width="2" height="14" fill="currentColor"/></svg>
+      Welcome to my portfolio
     </div>
-    <div class="go-hint">SPACE / TAP to play again</div>
+    <div class="hero-title">Shraboni<br>Banerjee</div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Software Engineer from Bengaluru, India. Building clean, thoughtful software and designing experiences that feel effortless.</p>
+    <a href="#works" class="hero-cta">See my work <span class="hero-cta-arrow">→</span></a>
   </div>
 
-  <!-- CSS ground (z-index 7, paints over canvas bottom edge) -->
-  <div class="ground-block"><div class="g-top"></div><div class="g-mid"></div><div class="g-bot"></div></div>
-  <div class="hero-copy">(C) SHRABONI BANERJEE 2026</div>
+  <!-- Slide dots -->
+  <div class="hero-dots">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+    <button class="hero-dot" data-slide="2"></button>
+  </div>
+
+  <!-- Slide counter -->
+  <div class="hero-counter"><span id="slideNum">01</span> / 03</div>
+
 </section>
 
-<div class="welcome-bar"><p>★★ welcome to my portFolio.. ★★</p></div>
+<div class="welcome-bar"><p>★ &nbsp; Welcome to my portfolio &nbsp; ★</p></div>
 
 <main>
 
 <!-- WORKS -->
 <section id="works" class="section">
   <div class="section-header reveal">
-    <span class="px-btn px-btn-pink" style="pointer-events:none;">WORKS</span>
-    <p class="sub-label">SELECT YOUR STAGE</p>
+    <div class="section-number">02 / Works</div>
+    <div class="section-title-large">Selected Projects</div>
+    <p class="sub-label">A collection of built things</p>
   </div>
   <div class="filters-row reveal">
-    <button class="f-btn active" data-filter="all">ALL</button>
-    <button class="f-btn" data-filter="web">DESIGN</button>
-    <button class="f-btn" data-filter="app">APP DEV</button>
-    <button class="f-btn" data-filter="blockchain">BLOCKCHAIN</button>
+    <button class="f-btn active" data-filter="all">All</button>
+    <button class="f-btn" data-filter="web">Design</button>
+    <button class="f-btn" data-filter="app">App Dev</button>
+    <button class="f-btn" data-filter="blockchain">Blockchain</button>
   </div>
 
   <div class="p-grid reveal" id="pgrid">
 
     <a href="./design.html" class="p-card web">
-      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a0050"/><rect y="130" width="320" height="50" fill="#2d1a6e"/><rect y="128" width="320" height="4" fill="#ff6eb4"/><rect x="0" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="40" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="80" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="120" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="160" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="200" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="240" y="132" width="40" height="24" fill="#251560" opacity="0.5"/><rect x="280" y="132" width="40" height="24" fill="#1a0050" opacity="0.5"/><rect x="60" y="90" width="200" height="40" fill="#3d2080"/><rect x="60" y="86" width="200" height="8" fill="#5a30b0"/><rect x="130" y="55" width="60" height="38" fill="#1a1a3e" rx="2"/><rect x="133" y="58" width="54" height="28" fill="#00d9b5"/><rect x="136" y="61" width="10" height="4" fill="#fff" opacity="0.8"/><rect x="136" y="67" width="20" height="3" fill="#ffe066" opacity="0.8"/><rect x="136" y="72" width="15" height="3" fill="#ffe066" opacity="0.8"/><rect x="165" y="61" width="18" height="22" fill="#ff6eb4" opacity="0.6"/><rect x="155" y="93" width="10" height="8" fill="#2d2060"/><rect x="148" y="100" width="24" height="4" fill="#2d2060"/><rect x="70" y="95" width="12" height="8" fill="#ff6eb4" rx="1"/><rect x="86" y="95" width="12" height="8" fill="#ffe066" rx="1"/><rect x="102" y="95" width="12" height="8" fill="#00d9b5" rx="1"/><rect x="230" y="80" width="24" height="30" fill="#2d1a6e"/><rect x="232" y="85" width="20" height="12" fill="#3d2a7e"/><rect x="234" y="90" width="16" height="2" fill="#fff" opacity="0.4"/><rect x="234" y="94" width="12" height="2" fill="#fff" opacity="0.4"/><rect x="20" y="30" width="50" height="40" fill="#fff" opacity="0.9"/><rect x="23" y="33" width="22" height="3" fill="#1a0050"/><rect x="23" y="38" width="38" height="2" fill="#666"/><rect x="23" y="42" width="30" height="2" fill="#666"/><rect x="23" y="46" width="34" height="2" fill="#666"/><rect x="23" y="52" width="20" height="4" fill="#ff6eb4"/><rect x="260" y="20" width="4" height="4" fill="#ffe066"/><rect x="10" y="15" width="6" height="6" fill="#ff6eb4" opacity="0.7"/><rect x="80" y="10" width="160" height="20" fill="#ff6eb4" opacity="0.15"/><text x="160" y="24" font-family="monospace" font-size="7" fill="#ffe066" text-anchor="middle" font-weight="bold">RESTOGENIUS POS</text></svg>
+      <div class="card-art"><span class="card-cat-badge">Design</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- bg -->
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- subtle grid lines -->
+  <line x1="0" y1="60" x2="320" y2="60" stroke="#e0d0ba" stroke-width="1"/>
+  <line x1="0" y1="120" x2="320" y2="120" stroke="#e0d0ba" stroke-width="1"/>
+  <line x1="107" y1="0" x2="107" y2="180" stroke="#e0d0ba" stroke-width="1"/>
+  <line x1="214" y1="0" x2="214" y2="180" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- POS terminal body -->
+  <rect x="96" y="28" width="128" height="82" rx="6" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <!-- screen -->
+  <rect x="104" y="36" width="112" height="52" rx="3" fill="#f7f0e6"/>
+  <!-- screen header bar -->
+  <rect x="104" y="36" width="112" height="12" rx="3" fill="#c45e2a"/>
+  <!-- header dots -->
+  <circle cx="112" cy="42" r="3" fill="rgba(255,255,255,0.5)"/>
+  <!-- header title -->
+  <rect x="122" y="39" width="60" height="5" rx="2" fill="rgba(255,255,255,0.6)"/>
+  <!-- table grid on screen -->
+  <rect x="108" y="52" width="24" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="136" y="52" width="24" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="164" y="52" width="24" height="14" rx="1" fill="#c45e2a" opacity="0.7"/>
+  <rect x="192" y="52" width="20" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="108" y="70" width="24" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="136" y="70" width="24" height="14" rx="1" fill="#d4891a" opacity="0.6"/>
+  <rect x="164" y="70" width="24" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="192" y="70" width="20" height="14" rx="1" fill="#f0e8d8"/>
+  <!-- stand -->
+  <rect x="151" y="110" width="18" height="10" rx="1" fill="#d8c8b0"/>
+  <rect x="138" y="120" width="44" height="6" rx="3" fill="#d8c8b0"/>
+  <!-- left receipt -->
+  <rect x="28" y="40" width="52" height="70" rx="3" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="34" y="48" width="30" height="4" rx="1" fill="#c45e2a" opacity="0.8"/>
+  <rect x="34" y="56" width="40" height="2.5" rx="1" fill="#d8c8b0"/>
+  <rect x="34" y="62" width="34" height="2.5" rx="1" fill="#d8c8b0"/>
+  <rect x="34" y="68" width="38" height="2.5" rx="1" fill="#d8c8b0"/>
+  <rect x="34" y="76" width="22" height="4" rx="1" fill="#d4891a" opacity="0.7"/>
+  <rect x="34" y="84" width="40" height="1.5" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="90" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.5"/>
+  <!-- right stat card -->
+  <rect x="244" y="40" width="52" height="70" rx="3" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <circle cx="270" cy="58" r="12" fill="#f7f0e6" stroke="#c45e2a" stroke-width="1.5"/>
+  <rect x="252" y="76" width="36" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="256" y="83" width="28" height="6" rx="1" fill="#c45e2a" opacity="0.25"/>
+  <rect x="252" y="93" width="36" height="2" rx="1" fill="#e0d0ba"/>
+  <rect x="252" y="99" width="22" height="2" rx="1" fill="#e0d0ba"/>
+  <!-- bottom bar chart accent -->
+  <rect x="28" y="148" width="12" height="20" rx="1" fill="#c45e2a" opacity="0.35"/>
+  <rect x="44" y="140" width="12" height="28" rx="1" fill="#c45e2a" opacity="0.55"/>
+  <rect x="60" y="132" width="12" height="36" rx="1" fill="#c45e2a" opacity="0.75"/>
+  <rect x="76" y="136" width="12" height="32" rx="1" fill="#d4891a" opacity="0.6"/>
+  <rect x="92" y="144" width="12" height="24" rx="1" fill="#d4891a" opacity="0.4"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">RESTOGENIUS POS</div><div class="card-meta">Tech Sprint · Apr 2024–Present</div><div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div></div>
+      <div class="card-body"><div class="card-title">RestoGenius POS</div><div class="card-meta">Tech Sprint · Apr 2024–Present</div><div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div></div>
     </a>
 
     <a href="./App.html" class="p-card app">
-      <div class="card-art"><span class="card-cat-badge" style="background:var(--blue);color:#fff;">APP DEV</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0a1628"/><rect x="20" y="15" width="3" height="3" fill="#fff" opacity="0.6"/><rect x="280" y="20" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="110" y="20" width="100" height="145" fill="#1a2a4a" rx="8"/><rect x="113" y="23" width="94" height="139" fill="#0d1a30" rx="6"/><rect x="116" y="30" width="88" height="120" fill="#0a1628"/><rect x="145" y="28" width="30" height="6" fill="#1a2a4a" rx="3"/><rect x="118" y="32" width="84" height="8" fill="#0d1a30"/><rect x="120" y="34" width="20" height="4" fill="#3498db" opacity="0.6"/><rect x="190" y="34" width="10" height="4" fill="#2ecc71" opacity="0.8"/><rect x="120" y="45" width="20" height="20" fill="#ff6eb4" rx="4"/><rect x="144" y="45" width="20" height="20" fill="#3498db" rx="4"/><rect x="168" y="45" width="20" height="20" fill="#2ecc71" rx="4"/><rect x="192" y="45" width="20" height="20" fill="#ffe066" rx="4"/><rect x="120" y="70" width="20" height="20" fill="#9b59b6" rx="4"/><rect x="144" y="70" width="20" height="20" fill="#e74c3c" rx="4"/><rect x="168" y="70" width="20" height="20" fill="#00d9b5" rx="4"/><rect x="192" y="70" width="20" height="20" fill="#e67e22" rx="4"/><rect x="120" y="96" width="92" height="40" fill="#1a2a4a" rx="3"/><rect x="118" y="140" width="84" height="8" fill="#1a2a4a"/><rect x="20" y="80" width="70" height="50" fill="#1a2a4a" opacity="0.8"/><rect x="23" y="83" width="50" height="3" fill="#ff6eb4" opacity="0.7"/><rect x="23" y="89" width="60" height="2" fill="#3498db" opacity="0.6"/><rect x="23" y="94" width="40" height="2" fill="#2ecc71" opacity="0.6"/><text x="160" y="16" font-family="monospace" font-size="7" fill="#3498db" text-anchor="middle">APP DEVELOPMENT</text></svg>
+      <div class="card-art"><span class="card-cat-badge" style="color:var(--teal);border-color:rgba(58,138,130,0.4);">App Dev</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- phone frame: centered x=100 to x=220, y=10 to y=174 -->
+  <rect x="100" y="10" width="120" height="164" rx="14" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <!-- screen inset x=106 to x=214, y=18 to y=166 -->
+  <rect x="106" y="18" width="108" height="148" rx="9" fill="#f7f0e6"/>
+  <!-- notch -->
+  <rect x="137" y="18" width="46" height="8" rx="4" fill="#e0d0ba"/>
+  <!-- status bar -->
+  <rect x="112" y="30" width="18" height="3" rx="1" fill="#d8c8b0"/>
+  <rect x="190" y="30" width="18" height="3" rx="1" fill="#c45e2a" opacity="0.4"/>
+  <!-- app icons grid — 3 per row, all within x=112..202 -->
+  <rect x="112" y="42" width="26" height="26" rx="6" fill="#c45e2a" opacity="0.85"/>
+  <rect x="147" y="42" width="26" height="26" rx="6" fill="#d4891a" opacity="0.85"/>
+  <rect x="182" y="42" width="26" height="26" rx="6" fill="#3a8a82" opacity="0.75"/>
+  <rect x="112" y="75" width="26" height="26" rx="6" fill="#5a7a5c" opacity="0.65"/>
+  <rect x="147" y="75" width="26" height="26" rx="6" fill="#7a4f38" opacity="0.55"/>
+  <rect x="182" y="75" width="26" height="26" rx="6" fill="#c45e2a" opacity="0.4"/>
+  <!-- content card within screen -->
+  <rect x="109" y="110" width="102" height="36" rx="4" fill="#fff" stroke="#e8d5b7" stroke-width="1"/>
+  <rect x="115" y="117" width="44" height="3" rx="1" fill="#c45e2a" opacity="0.7"/>
+  <rect x="115" y="124" width="70" height="2.5" rx="1" fill="#d8c8b0"/>
+  <rect x="115" y="130" width="56" height="2.5" rx="1" fill="#d8c8b0"/>
+  <rect x="115" y="137" width="30" height="5" rx="2" fill="#c45e2a" opacity="0.3"/>
+  <!-- home bar -->
+  <rect x="143" y="157" width="34" height="3" rx="1.5" fill="#d8c8b0"/>
+  <!-- left decorative panel -->
+  <rect x="18" y="44" width="66" height="80" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="24" y="52" width="50" height="3" rx="1" fill="#c45e2a" opacity="0.6"/>
+  <rect x="24" y="59" width="40" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="24" y="65" width="46" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="24" y="71" width="34" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="24" y="80" width="50" height="2.5" rx="1" fill="#d4891a" opacity="0.5"/>
+  <rect x="24" y="87" width="38" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="24" y="93" width="44" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="24" y="102" width="30" height="7" rx="3" fill="#c45e2a" opacity="0.25"/>
+  <!-- right decorative panel -->
+  <rect x="236" y="44" width="66" height="80" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <circle cx="255" cy="64" r="10" fill="#f7f0e6" stroke="#d4891a" stroke-width="1.5"/>
+  <rect x="242" y="82" width="48" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="242" y="88" width="36" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="242" y="94" width="42" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="242" y="103" width="28" height="7" rx="3" fill="#3a8a82" opacity="0.25"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">APP DEVELOPMENT</div><div class="card-meta">Personal Projects · 2021–Present</div><div class="hp-bar"><div class="hp-fill" style="width:95%"></div></div></div>
+      <div class="card-body"><div class="card-title">App Development</div><div class="card-meta">Personal Projects · 2021–Present</div><div class="hp-bar"><div class="hp-fill" style="width:95%"></div></div></div>
     </a>
 
     <a href="./blockchain.html" class="p-card blockchain">
-      <div class="card-art"><span class="card-cat-badge" style="background:var(--yellow);color:var(--dark);">BLOCKCHAIN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0a1a0a"/><line x1="0" y1="40" x2="320" y2="40" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="0" y1="80" x2="320" y2="80" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="0" y1="120" x2="320" y2="120" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="80" y1="0" x2="80" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="160" y1="0" x2="160" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><line x1="240" y1="0" x2="240" y2="180" stroke="#00ff66" stroke-width="0.5" opacity="0.15"/><rect x="40" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="40" y="86" width="40" height="8" fill="#2ecc71"/><rect x="76" y="86" width="8" height="40" fill="#27ae60"/><text x="60" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#001</text><rect x="80" y="106" width="20" height="4" fill="#ffe066"/><rect x="84" y="102" width="4" height="12" fill="#ffe066"/><rect x="92" y="102" width="4" height="12" fill="#ffe066"/><rect x="100" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="100" y="86" width="40" height="8" fill="#2ecc71"/><rect x="136" y="86" width="8" height="40" fill="#27ae60"/><text x="120" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#002</text><rect x="140" y="106" width="20" height="4" fill="#ffe066"/><rect x="144" y="102" width="4" height="12" fill="#ffe066"/><rect x="152" y="102" width="4" height="12" fill="#ffe066"/><rect x="160" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="160" y="86" width="40" height="8" fill="#2ecc71"/><rect x="196" y="86" width="8" height="40" fill="#27ae60"/><text x="180" y="112" font-family="monospace" font-size="5" fill="#00ff66" text-anchor="middle">#003</text><rect x="200" y="106" width="20" height="4" fill="#ffe066"/><rect x="204" y="102" width="4" height="12" fill="#ffe066"/><rect x="212" y="102" width="4" height="12" fill="#ffe066"/><rect x="220" y="90" width="40" height="40" fill="#1a3a1a"/><rect x="220" y="86" width="40" height="8" fill="#ff6eb4"/><rect x="256" y="86" width="8" height="40" fill="#dd4a90"/><text x="240" y="112" font-family="monospace" font-size="5" fill="#ff6eb4" text-anchor="middle">#NEW</text><rect x="148" y="30" width="8" height="8" fill="#627eea"/><rect x="144" y="34" width="16" height="4" fill="#627eea"/><rect x="140" y="36" width="24" height="4" fill="#8a9ff0"/><rect x="144" y="42" width="16" height="4" fill="#627eea"/><rect x="148" y="46" width="8" height="6" fill="#4a5db8"/><rect x="16" y="20" width="80" height="55" fill="#0d200d" opacity="0.8"/><text x="20" y="34" font-family="monospace" font-size="5" fill="#2ecc71">pragma solidity</text><text x="20" y="44" font-family="monospace" font-size="5" fill="#ffe066">^0.8.0;</text><text x="20" y="54" font-family="monospace" font-size="5" fill="#ff6eb4">contract ToDo {</text><text x="20" y="64" font-family="monospace" font-size="5" fill="#fff" opacity="0.5">  mapping...</text><text x="20" y="74" font-family="monospace" font-size="5" fill="#2ecc71">}</text><text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">TO-DO DAPP</text></svg>
+      <div class="card-art"><span class="card-cat-badge" style="color:var(--gold);border-color:rgba(201,134,14,0.4);">Blockchain</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- subtle dot grid -->
+  <circle cx="80" cy="45" r="1.5" fill="#d8c8b0"/>
+  <circle cx="160" cy="45" r="1.5" fill="#d8c8b0"/>
+  <circle cx="240" cy="45" r="1.5" fill="#d8c8b0"/>
+  <circle cx="80" cy="135" r="1.5" fill="#d8c8b0"/>
+  <circle cx="160" cy="135" r="1.5" fill="#d8c8b0"/>
+  <circle cx="240" cy="135" r="1.5" fill="#d8c8b0"/>
+  <!-- chain line -->
+  <line x1="52" y1="90" x2="268" y2="90" stroke="#e0d0ba" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- block 1 -->
+  <rect x="28" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#c45e2a" stroke-width="1.5"/>
+  <rect x="34" y="72" width="36" height="6" rx="2" fill="#c45e2a" opacity="0.8"/>
+  <rect x="34" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="102" width="16" height="4" rx="1" fill="#d4891a" opacity="0.5"/>
+  <!-- connector arrow 1 -->
+  <polygon points="82,87 90,90 82,93" fill="#c45e2a" opacity="0.5"/>
+  <!-- block 2 -->
+  <rect x="96" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#d4891a" stroke-width="1.5"/>
+  <rect x="102" y="72" width="36" height="6" rx="2" fill="#d4891a" opacity="0.8"/>
+  <rect x="102" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="102" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="102" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="102" y="102" width="16" height="4" rx="1" fill="#c45e2a" opacity="0.5"/>
+  <!-- connector arrow 2 -->
+  <polygon points="150,87 158,90 150,93" fill="#c45e2a" opacity="0.5"/>
+  <!-- block 3 -->
+  <rect x="164" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#d4891a" stroke-width="1.5"/>
+  <rect x="170" y="72" width="36" height="6" rx="2" fill="#d4891a" opacity="0.8"/>
+  <rect x="170" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="170" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="170" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="170" y="102" width="16" height="4" rx="1" fill="#d4891a" opacity="0.5"/>
+  <!-- connector arrow 3 -->
+  <polygon points="218,87 226,90 218,93" fill="#c45e2a" opacity="0.5"/>
+  <!-- block 4 new -->
+  <rect x="232" y="62" width="56" height="56" rx="6" fill="#fff" stroke="#c45e2a" stroke-width="2"/>
+  <rect x="238" y="68" width="44" height="8" rx="3" fill="#c45e2a" opacity="0.9"/>
+  <rect x="238" y="80" width="34" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="238" y="86" width="26" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="238" y="92" width="38" height="2.5" rx="1" fill="#e0d0ba"/>
+  <rect x="238" y="100" width="20" height="5" rx="2" fill="#d4891a" opacity="0.6"/>
+  <!-- top code snippet -->
+  <rect x="28" y="20" width="90" height="36" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="34" y="26" width="50" height="3" rx="1" fill="#7a4f38" opacity="0.5"/>
+  <rect x="34" y="32" width="38" height="3" rx="1" fill="#c45e2a" opacity="0.6"/>
+  <rect x="34" y="38" width="60" height="3" rx="1" fill="#d4891a" opacity="0.5"/>
+  <rect x="34" y="44" width="30" height="3" rx="1" fill="#3a8a82" opacity="0.5"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">TO-DO DAPP</div><div class="card-meta">Blockchain Dev · May 2022</div><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div>
+      <div class="card-body"><div class="card-title">To-Do DApp</div><div class="card-meta">Blockchain Dev · May 2022</div><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div>
     </a>
 
     <a href="./Adevu.html" class="p-card web">
-      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#0d1a2e"/><rect x="20" y="10" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="250" y="15" width="3" height="3" fill="#fff" opacity="0.5"/><rect x="270" y="10" width="20" height="20" fill="#ffe066" opacity="0.3" rx="10"/><rect x="274" y="14" width="12" height="12" fill="#ffe066" opacity="0.6" rx="6"/><rect y="150" width="320" height="30" fill="#1a0a2e"/><rect y="148" width="320" height="4" fill="#ff6eb4"/><rect x="80" y="40" width="160" height="112" fill="#1a2a4a"/><rect x="76" y="36" width="168" height="8" fill="#2d3a5e"/><rect x="140" y="20" width="40" height="20" fill="#253a6e"/><rect x="100" y="48" width="120" height="20" fill="#ff6eb4" opacity="0.9"/><text x="160" y="62" font-family="monospace" font-size="8" fill="#1a0a2e" text-anchor="middle" font-weight="bold">HOTEL</text><rect x="90" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="116" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="150" y="75" width="20" height="16" fill="#3498db" opacity="0.8"/><rect x="184" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="210" y="75" width="20" height="16" fill="#ffe066" opacity="0.9"/><rect x="90" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="116" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/><rect x="150" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="184" y="100" width="20" height="16" fill="#ffe066" opacity="0.7"/><rect x="210" y="100" width="20" height="16" fill="#3498db" opacity="0.7"/><rect x="140" y="120" width="40" height="32" fill="#0a1628"/><rect x="50" y="100" width="4" height="52" fill="#2d3a5e"/><rect x="44" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/><rect x="258" y="100" width="4" height="52" fill="#2d3a5e"/><rect x="252" y="92" width="16" height="8" fill="#ffe066" opacity="0.7"/></svg>
+      <div class="card-art"><span class="card-cat-badge">Design</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- ground line -->
+  <rect x="0" y="148" width="320" height="32" rx="0" fill="#e8d5b7"/>
+  <line x1="0" y1="148" x2="320" y2="148" stroke="#d8c8b0" stroke-width="1"/>
+  <!-- main building -->
+  <rect x="90" y="52" width="140" height="96" rx="2" fill="#fff" stroke="#d8c8b0" stroke-width="1.5"/>
+  <!-- roofline accent -->
+  <rect x="86" y="48" width="148" height="8" rx="2" fill="#c45e2a" opacity="0.85"/>
+  <!-- hotel sign band -->
+  <rect x="110" y="60" width="100" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="124" y="64" width="72" height="5" rx="1" fill="#c45e2a" opacity="0.6"/>
+  <!-- windows row 1 -->
+  <rect x="100" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="124" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="151" y="82" width="18" height="14" rx="2" fill="#d4891a" opacity="0.35" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="178" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="202" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- windows row 2 -->
+  <rect x="100" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="124" y="103" width="18" height="14" rx="2" fill="#c45e2a" opacity="0.25" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="151" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="178" y="103" width="18" height="14" rx="2" fill="#d4891a" opacity="0.3" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="202" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- door -->
+  <rect x="148" y="122" width="24" height="26" rx="2" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
+  <circle cx="168" cy="135" r="2" fill="#c45e2a" opacity="0.6"/>
+  <!-- left lamp post -->
+  <rect x="62" y="96" width="3" height="52" rx="1" fill="#d8c8b0"/>
+  <rect x="56" y="90" width="15" height="10" rx="5" fill="#d4891a" opacity="0.5"/>
+  <!-- right lamp post -->
+  <rect x="255" y="96" width="3" height="52" rx="1" fill="#d8c8b0"/>
+  <rect x="249" y="90" width="15" height="10" rx="5" fill="#d4891a" opacity="0.5"/>
+  <!-- pathway -->
+  <rect x="138" y="148" width="44" height="32" fill="#efe5d3"/>
+  <line x1="160" y1="148" x2="160" y2="180" stroke="#e0d0ba" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- left bushes -->
+  <circle cx="76" cy="148" r="12" fill="#5a7a5c" opacity="0.4"/>
+  <circle cx="88" cy="152" r="9" fill="#5a7a5c" opacity="0.3"/>
+  <!-- right bushes -->
+  <circle cx="244" cy="148" r="12" fill="#5a7a5c" opacity="0.4"/>
+  <circle cx="232" cy="152" r="9" fill="#5a7a5c" opacity="0.3"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">HOTEL MANAGEMENT</div><div class="card-meta">ADEVU · Jun 2023–Mar 2024</div><div class="hp-bar"><div class="hp-fill" style="width:88%"></div></div></div>
+      <div class="card-body"><div class="card-title">Hotel Management</div><div class="card-meta">ADEVU · Jun 2023–Mar 2024</div><div class="hp-bar"><div class="hp-fill" style="width:88%"></div></div></div>
     </a>
 
     <a href="Techbiz.html" class="p-card web">
-      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a0a20"/><rect x="10" y="15" width="300" height="155" fill="#0d0520" rx="4"/><rect x="10" y="15" width="60" height="155" fill="#150a2a"/><rect x="14" y="30" width="52" height="12" fill="#ff6eb4" rx="2"/><text x="40" y="39" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">GEMS</text><rect x="14" y="46" width="52" height="12" fill="#2d1a4e" rx="2"/><text x="40" y="55" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">ORDERS</text><rect x="14" y="62" width="52" height="12" fill="#2d1a4e" rx="2"/><text x="40" y="71" font-family="monospace" font-size="5" fill="#888" text-anchor="middle">STOCK</text><rect x="70" y="15" width="240" height="16" fill="#1a0a30"/><text x="80" y="26" font-family="monospace" font-size="5" fill="#ff6eb4">TECHBIZ GEMSTONE ADMIN</text><rect x="74" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="93" y="44" width="8" height="4" fill="#e74c3c"/><rect x="89" y="48" width="16" height="8" fill="#ff6b6b"/><rect x="91" y="56" width="12" height="8" fill="#e74c3c"/><text x="100" y="82" font-family="monospace" font-size="4" fill="#e74c3c" text-anchor="middle">RUBY</text><rect x="130" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="149" y="44" width="8" height="4" fill="#3498db"/><rect x="145" y="48" width="16" height="8" fill="#5dade2"/><rect x="147" y="56" width="12" height="8" fill="#3498db"/><text x="156" y="82" font-family="monospace" font-size="4" fill="#3498db" text-anchor="middle">SAPPHIRE</text><rect x="186" y="36" width="52" height="52" fill="#1a0a30" rx="3"/><rect x="205" y="44" width="8" height="4" fill="#2ecc71"/><rect x="201" y="48" width="16" height="8" fill="#58d68d"/><text x="212" y="82" font-family="monospace" font-size="4" fill="#2ecc71" text-anchor="middle">EMERALD</text><rect x="74" y="96" width="150" height="65" fill="#0d0520" rx="3"/><rect x="82" y="130" width="12" height="25" fill="#e74c3c" opacity="0.8"/><rect x="98" y="118" width="12" height="37" fill="#3498db" opacity="0.8"/><rect x="114" y="122" width="12" height="33" fill="#2ecc71" opacity="0.8"/><rect x="130" y="110" width="12" height="45" fill="#ff6eb4" opacity="0.8"/><rect x="146" y="120" width="12" height="35" fill="#ffe066" opacity="0.8"/></svg>
+      <div class="card-art"><span class="card-cat-badge">Design</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- sidebar -->
+  <rect x="18" y="20" width="62" height="142" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="18" y="20" width="62" height="30" rx="4" fill="#c45e2a" opacity="0.15"/>
+  <rect x="26" y="30" width="46" height="5" rx="2" fill="#c45e2a" opacity="0.7"/>
+  <rect x="24" y="44" width="50" height="8" rx="3" fill="#c45e2a" opacity="0.85"/>
+  <rect x="24" y="56" width="50" height="8" rx="3" fill="#f0e8d8"/>
+  <rect x="24" y="68" width="50" height="8" rx="3" fill="#f0e8d8"/>
+  <rect x="24" y="80" width="50" height="8" rx="3" fill="#f0e8d8"/>
+  <rect x="26" y="46" width="24" height="3" rx="1" fill="rgba(255,255,255,0.8)"/>
+  <rect x="26" y="58" width="30" height="3" rx="1" fill="#d8c8b0"/>
+  <rect x="26" y="70" width="26" height="3" rx="1" fill="#d8c8b0"/>
+  <rect x="26" y="82" width="28" height="3" rx="1" fill="#d8c8b0"/>
+  <!-- main panel -->
+  <rect x="88" y="20" width="214" height="142" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- topbar -->
+  <rect x="88" y="20" width="214" height="18" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="96" y="26" width="80" height="5" rx="2" fill="#c45e2a" opacity="0.5"/>
+  <!-- gem cards row -->
+  <rect x="96" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- ruby gem shape -->
+  <polygon points="125,54 134,62 125,70 116,62" fill="#c45e2a" opacity="0.75"/>
+  <rect x="106" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="110" y="84" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.4"/>
+  <rect x="162" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- sapphire gem -->
+  <polygon points="191,54 200,62 191,70 182,62" fill="#3a8a82" opacity="0.65"/>
+  <rect x="172" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="176" y="84" width="30" height="3" rx="1" fill="#3a8a82" opacity="0.4"/>
+  <rect x="228" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- emerald gem -->
+  <polygon points="257,54 266,62 257,70 248,62" fill="#5a7a5c" opacity="0.65"/>
+  <rect x="238" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="242" y="84" width="30" height="3" rx="1" fill="#5a7a5c" opacity="0.4"/>
+  <!-- chart panel -->
+  <rect x="96" y="108" width="196" height="42" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="102" y="130" width="14" height="14" rx="2" fill="#c45e2a" opacity="0.7"/>
+  <rect x="120" y="122" width="14" height="22" rx="2" fill="#3a8a82" opacity="0.6"/>
+  <rect x="138" y="118" width="14" height="26" rx="2" fill="#d4891a" opacity="0.65"/>
+  <rect x="156" y="125" width="14" height="19" rx="2" fill="#5a7a5c" opacity="0.55"/>
+  <rect x="174" y="120" width="14" height="24" rx="2" fill="#c45e2a" opacity="0.45"/>
+  <rect x="192" y="128" width="14" height="16" rx="2" fill="#7a4f38" opacity="0.4"/>
+  <line x1="102" y1="144" x2="276" y2="144" stroke="#e0d0ba" stroke-width="1"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">GEMSTONE ADMIN PANEL</div><div class="card-meta">Techbiz · Oct 2021–Apr 2022</div><div class="hp-bar"><div class="hp-fill" style="width:80%"></div></div></div>
+      <div class="card-body"><div class="card-title">Gemstone Admin Panel</div><div class="card-meta">Techbiz · Oct 2021–Apr 2022</div><div class="hp-bar"><div class="hp-fill" style="width:80%"></div></div></div>
     </a>
 
     <a href="./United.html" class="p-card web">
-      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#1a2a1a"/><rect x="0" y="60" width="320" height="8" fill="#2d3a2d"/><rect x="0" y="120" width="320" height="8" fill="#2d3a2d"/><rect x="80" y="0" width="8" height="180" fill="#2d3a2d"/><rect x="200" y="0" width="8" height="180" fill="#2d3a2d"/><rect x="84" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/><rect x="84" y="120" width="120" height="4" fill="#ffe066" opacity="0.7"/><rect x="200" y="62" width="4" height="60" fill="#ffe066" opacity="0.7"/><rect x="10" y="10" width="64" height="46" fill="#253a25"/><rect x="96" y="10" width="96" height="46" fill="#1e2e1e"/><rect x="210" y="10" width="100" height="46" fill="#253a25"/><rect x="80" y="42" width="12" height="18" fill="#2ecc71"/><rect x="78" y="38" width="16" height="8" fill="#2ecc71" rx="4"/><rect x="82" y="42" width="8" height="8" fill="#fff" rx="3"/><rect x="200" y="100" width="12" height="18" fill="#ff6eb4"/><rect x="198" y="96" width="16" height="8" fill="#ff6eb4" rx="4"/><rect x="202" y="100" width="8" height="8" fill="#fff" rx="3"/><rect x="128" y="74" width="56" height="44" fill="#0d1218" rx="4"/><rect x="131" y="77" width="50" height="36" fill="#1a2a1a"/><text x="160" y="170" font-family="monospace" font-size="7" fill="#2ecc71" text-anchor="middle">NAVIGATION APP</text></svg>
+      <div class="card-art"><span class="card-cat-badge">Design</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- map background tiles -->
+  <rect x="0" y="0" width="320" height="180" fill="#f7f0e6"/>
+  <line x1="0" y1="60" x2="320" y2="60" stroke="#e8d5b7" stroke-width="1"/>
+  <line x1="0" y1="120" x2="320" y2="120" stroke="#e8d5b7" stroke-width="1"/>
+  <line x1="80" y1="0" x2="80" y2="180" stroke="#e8d5b7" stroke-width="1"/>
+  <line x1="160" y1="0" x2="160" y2="180" stroke="#e8d5b7" stroke-width="1"/>
+  <line x1="240" y1="0" x2="240" y2="180" stroke="#e8d5b7" stroke-width="1"/>
+  <!-- road horizontal -->
+  <rect x="0" y="82" width="320" height="16" rx="0" fill="#e0d0ba"/>
+  <line x1="0" y1="90" x2="320" y2="90" stroke="#fff" stroke-width="1.5" stroke-dasharray="12,8"/>
+  <!-- road vertical -->
+  <rect x="152" y="0" width="16" height="180" rx="0" fill="#e0d0ba"/>
+  <line x1="160" y1="0" x2="160" y2="180" stroke="#fff" stroke-width="1.5" stroke-dasharray="12,8"/>
+  <!-- buildings -->
+  <rect x="18" y="20" width="50" height="56" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="22" y="26" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="38" y="26" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="22" y="42" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="38" y="42" width="12" height="10" rx="1" fill="#c45e2a" opacity="0.3"/>
+  <rect x="178" y="20" width="38" height="56" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="224" y="20" width="78" height="56" rx="3" fill="#efe5d3" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="228" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="248" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="268" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="228" y="44" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="248" y="44" width="14" height="12" rx="1" fill="#d4891a" opacity="0.35"/>
+  <rect x="268" y="44" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
+  <rect x="18" y="110" width="120" height="52" rx="3" fill="#efe5d3" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="182" y="110" width="120" height="52" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
+  <!-- route line -->
+  <polyline points="60,90 160,90 160,50" stroke="#c45e2a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- start pin -->
+  <circle cx="60" cy="90" r="6" fill="#c45e2a"/>
+  <circle cx="60" cy="90" r="3" fill="#fff"/>
+  <!-- end pin -->
+  <circle cx="160" cy="50" r="8" fill="#c45e2a"/>
+  <circle cx="160" cy="50" r="4" fill="#fff"/>
+  <circle cx="160" cy="50" r="2" fill="#c45e2a"/>
+  <!-- pin drop shadow -->
+  <ellipse cx="160" cy="57" rx="5" ry="2" fill="#c45e2a" opacity="0.2"/>
+  <!-- mini device frame bottom right -->
+  <rect x="218" y="116" width="76" height="40" rx="5" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="222" y="120" width="68" height="28" rx="3" fill="#f7f0e6"/>
+  <rect x="222" y="120" width="68" height="8" rx="3" fill="#c45e2a" opacity="0.2"/>
+  <rect x="226" y="122" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.5"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">UNITED NAVIGATION APP</div><div class="card-meta">Microsoft Challenge · Feb 2022</div><div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div></div>
+      <div class="card-body"><div class="card-title">United Navigation App</div><div class="card-meta">Microsoft Challenge · Feb 2022</div><div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div></div>
     </a>
 
     <a href="zedd-labz.html" class="p-card web">
-      <div class="card-art"><span class="card-cat-badge">DESIGN</span><div class="corner-br"></div>
-        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect width="320" height="180" fill="#050510"/><rect x="30" y="10" width="260" height="145" fill="#0d0d20" rx="4"/><rect x="33" y="13" width="254" height="139" fill="#080818" rx="2"/><rect x="33" y="13" width="254" height="18" fill="#1a1a30"/><rect x="37" y="18" width="8" height="8" fill="#e74c3c" rx="3"/><rect x="49" y="18" width="8" height="8" fill="#ffe066" rx="3"/><rect x="61" y="18" width="8" height="8" fill="#2ecc71" rx="3"/><rect x="75" y="18" width="170" height="8" fill="#0d0d20" rx="2"/><text x="80" y="25" font-family="monospace" font-size="4" fill="#2ecc71">zedd-labz.com</text><rect x="33" y="31" width="254" height="55" fill="#0a0a1e"/><defs><linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b59b6"/><stop offset="100%" stop-color="#3498db"/></linearGradient></defs><rect x="33" y="31" width="254" height="55" fill="url(#heroGrad)" opacity="0.4"/><text x="160" y="58" font-family="monospace" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">ZEDD LABZ</text><text x="160" y="70" font-family="monospace" font-size="5" fill="#aaa" text-anchor="middle">Innovation Lab Redesign</text><rect x="130" y="74" width="60" height="10" fill="#ff6eb4" rx="2"/><text x="160" y="82" font-family="monospace" font-size="5" fill="#1a0a2e" text-anchor="middle">EXPLORE</text><rect x="36" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="36" y="92" width="74" height="6" fill="#9b59b6" rx="2"/><rect x="116" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="116" y="92" width="74" height="6" fill="#3498db" rx="2"/><rect x="196" y="92" width="74" height="42" fill="#0d1a2e" rx="2"/><rect x="196" y="92" width="74" height="6" fill="#2ecc71" rx="2"/><rect x="145" y="155" width="30" height="10" fill="#0d0d20"/><rect x="130" y="163" width="60" height="6" fill="#0d0d20"/></svg>
+      <div class="card-art"><span class="card-cat-badge">Design</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" fill="#f2ebe0"/>
+  <!-- browser frame -->
+  <rect x="24" y="18" width="272" height="148" rx="6" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <!-- browser chrome -->
+  <rect x="24" y="18" width="272" height="22" rx="6" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <!-- traffic lights -->
+  <circle cx="38" cy="29" r="4" fill="#e07070" opacity="0.7"/>
+  <circle cx="52" cy="29" r="4" fill="#d4891a" opacity="0.7"/>
+  <circle cx="66" cy="29" r="4" fill="#5a7a5c" opacity="0.7"/>
+  <!-- url bar -->
+  <rect x="80" y="23" width="180" height="12" rx="6" fill="#f0e8d8" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="88" y="27" width="80" height="4" rx="2" fill="#d8c8b0"/>
+  <!-- hero section of site -->
+  <rect x="24" y="40" width="272" height="60" rx="0" fill="#efe5d3"/>
+  <!-- big heading lines -->
+  <rect x="50" y="52" width="100" height="10" rx="3" fill="#c45e2a" opacity="0.8"/>
+  <rect x="50" y="66" width="140" height="8" rx="3" fill="#3d2b1f" opacity="0.25"/>
+  <rect x="50" y="78" width="80" height="8" rx="3" fill="#3d2b1f" opacity="0.15"/>
+  <!-- hero CTA button -->
+  <rect x="50" y="90" width="60" height="16" rx="3" fill="#c45e2a" opacity="0.85"/>
+  <!-- hero graphic right side -->
+  <circle cx="230" cy="65" r="28" fill="#d4891a" opacity="0.12"/>
+  <circle cx="230" cy="65" r="18" fill="#d4891a" opacity="0.18"/>
+  <circle cx="230" cy="65" r="9" fill="#d4891a" opacity="0.5"/>
+  <!-- three content cards -->
+  <rect x="28" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="28" y="108" width="80" height="8" rx="4" fill="#c45e2a" opacity="0.5"/>
+  <rect x="34" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="34" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="120" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="120" y="108" width="80" height="8" rx="4" fill="#d4891a" opacity="0.5"/>
+  <rect x="126" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="126" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="126" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="212" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="212" y="108" width="80" height="8" rx="4" fill="#3a8a82" opacity="0.5"/>
+  <rect x="218" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="218" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="218" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
+</svg>
       </div>
-      <div class="card-body"><div class="card-title">ZEDD LABZ REDESIGN</div><div class="card-meta">Internship · Jun–Jul 2021</div><div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div></div>
+      <div class="card-body"><div class="card-title">Zedd Labz Redesign</div><div class="card-meta">Internship · Jun–Jul 2021</div><div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div></div>
     </a>
 
   </div>
@@ -390,24 +966,65 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
 <!-- ABOUT -->
 <section id="about" class="section">
   <div class="section-header reveal">
-    <span class="px-btn px-btn-green" style="pointer-events:none;">ABOUT ME</span>
+    <div class="section-number">03 / About</div>
+    <div class="section-title-large">The Person</div>
   </div>
   <div class="about-grid">
     <div class="reveal">
       <div class="os-window">
-        <div class="os-titlebar"><span class="os-title">shraboni_banerjee.exe</span><div class="os-btns"><span>_</span><span>□</span><span>✕</span></div></div>
+        <div class="os-titlebar">
+          <span class="os-title">shraboni_banerjee</span>
+          <div class="os-btns"><span></span><span></span><span></span></div>
+        </div>
         <div class="os-body">
-          <div class="sprite-scene">
-            <div class="sprite-anim"><svg width="64" height="80" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated;"><rect x="14" y="2" width="20" height="6" fill="#2a1a0a"/><rect x="12" y="4" width="4" height="4" fill="#2a1a0a"/><rect x="14" y="4" width="20" height="16" fill="#f5c5a0"/><rect x="16" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="26" y="8" width="4" height="4" fill="#1a0a2e"/><rect x="18" y="14" width="12" height="2" fill="#e07060"/><rect x="16" y="18" width="16" height="4" fill="#f5c5a0"/><rect x="12" y="22" width="24" height="20" fill="#2ecc71"/><rect x="6" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="36" y="22" width="6" height="14" fill="#f5c5a0"/><rect x="16" y="42" width="6" height="14" fill="#27ae60"/><rect x="26" y="42" width="6" height="14" fill="#27ae60"/><rect x="14" y="54" width="10" height="6" fill="#2a1a0a"/><rect x="24" y="54" width="10" height="6" fill="#2a1a0a"/></svg></div>
-            <span class="sprite-lbl">shraboni_banerjee</span>
-            <div class="bubble">SOFTWARE ENGINEER</div>
+          <!-- Avatar scene — horizontal layout, no overlap -->
+          <div class="avatar-scene">
+            <div class="avatar-wrap">
+              <!-- Clean minimal SVG avatar -->
+              <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <!-- bg circle -->
+                <circle cx="40" cy="40" r="40" fill="#e8d5b7"/>
+                <!-- hair -->
+                <ellipse cx="40" cy="26" rx="16" ry="14" fill="#3d2b1f"/>
+                <rect x="24" y="26" width="32" height="8" fill="#3d2b1f"/>
+                <!-- face -->
+                <ellipse cx="40" cy="34" rx="14" ry="15" fill="#f5c5a0"/>
+                <!-- hair top detail -->
+                <ellipse cx="40" cy="22" rx="15" ry="10" fill="#3d2b1f"/>
+                <ellipse cx="32" cy="20" rx="5" ry="6" fill="#3d2b1f"/>
+                <ellipse cx="48" cy="20" rx="5" ry="6" fill="#3d2b1f"/>
+                <!-- eyes -->
+                <ellipse cx="34" cy="33" rx="2.5" ry="3" fill="#3d2b1f"/>
+                <ellipse cx="46" cy="33" rx="2.5" ry="3" fill="#3d2b1f"/>
+                <circle cx="35" cy="32" r="1" fill="#fff" opacity="0.6"/>
+                <circle cx="47" cy="32" r="1" fill="#fff" opacity="0.6"/>
+                <!-- smile -->
+                <path d="M35,40 Q40,44 45,40" stroke="#c45e2a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <!-- neck -->
+                <rect x="36" y="47" width="8" height="7" fill="#f5c5a0"/>
+                <!-- shirt / body -->
+                <path d="M20,80 Q20,60 40,58 Q60,60 60,80 Z" fill="#c45e2a" opacity="0.8"/>
+                <!-- collar -->
+                <path d="M32,55 L40,62 L48,55" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+              </svg>
+            </div>
+            <div class="avatar-info">
+              <div class="avatar-name">Shraboni<br>Banerjee</div>
+              <div class="avatar-role">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="3" fill="#c45e2a"/></svg>
+                Software Engineer
+              </div>
+              <div class="avatar-location">
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="#8a6a55" opacity="0.6"/></svg>
+                Bengaluru, India
+              </div>
+            </div>
           </div>
           <div class="os-content">
-            <h3>Hello, I'm Shraboni</h3>
-            <p>Software Engineer from Bengaluru, India. B.E. in Computer Science &amp; Engineering + Diploma in CS&amp;T. Currently shipping production code at Tech Sprint on RestoGenius — an AI-powered cloud POS for Australian hospitality venues.</p>
+            <p>B.E. in Computer Science &amp; Engineering + Diploma in CS&amp;T. Currently shipping production code at Tech Sprint on RestoGenius — an AI-powered cloud POS for Australian hospitality venues.</p>
             <p>I love building clean, thoughtful software and designing experiences that feel effortless. Off the clock, you'll find me at the chessboard ♟</p>
             <div class="contact-section">
-              <p class="contact-head">⇒ CONTACT ME ⇐</p>
+              <p class="contact-head">Contact</p>
               <div class="c-row"><i class="c-ico">✉</i>shrabonibanerjee1998@gmail.com</div>
               <div class="c-row"><i class="c-ico">GH</i><a href="https://github.com/ShraboniBanerjee">github/ShraboniBanerjee</a></div>
               <div class="c-row"><i class="c-ico">Li</i><a href="https://www.linkedin.com/in/shraboni-banerjee-b96253196">LinkedIn</a></div>
@@ -419,7 +1036,7 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
     </div>
     <div class="reveal">
       <div class="info-section">
-        <h2 class="info-head">★ EXPERIENCE</h2>
+        <h2 class="info-head">Experience</h2>
         <ul class="info-list">
           <li><strong>Tech Sprint</strong> — Software Engineer UI (Apr 2024–Present)</li>
           <li><strong>Computer Solutions East</strong> — Software Developer (Mar–May 2024)</li>
@@ -427,7 +1044,7 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
         </ul>
       </div>
       <div class="info-section">
-        <h2 class="info-head">★ TECH STACK</h2>
+        <h2 class="info-head">Tech Stack</h2>
         <div class="stack-tags">
           <span class="tag hot">React</span><span class="tag hot">React Native</span><span class="tag hot">TypeScript</span><span class="tag hot">JavaScript</span>
           <span class="tag warm">Python</span><span class="tag warm">Django</span><span class="tag warm">C#</span><span class="tag warm">ASP.NET Core</span>
@@ -436,14 +1053,14 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
         </div>
       </div>
       <div class="info-section">
-        <h2 class="info-head">★ SKILLS</h2>
-        <div class="skill-item"><div class="skill-lbl"><span>FRONTEND (React / TypeScript / Angular)</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
-        <div class="skill-item"><div class="skill-lbl"><span>BACKEND (Python / C#)</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
-        <div class="skill-item"><div class="skill-lbl"><span>MOBILE (React Native / SwiftUI / Kotlin / Flutter)</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-        <div class="skill-item"><div class="skill-lbl"><span>DEVOPS / CLOUD</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        <h2 class="info-head">Skills</h2>
+        <div class="skill-item"><div class="skill-lbl"><span>Frontend (React / TypeScript / Angular)</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+        <div class="skill-item"><div class="skill-lbl"><span>Backend (Python / C#)</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+        <div class="skill-item"><div class="skill-lbl"><span>Mobile (React Native / SwiftUI / Kotlin / Flutter)</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-item"><div class="skill-lbl"><span>DevOps / Cloud</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
         <div class="skill-item"><div class="skill-lbl"><span>DSA (Python)</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
       </div>
-      <a href="assets/img/SDE.pdf" class="px-btn px-btn-yellow">★ DOWNLOAD RESUME ★</a>
+      <a href="assets/img/SDE.pdf" class="px-btn px-btn-yellow">Download Resume</a>
     </div>
   </div>
 </section>
@@ -451,13 +1068,14 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
 <!-- STATS -->
 <section id="stats">
   <div class="section-header reveal">
-    <span class="px-btn px-btn-yellow" style="pointer-events:none;">PLAYER STATS</span>
-    <p class="sub-label">PROGRAMMING STATS</p>
+    <div class="section-number">04 / Stats</div>
+    <div class="section-title-large">Coding Profiles</div>
+    <p class="sub-label">Programming statistics</p>
   </div>
   <div class="stats-grid reveal">
-    <div class="stat-card"><span class="stat-icon">⭐</span><span class="stat-value">500+</span><span class="stat-label">LEETCODE PROBLEMS</span><span class="stat-sub">Solved &amp; Counting</span></div>
-    <div class="stat-card"><span class="stat-icon">⭐</span><span class="stat-value">1785</span><span class="stat-label">CODECHEF RATING</span><span class="stat-sub">3★ · Rank 31/25,909</span></div>
-    <div class="stat-card"><span class="stat-icon">⭐</span><span class="stat-value">#2350</span><span class="stat-label">CODEFORCES DIV. 3</span><span class="stat-sub">out of 40,160</span></div>
+    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">500+</span><span class="stat-label">LeetCode Problems</span><span class="stat-sub">Solved &amp; Counting</span></div>
+    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">1785</span><span class="stat-label">CodeChef Rating</span><span class="stat-sub">3★ · Rank 31/25,909</span></div>
+    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">#2350</span><span class="stat-label">Codeforces Div. 3</span><span class="stat-sub">out of 40,160</span></div>
   </div>
 </section>
 
@@ -465,369 +1083,65 @@ footer{background:#0a0518;border-top:4px solid var(--pink);padding:0 0 2rem;text
 
 <footer>
   <div class="footer-dirt"></div>
-  <p class="footer-copy">© SHRABONI BANERJEE — ALL RIGHTS RESERVED</p>
+  <p class="footer-copy">© Shraboni Banerjee — All Rights Reserved</p>
   <div class="socials">
     <a href="https://www.linkedin.com/in/shraboni-banerjee-b96253196">LinkedIn</a>
     <a href="https://github.com/ShraboniBanerjee">GitHub</a>
     <a href="https://www.behance.net/shilpabanerjee">Behance</a>
     <a href="https://www.youtube.com/@shilpabanerjee">YouTube</a>
   </div>
-  <p class="game-over-footer">— INSERT COIN TO CONTINUE ●●● —</p>
+  <p class="game-over-footer">— Journey Continues —</p>
 </footer>
 
-<a href="#" class="back-top">▲ TOP</a>
+<a href="#" class="back-top">↑ Top</a>
 
 <script>
-// ── Stars ─────────────────────────────────────────────────
-const sl=document.getElementById('starsLayer');
-for(let i=0;i<70;i++){
-  const s=document.createElement('div');s.className='star-px';
-  const sz=[2,2,2,4,4,6][Math.floor(Math.random()*6)];
-  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;`;
-  sl.appendChild(s);
+// ── Background slideshow ───────────────────────────────────
+const heroSlides = document.querySelectorAll('.bg-slide');
+const dots       = document.querySelectorAll('.hero-dot');
+const numEl      = document.getElementById('slideNum');
+let current      = 0, autoTimer;
+
+function goTo(n) {
+  heroSlides[current].classList.remove('active');
+  if(dots[current]) dots[current].classList.remove('active');
+  current = (n + heroSlides.length) % heroSlides.length;
+  heroSlides[current].classList.add('active');
+  if(dots[current]) dots[current].classList.add('active');
+  if(numEl) numEl.textContent = String(current + 1).padStart(2, '0');
 }
 
+function startAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => goTo(current + 1), 5000);
+}
+
+dots.forEach(d => d.addEventListener('click', () => {
+  goTo(+d.dataset.slide);
+  startAuto();
+}));
+
+startAuto();
+
 // ── Portfolio filters ──────────────────────────────────────
-document.querySelectorAll('.f-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.f-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const f=btn.dataset.filter;
-    document.querySelectorAll('.p-card').forEach(c=>{
-      c.classList.toggle('hidden',f!=='all'&&!c.classList.contains(f));
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.p-card').forEach(c => {
+      c.classList.toggle('hidden', f !== 'all' && !c.classList.contains(f));
     });
   });
 });
 
 // ── Scroll reveal ──────────────────────────────────────────
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*100);});
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// ══════════════════════════════════════════════════════════
-//  PIXEL MUSIC (Web Audio chiptune)
-// ══════════════════════════════════════════════════════════
-let audioCtx=null, musicNodes=[], musicOn=true;
-const musicBtn=document.getElementById('musicBtn');
-
-function initAudio(){
-  if(audioCtx) return;
-  audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-  playChiptune();
-}
-
-function playChiptune(){
-  if(!audioCtx||!musicOn) return;
-  // Simple 8-bit style looping melody using oscillators
-  const melody=[
-    523,587,659,698,784,880,988,1047, // C5 up
-    988,880,784,698,659,587,523,494,  // back down
-    523,659,784,1047,784,659,523,440, // arpeggio
-    440,523,659,784,659,523,440,392   // ending phrase
-  ];
-  const dur=0.12, gap=0.02;
-  let t=audioCtx.currentTime+0.05;
-  const gainMaster=audioCtx.createGain();
-  gainMaster.gain.setValueAtTime(0.08,t);
-  gainMaster.connect(audioCtx.destination);
-  musicNodes.push(gainMaster);
-
-  function scheduleNote(freq,start,length){
-    const osc=audioCtx.createOscillator();
-    const g=audioCtx.createGain();
-    osc.type='square';
-    osc.frequency.setValueAtTime(freq,start);
-    g.gain.setValueAtTime(0.8,start);
-    g.gain.linearRampToValueAtTime(0,start+length-0.01);
-    osc.connect(g); g.connect(gainMaster);
-    osc.start(start); osc.stop(start+length);
-    musicNodes.push(osc);
-  }
-
-  // Bass line
-  const bass=[131,131,165,175,196,196,220,262,220,196,165,175,131,131,110,98];
-  melody.forEach((freq,i)=>{
-    scheduleNote(freq, t+i*(dur+gap), dur);
-    if(i<bass.length) scheduleNote(bass[i%bass.length], t+i*(dur+gap), dur*2);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
   });
-
-  // Schedule loop
-  const loopDur=(melody.length)*(dur+gap)*1000+200;
-  const loopId=setTimeout(()=>{ if(musicOn) playChiptune(); }, loopDur);
-  musicNodes.push({stop:()=>clearTimeout(loopId)});
-}
-
-function stopMusic(){
-  musicNodes.forEach(n=>{ try{n.stop&&n.stop(); n.disconnect&&n.disconnect();}catch(e){} });
-  musicNodes=[];
-}
-
-musicBtn.addEventListener('click',()=>{
-  musicOn=!musicOn;
-  musicBtn.textContent=musicOn?'♪ MUSIC: ON':'♪ MUSIC: OFF';
-  if(musicOn){ initAudio(); playChiptune(); }
-  else stopMusic();
-});
-
-// ══════════════════════════════════════════════════════════
-//  MINI GAME
-// ══════════════════════════════════════════════════════════
-(function(){
-  const canvas   = document.getElementById('gameCanvas');
-  const ctx      = canvas.getContext('2d');
-  const heroSec  = document.getElementById('hero');
-  const hudEl    = document.getElementById('gameHud');
-  const scoreEl  = document.getElementById('scoreVal');
-  const hiEl     = document.getElementById('hiVal');
-  const livesEl  = document.getElementById('livesHud');
-  const startSc  = document.getElementById('startScreen');
-  const goScreen = document.getElementById('gameOverScreen');
-  const goScoreEl= document.getElementById('goScore');
-  const goBestEl = document.getElementById('goBest');
-  const retryBtn = document.getElementById('retryBtn');
-  const sbPanel  = document.getElementById('scoreboard');
-  const sbRows   = document.getElementById('sbRows');
-  const mbtn     = document.getElementById('musicBtn');
-
-  const GH=108;
-  let W,H,gY;
-
-  function resize(){
-    W=canvas.width=heroSec.offsetWidth;
-    H=canvas.height=heroSec.offsetHeight;
-    gY=H-GH;
-  }
-  resize();
-  window.addEventListener('resize',resize);
-
-  // scoreboard
-  const leaderboard=[];
-  function addScore(s){
-    leaderboard.push(s);
-    leaderboard.sort((a,b)=>b-a);
-    leaderboard.splice(5);
-    sbRows.innerHTML=leaderboard.map((v,i)=>
-      `<div class="sb-row"><span>#${i+1}</span><span style="color:var(--yellow)">${v}</span></div>`
-    ).join('');
-  }
-
-  // state
-  let state='start',frame=0,score=0,hiscore=0,lives=3;
-  let speed,spawnT,coinT,invT;
-  let player,coins,monsters,particles;
-
-  // player movement config
-  const PLAYER_MIN_X = 60;
-  const PLAYER_MAX_X = 220; // stays in left third, world scrolls past
-  let keys={left:false,right:false};
-
-  function init(){
-    gY=H-GH; speed=3.5; score=0; lives=3;
-    frame=0; spawnT=80; coinT=40; invT=0;
-    coins=[]; monsters=[]; particles=[];
-    player={x:80,y:gY-64,w:48,h:64,vy:0,ground:true,wf:0,wt:0,vx:0};
-  }
-
-  // input
-  function doJump(){
-    if(state==='start'){
-      startSc.style.display='none';
-      hudEl.style.display='flex';
-      sbPanel.style.display='block';
-      mbtn.style.display='block';
-      initAudio();
-      state='play'; init(); return;
-    }
-    if(state==='over'){ restart(); return; }
-    if(player.ground){ player.vy=-16; player.ground=false; }
-  }
-  function restart(){
-    goScreen.style.display='none';
-    state='play'; init();
-  }
-
-  // keyboard
-  document.addEventListener('keydown',e=>{
-    if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();doJump();}
-    if(e.code==='ArrowLeft')  keys.left=true;
-    if(e.code==='ArrowRight') keys.right=true;
-  });
-  document.addEventListener('keyup',e=>{
-    if(e.code==='ArrowLeft')  keys.left=false;
-    if(e.code==='ArrowRight') keys.right=false;
-  });
-  canvas.addEventListener('click',doJump);
-  canvas.addEventListener('touchstart',e=>{e.preventDefault();doJump();},{passive:false});
-  retryBtn.addEventListener('click',restart);
-
-  // draw helpers
-  function px(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
-
-  function drawPlayer(x,y,wf,inv){
-    if(inv&&Math.floor(Date.now()/80)%2===0) return;
-    px(x+14,y+2, 20,6, '#2a1a0a'); px(x+12,y+4,4,4,'#2a1a0a');
-    px(x+14,y+4, 20,16,'#f5c5a0');
-    px(x+16,y+8, 4,4,'#1a0a2e'); px(x+26,y+8,4,4,'#1a0a2e');
-    px(x+18,y+14,12,2,'#e07060');
-    px(x+16,y+18,16,4,'#f5c5a0');
-    px(x+12,y+22,24,20,'#2ecc71');
-    const ao=wf===1?-3:wf===2?3:0;
-    px(x+6, y+22+ao,6,14,'#f5c5a0'); px(x+36,y+22-ao,6,14,'#f5c5a0');
-    const lo=wf===1?-4:wf===2?4:0;
-    px(x+16,y+42,    6,14+lo,'#27ae60'); px(x+26,y+42,    6,14-lo,'#27ae60');
-    px(x+14,y+54+lo,10,6,  '#2a1a0a'); px(x+24,y+54-lo,10,6,  '#2a1a0a');
-  }
-
-  function drawCoin(x,y,sz,t){
-    const scx=Math.abs(Math.sin(t*0.09))*0.65+0.35;
-    const w=sz*scx,off=(sz-w)/2;
-    px(x+off,y,         w,sz*0.15,'#ffe066');
-    px(x+off,y+sz*0.15, w,sz*0.7, '#ffcc00');
-    px(x+off,y+sz*0.85, w,sz*0.15,'#ffe066');
-    if(scx>0.5){
-      ctx.fillStyle='rgba(255,255,200,0.4)';
-      ctx.fillRect(Math.round(x+off+w*0.2),Math.round(y+sz*0.15),Math.round(w*0.25),Math.round(sz*0.35));
-    }
-  }
-
-  function drawMonster(x,y,w,h,t){
-    const b=Math.sin(t*0.12)*2;
-    px(x+8, y+b-16,6,10,'#c0392b'); px(x+w-14,y+b-16,6,10,'#c0392b'); // horns
-    px(x,   y+b,    w,  h*0.7,'#e74c3c');
-    px(x+4, y+b-8,  w-8,12,  '#e74c3c');
-    px(x+6, y+b-12, w-12,8,  '#c0392b');
-    px(x+8, y+b+4,  8,8,'#fff'); px(x+w-16,y+b+4,8,8,'#fff');
-    px(x+10,y+b+6,  4,4,'#1a0a2e'); px(x+w-14,y+b+6,4,4,'#1a0a2e');
-    px(x+10,y+b+16, 4,3,'#7a0000'); px(x+16,y+b+14,4,3,'#7a0000'); px(x+22,y+b+16,4,3,'#7a0000');
-    px(x+2, y+b+h*0.7,10,6,'#c0392b'); px(x+w-12,y+b+h*0.7,10,6,'#c0392b');
-  }
-
-  function burst(x,y,color,n){
-    for(let i=0;i<n;i++){
-      const a=(Math.PI*2/n)*i+Math.random()*0.5,sp=2+Math.random()*4;
-      particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,life:36+Math.random()*18,color,sz:4+Math.random()*4});
-    }
-  }
-
-  function updateHUD(){
-    if(score>hiscore) hiscore=score;
-    scoreEl.textContent=score;
-    hiEl.textContent=hiscore;
-    livesEl.textContent='♥'.repeat(Math.max(0,lives))+'♡'.repeat(Math.max(0,3-lives));
-  }
-
-  function drawGround(){
-    for(let tx=0;tx<W;tx+=16){
-      ctx.fillStyle=tx%32===0?'#5cad3c':'#4a9a2e'; ctx.fillRect(tx,gY,16,4);
-      ctx.fillStyle=tx%32===0?'#8B6340':'#7a5530'; ctx.fillRect(tx,gY+4,16,32);
-      ctx.fillStyle=tx%32===0?'#6b4a2a':'#5a3a1a'; ctx.fillRect(tx,gY+36,16,80);
-    }
-    ctx.fillStyle='#2d6a1a'; ctx.fillRect(0,gY,W,4);
-    ctx.fillStyle='#5a3a1a'; ctx.fillRect(0,gY+4,W,2);
-  }
-
-  function loop(){
-    requestAnimationFrame(loop);
-    ctx.clearRect(0,0,W,H);
-    if(state==='start') return;
-
-    frame++;
-    gY=H-GH;
-
-    if(state==='play'){
-      score++;
-      speed=3.5+score*0.004;
-
-      // spawn monsters
-      spawnT--;
-      if(spawnT<=0){
-        const mh=44+Math.random()*22,mw=36+Math.random()*18;
-        monsters.push({x:W+40,y:gY-mh,w:mw,h:mh,t:0});
-        spawnT=Math.max(30,60+Math.random()*80-score/220);
-      }
-
-      // spawn coins
-      coinT--;
-      if(coinT<=0){
-        const rows=[0,-55,-110];
-        const row=rows[Math.floor(Math.random()*3)];
-        const n=1+Math.floor(Math.random()*4);
-        for(let i=0;i<n;i++) coins.push({x:W+40+i*36,y:gY-58+row,sz:24,t:frame+i*8,col:false});
-        coinT=45+Math.random()*55;
-      }
-    }
-
-    // ── player horizontal movement ──────────────────────
-    if(state==='play'){
-      const PSPD=3.5;
-      if(keys.left)  player.vx=-PSPD;
-      else if(keys.right) player.vx=PSPD;
-      else player.vx*=0.7; // friction
-
-      player.x+=player.vx;
-      // clamp: player can roam left third of screen
-      if(player.x<20) player.x=20;
-      if(player.x>W*0.45-player.w) player.x=W*0.45-player.w;
-    }
-
-    // ── vertical physics ──────────────────────────────
-    if(state==='play'||invT>0){
-      player.vy+=0.75; player.y+=player.vy;
-      if(player.y>=gY-player.h){ player.y=gY-player.h; player.vy=0; player.ground=true; }
-      // walk animation — faster when moving
-      const moving=Math.abs(player.vx)>0.5||!player.ground;
-      if(moving){ player.wt++; if(player.wt>6){player.wt=0;player.wf=(player.wf+1)%3;} }
-      else player.wf=0;
-    }
-
-    // scroll objects
-    coins=coins.filter(c=>c.x>-40); coins.forEach(c=>{c.x-=speed*0.9;c.t++;});
-    monsters=monsters.filter(m=>m.x>-80); monsters.forEach(m=>{m.x-=speed;m.t++;});
-
-    // coin collect
-    if(state==='play') coins.forEach(c=>{
-      if(c.col) return;
-      if(player.x+8<c.x+c.sz&&player.x+player.w-8>c.x&&player.y+8<c.y+c.sz&&player.y+player.h-8>c.y){
-        c.col=true; score+=50; burst(c.x+c.sz/2,c.y+c.sz/2,'#ffe066',8);
-      }
-    });
-    coins=coins.filter(c=>!c.col);
-
-    // monster hit
-    if(state==='play'&&invT<=0) monsters.forEach(m=>{
-      if(player.x+14<m.x+m.w-6&&player.x+player.w-14>m.x+6&&player.y+10<m.y+m.h&&player.y+player.h>m.y+10){
-        lives--; burst(player.x+24,player.y+32,'#ff6eb4',14);
-        if(lives<=0){
-          state='over';
-          addScore(score);
-          goScreen.style.display='flex';
-          goScoreEl.textContent=score; goBestEl.textContent=hiscore;
-        } else { invT=100; }
-      }
-    });
-    if(invT>0) invT--;
-
-    // draw
-    drawGround();
-    coins.forEach(c=>drawCoin(c.x,c.y,c.sz,c.t));
-    monsters.forEach(m=>drawMonster(m.x,m.y,m.w,m.h,m.t));
-    drawPlayer(player.x,player.y,player.wf,invT>0);
-
-    // particles
-    particles.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;p.vy+=0.3;p.life--;
-      ctx.globalAlpha=Math.max(0,p.life/50);
-      ctx.fillStyle=p.color;ctx.fillRect(Math.round(p.x),Math.round(p.y),p.sz,p.sz);
-    });
-    ctx.globalAlpha=1;
-    particles=particles.filter(p=>p.life>0);
-
-    updateHUD();
-  }
-  loop();
-})();
-
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
