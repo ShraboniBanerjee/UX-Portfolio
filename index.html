@@ -4,507 +4,304 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shraboni Banerjee — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  /* ── Warm earthy palette from illustration ── */
-  --cream:#f7f0e6;
-  --parchment:#efe5d3;
-  --sand:#e8d5b7;
-  --linen:#f2ebe0;
-  --bark:#3d2b1f;
-  --brown:#5c3d2e;
-  --umber:#7a4f38;
-  --terra:#c45e2a;
-  --rust:#b84a1e;
-  --orange:#e07030;
-  --amber:#d4891a;
-  --gold:#c9860e;
-  --teal:#3a8a82;
-  --sage:#5a7a5c;
-  --muted:#8a6a55;
-  --light-muted:#b09478;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'Jost',sans-serif;
-  --display:'Cinzel',serif;
+  --bg:#000000;
+  --panel:#0d0d0d;
+  --panel-2:#141414;
+  --panel-3:#1a1a1a;
+  --line:rgba(255,255,255,0.10);
+  --line-2:rgba(255,255,255,0.18);
+  --ink:#f4f4f4;
+  --text:#c2c2c2;
+  --muted:#8c8c8c;
+  --dim:#6a6a6a;
+  --accent:#ffffff;
+  --sans:'Roboto',sans-serif;
 }
 html{scroll-behavior:smooth;}
-
-/* ══════════════════════════════════════════════
-   FULL-PAGE FIXED BACKGROUND
-══════════════════════════════════════════════ */
 body{
-  font-family:var(--sans);
-  overflow-x:hidden;
-  color:var(--bark);
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='none' stroke='%23c45e2a' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23c45e2a'/%3E%3C/svg%3E") 10 10, auto;
-  /* background handled by .hero-slide inside #hero */
-  background-color: #c8844a;
-  transition: none;
+  font-family:var(--sans);overflow-x:hidden;
+  color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;
 }
 
+/* subtle grid texture — the only "graphic" backdrop */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+body::after{display:none;}
+
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:rgba(61,43,31,0.2);}
-::-webkit-scrollbar-thumb{background:var(--terra);border-radius:2px;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0a0a0a;}
+::-webkit-scrollbar-thumb{background:#333;border-radius:2px;}
 
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(247,240,230,0.45);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(196,94,42,0.18);
+  background:rgba(0,0,0,0.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
   padding:1rem 2.5rem;
   display:flex;align-items:center;justify-content:space-between;
 }
 .nav-brand{
-  font-family:var(--display);font-size:0.85rem;
-  color:var(--terra);text-decoration:none;
-  letter-spacing:0.12em;
+  font-family:var(--sans);font-size:0.85rem;font-weight:700;
+  color:var(--ink);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;
 }
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{
   font-family:var(--sans);font-size:0.72rem;
-  color:var(--brown);text-decoration:none;
+  color:var(--muted);text-decoration:none;
   letter-spacing:0.14em;text-transform:uppercase;
-  font-weight:300;transition:color 0.3s;position:relative;
+  font-weight:400;transition:color 0.25s;position:relative;
 }
 .nav-links a::after{
   content:'';position:absolute;bottom:-4px;left:0;right:0;
-  height:1px;background:var(--terra);
-  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+  height:1px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform 0.25s;
 }
-.nav-links a:hover{color:var(--terra);}
+.nav-links a:hover{color:var(--ink);}
 .nav-links a:hover::after{transform:scaleX(1);}
 .nav-register{
   font-family:var(--sans);font-size:0.7rem;
-  color:var(--terra);text-decoration:none;
+  color:var(--ink);text-decoration:none;
   letter-spacing:0.14em;text-transform:uppercase;
-  border:1px solid var(--terra);padding:0.4rem 1.1rem;
-  transition:background 0.3s,color 0.3s;
+  border:1px solid var(--line-2);padding:0.4rem 1.1rem;
+  transition:background 0.25s,color 0.25s,border-color 0.25s;
 }
-.nav-register:hover{background:var(--terra);color:var(--cream);}
+.nav-register:hover{background:var(--accent);color:#000;border-color:var(--accent);}
 
-/* ══════════════════════════════════════════════
-   FIXED BACKGROUND SYSTEM
-   Slides live OUTSIDE all stacking contexts so
-   backdrop-filter on sections doesn't hide them
-══════════════════════════════════════════════ */
-.bg-slide{
-  position:fixed;inset:0;
-  background-size:cover;background-position:center;
-  z-index:0;
-  opacity:0;
-  transition:opacity 1.4s cubic-bezier(0.4,0,0.2,1);
-}
-.bg-slide.active{opacity:1;}
-/* Persistent dark gradient — only on hero left side for text contrast */
-.bg-overlay{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(to right, rgba(25,14,6,0.45) 0%, rgba(25,14,6,0.15) 45%, transparent 70%),
-    linear-gradient(to top,   rgba(15,8,3,0.35)  0%, transparent 40%);
-}
-
-/* ══════════════════════════════════════════════
-   ALL CONTENT sits above z-index:1
-══════════════════════════════════════════════ */
-nav{ z-index:200; }
-#hero{
-  position:relative;z-index:2;
-  min-height:100vh;display:flex;align-items:flex-end;
-}
+/* ── content stacking above grid ── */
+nav{z-index:200;}
+#hero{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;}
 .hero-content{
   position:relative;z-index:2;
-  width:100%;padding:0 3.5rem 5rem;
-  display:flex;flex-direction:column;gap:1rem;
+  width:100%;padding:7rem 3.5rem 4rem;max-width:1100px;margin:0 auto;
+  display:flex;flex-direction:column;gap:1.4rem;
 }
-.hero-dots{ z-index:2; }
-.hero-counter{ z-index:2; }
-main{ position:relative;z-index:2;background:transparent; }
-.welcome-bar{ position:relative;z-index:2; }
-footer{ position:relative;z-index:2; }
+main{position:relative;z-index:2;background:transparent;}
+.welcome-bar{position:relative;z-index:2;}
+footer{position:relative;z-index:2;}
 
-@keyframes titleFade{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+@keyframes titleFade{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes shimmer{0%,100%{transform:translateX(-100%);}50%{transform:translateX(100%);}}
+
 .hero-eyebrow{
   display:flex;align-items:center;gap:10px;
   font-family:var(--sans);font-size:0.68rem;
-  color:rgba(255,255,255,0.9);
-  letter-spacing:0.22em;text-transform:uppercase;font-weight:400;
-  animation:fadeIn 1s 0.3s both;
-  text-shadow:0 1px 6px rgba(0,0,0,0.4);
+  color:var(--muted);letter-spacing:0.22em;text-transform:uppercase;font-weight:500;
+  animation:fadeIn 0.9s 0.2s both;
 }
-.hero-eyebrow svg{width:14px;height:14px;opacity:0.9;}
+.hero-eyebrow svg{width:14px;height:14px;opacity:0.7;}
 .hero-title{
-  font-family:var(--serif);
-  font-size:clamp(4rem,10vw,8.5rem);
-  font-weight:300;line-height:0.92;color:#fff;
-  letter-spacing:-0.01em;
-  animation:titleFade 1.1s 0.1s both;
-  text-shadow:0 2px 24px rgba(0,0,0,0.5);
+  font-family:var(--sans);
+  font-size:clamp(3.2rem,10vw,8rem);
+  font-weight:700;line-height:0.95;color:var(--ink);
+  letter-spacing:-0.02em;
+  animation:titleFade 1s 0.05s both;
 }
-.hero-divider{
-  width:80px;height:1px;
-  background:rgba(255,220,160,0.7);
-  animation:fadeIn 1s 0.5s both;
-}
+.hero-divider{width:70px;height:2px;background:var(--accent);animation:fadeIn 0.9s 0.4s both;}
 .hero-desc{
-  max-width:420px;
-  font-family:var(--sans);font-size:0.82rem;
-  color:rgba(255,255,255,0.88);
-  line-height:1.8;font-weight:300;
-  animation:fadeIn 1s 0.6s both;
-  text-shadow:0 1px 8px rgba(0,0,0,0.4);
+  max-width:440px;
+  font-family:var(--sans);font-size:0.92rem;
+  color:var(--text);line-height:1.8;font-weight:400;
+  animation:fadeIn 0.9s 0.5s both;
 }
 .hero-cta{
   display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--sans);font-size:0.68rem;
-  color:#fff;letter-spacing:0.18em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,0.6);
-  padding:0.75rem 2rem;text-decoration:none;
-  transition:background 0.3s,border-color 0.3s;
-  width:fit-content;animation:fadeIn 1s 0.8s both;
-  background:rgba(255,255,255,0.08);backdrop-filter:blur(4px);
+  font-family:var(--sans);font-size:0.68rem;font-weight:500;
+  color:#000;letter-spacing:0.16em;text-transform:uppercase;
+  background:var(--accent);border:1px solid var(--accent);
+  padding:0.8rem 2rem;text-decoration:none;
+  transition:background 0.25s,transform 0.2s;
+  width:fit-content;animation:fadeIn 0.9s 0.7s both;
 }
-.hero-cta:hover{background:rgba(255,255,255,0.18);border-color:#fff;}
-.hero-cta-arrow{font-size:0.6rem;transition:transform 0.3s;}
+.hero-cta:hover{background:#cfcfcf;transform:translateY(-2px);}
+.hero-cta-arrow{font-size:0.7rem;transition:transform 0.25s;}
 .hero-cta:hover .hero-cta-arrow{transform:translateX(4px);}
-.hero-dots{
-  position:absolute;bottom:2.5rem;right:3.5rem;
-  z-index:10;display:flex;gap:8px;align-items:center;
-}
-.hero-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,0.4);
-  border:none;cursor:pointer;padding:0;
-  transition:background 0.3s,transform 0.3s;
-}
-.hero-dot.active{background:#fff;transform:scale(1.4);}
-.hero-counter{
-  position:absolute;bottom:2.5rem;left:3.5rem;z-index:10;
-  font-family:var(--sans);font-size:0.62rem;
-  color:rgba(255,255,255,0.55);letter-spacing:0.14em;
-  animation:fadeIn 1s 1s both;
-}
 
-/* ══════════════════════════════════════════════
-   GLASS PANEL — shared style for all sections
-══════════════════════════════════════════════ */
-.glass-panel{
-  background:rgba(247,240,230,0.82);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-top:1px solid rgba(255,255,255,0.6);
-  border-bottom:1px solid rgba(196,94,42,0.1);
-}
+/* legacy slideshow bits — hidden */
+.bg-slide,.bg-slide.active,.bg-overlay,.hero-dots,.hero-dot,.hero-dot.active,.hero-counter,.glass-panel,.corner-br{display:none;}
 
 /* ── WELCOME BAR ── */
 .welcome-bar{
-  background:rgba(239,229,211,0.45);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  padding:1rem 2.5rem;text-align:center;
-  border-bottom:1px solid rgba(196,94,42,0.12);
-  position:relative;z-index:10;overflow:hidden;
-}
-.welcome-bar::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(196,94,42,0.06),transparent);
-  animation:shimmer 4s ease-in-out infinite;
+  background:#080808;padding:0.9rem 2.5rem;text-align:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  position:relative;z-index:2;overflow:hidden;
 }
 .welcome-bar p{
-  font-family:var(--sans);font-size:0.72rem;
-  color:var(--bark);letter-spacing:0.2em;text-transform:uppercase;font-weight:400;
+  font-family:var(--sans);font-size:0.68rem;
+  color:var(--muted);letter-spacing:0.24em;text-transform:uppercase;font-weight:500;
 }
 
-/* main wrapper — transparent so bg shows */
-/* main defined above */
 .section{padding:5rem 3.5rem;}
 
-/* ── WORKS SECTION glass ── */
-#works{
-  background:rgba(247,240,230,0.30);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-top:1px solid rgba(255,255,255,0.55);
-}
+/* ── WORKS ── */
+#works{background:transparent;border-top:1px solid var(--line);}
 
 /* ── BUTTONS ── */
 .px-btn{
-  display:inline-block;font-family:var(--sans);font-size:0.68rem;
-  padding:0.65rem 1.8rem;border:1px solid;text-decoration:none;cursor:pointer;
-  letter-spacing:0.16em;text-transform:uppercase;font-weight:300;
-  transition:background 0.3s,color 0.3s,border-color 0.3s;
+  display:inline-block;font-family:var(--sans);font-size:0.68rem;font-weight:500;
+  padding:0.7rem 1.8rem;border:1px solid var(--line-2);text-decoration:none;cursor:pointer;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--ink);background:transparent;
+  transition:background 0.25s,color 0.25s,border-color 0.25s;
 }
-.px-btn-pink{border-color:var(--rust);color:var(--rust);background:transparent;}
-.px-btn-pink:hover{background:var(--rust);color:var(--cream);}
-.px-btn-green{border-color:var(--teal);color:var(--teal);background:transparent;}
-.px-btn-green:hover{background:var(--teal);color:var(--cream);}
-.px-btn-yellow{border-color:var(--gold);color:var(--gold);background:transparent;}
-.px-btn-yellow:hover{background:var(--gold);color:var(--cream);}
+.px-btn-pink,.px-btn-green,.px-btn-yellow{border-color:var(--line-2);color:var(--ink);background:transparent;}
+.px-btn-pink:hover,.px-btn-green:hover,.px-btn-yellow:hover{background:var(--accent);color:#000;border-color:var(--accent);}
 
 /* ── SECTION HEADER ── */
 .section-header{text-align:center;margin-bottom:3rem;}
 .section-number{
-  font-family:var(--sans);font-size:0.68rem;color:var(--terra);
+  font-family:var(--sans);font-size:0.68rem;color:var(--muted);font-weight:500;
   letter-spacing:0.22em;text-transform:uppercase;
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  margin-bottom:0.6rem;
-  text-shadow:0 1px 8px rgba(247,240,230,0.8);
+  display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:0.6rem;
 }
 .section-number::before,.section-number::after{
-  content:'';display:inline-block;width:30px;height:1px;background:rgba(196,94,42,0.5);
+  content:'';display:inline-block;width:30px;height:1px;background:var(--line-2);
 }
 .section-title-large{
-  font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);
-  font-weight:400;color:var(--bark);letter-spacing:0.02em;line-height:1.1;
-  text-shadow:0 1px 16px rgba(247,240,230,0.9), 0 2px 4px rgba(247,240,230,0.6);
+  font-family:var(--sans);font-size:clamp(2rem,5vw,3.4rem);
+  font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.1;
 }
 .sub-label{
-  font-family:var(--sans);font-size:0.65rem;
-  color:var(--brown);margin-top:0.8rem;
-  letter-spacing:0.16em;text-transform:uppercase;font-weight:300;
-  text-shadow:0 1px 8px rgba(247,240,230,0.7);
+  font-family:var(--sans);font-size:0.65rem;color:var(--muted);
+  margin-top:0.8rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:400;
 }
 
 /* ── FILTERS ── */
 .filters-row{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
 .f-btn{
-  font-family:var(--sans);font-size:0.65rem;
-  background:rgba(255,255,255,0.4);color:var(--muted);
-  padding:0.4rem 1.2rem;
-  border:1px solid rgba(122,79,56,0.2);
-  cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
-  transition:all 0.3s;backdrop-filter:blur(8px);
+  font-family:var(--sans);font-size:0.65rem;font-weight:400;
+  background:transparent;color:var(--muted);padding:0.4rem 1.2rem;
+  border:1px solid var(--line-2);cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;
+  transition:all 0.25s;
 }
-.f-btn:hover,.f-btn.active{
-  background:rgba(196,94,42,0.15);color:var(--terra);border-color:rgba(196,94,42,0.5);
-}
+.f-btn:hover,.f-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
 
 /* ── PROJECT GRID ── */
-.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2px;max-width:1200px;margin:0 auto;}
+.p-grid{display:flex;flex-wrap:wrap;gap:24px;max-width:1200px;margin:0 auto;justify-content:flex-start;}
 .p-card{
-  background:rgba(247,240,230,0.55);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  flex:1 1 340px;max-width:384px;
+  background:var(--panel);border:1px solid var(--line);
   position:relative;overflow:hidden;text-decoration:none;display:block;
-  transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),box-shadow 0.3s;
-  border:1px solid rgba(255,255,255,0.5);
+  transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),background 0.3s,border-color 0.3s;
 }
 .p-card.hidden{display:none;}
-.p-card:hover{transform:translateY(-4px) scale(1.01);z-index:2;box-shadow:0 20px 60px rgba(61,43,31,0.18);}
+.p-card:hover{background:var(--panel-2);border-color:var(--line-2);z-index:2;}
 .p-card::before{
   content:'VIEW PROJECT';position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top,rgba(61,43,31,0.92),transparent);
-  color:var(--sand);font-family:var(--sans);font-size:0.62rem;
+  background:linear-gradient(to top,rgba(0,0,0,0.95),transparent);
+  color:var(--ink);font-family:var(--sans);font-size:0.62rem;font-weight:500;
   text-align:center;padding:2.5rem 0 1.2rem;
   letter-spacing:0.2em;text-transform:uppercase;
-  transform:translateY(100%);transition:transform 0.4s ease;z-index:5;
+  transform:translateY(100%);transition:transform 0.35s ease;z-index:5;
 }
 .p-card:hover::before{transform:translateY(0);}
-.card-art{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.card-art{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0a0a0a;}
 .card-art svg{width:100%;height:100%;display:block;transition:transform 0.6s ease;}
-.p-card:hover .card-art svg{transform:scale(1.05);}
-.card-art::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 50%,rgba(61,43,31,0.4) 100%);
-  pointer-events:none;z-index:2;
-}
+.p-card:hover .card-art svg{transform:scale(1.04);}
+.card-art::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,0.5) 100%);pointer-events:none;z-index:2;}
 .card-cat-badge{
   position:absolute;top:12px;right:12px;z-index:4;
-  font-family:var(--sans);font-size:0.58rem;
-  background:rgba(247,240,230,0.92);color:var(--terra);
-  padding:0.2rem 0.7rem;border:1px solid rgba(196,94,42,0.3);
+  font-family:var(--sans);font-size:0.58rem;font-weight:500;
+  background:rgba(0,0,0,0.75);color:var(--ink);
+  padding:0.2rem 0.7rem;border:1px solid var(--line-2);
   letter-spacing:0.14em;text-transform:uppercase;backdrop-filter:blur(8px);
 }
-.corner-br{display:none;}
 .card-body{padding:1.2rem 1.4rem 1.4rem;}
 .card-title{
-  font-family:var(--serif);font-size:1.15rem;
-  color:var(--bark);font-weight:500;line-height:1.4;margin-bottom:0.35rem;
-  text-shadow:0 1px 8px rgba(247,240,230,0.9);
+  font-family:var(--sans);font-size:1.05rem;
+  color:var(--ink);font-weight:500;line-height:1.4;margin-bottom:0.35rem;
 }
-.card-meta{font-family:var(--sans);font-size:0.65rem;color:var(--brown);font-weight:300;letter-spacing:0.08em;}
-.hp-bar{margin-top:0.8rem;height:2px;background:rgba(122,79,56,0.12);overflow:hidden;}
-.hp-fill{height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));}
+.card-meta{font-family:var(--sans);font-size:0.65rem;color:var(--muted);font-weight:400;letter-spacing:0.06em;}
+.hp-bar{margin-top:0.8rem;height:2px;background:rgba(255,255,255,0.1);overflow:hidden;}
+.hp-fill{height:100%;background:var(--accent);}
 
 /* ── ABOUT ── */
-#about{
-  background:rgba(239,229,211,0.30);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-top:1px solid rgba(255,255,255,0.5);
-}
+#about{background:transparent;border-top:1px solid var(--line);}
 .about-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.7fr;gap:4rem;align-items:start;}
-
-.os-window{
-  background:rgba(255,255,255,0.35);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.7);
-  overflow:hidden;border-radius:8px;
-  box-shadow:0 8px 32px rgba(61,43,31,0.1);
-}
-.os-titlebar{
-  background:rgba(247,240,230,0.8);
-  padding:0.75rem 1rem;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(196,94,42,0.1);
-}
+.os-window{background:var(--panel-2);border:1px solid var(--line);overflow:hidden;border-radius:8px;}
+.os-titlebar{background:#080808;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);}
 .os-title{font-family:var(--sans);font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;}
 .os-btns{display:flex;gap:5px;}
 .os-btns span{width:10px;height:10px;border-radius:50%;display:inline-block;}
-.os-btns span:nth-child(1){background:#e07070;opacity:0.7;}
-.os-btns span:nth-child(2){background:var(--amber);opacity:0.8;}
-.os-btns span:nth-child(3){background:var(--teal);opacity:0.7;}
+.os-btns span:nth-child(1){background:#555;}
+.os-btns span:nth-child(2){background:#777;}
+.os-btns span:nth-child(3){background:#999;}
 .os-body{background:transparent;}
-
-.avatar-scene{
-  padding:2rem 1.5rem 1.5rem;
-  border-bottom:1px solid rgba(196,94,42,0.1);
-  display:flex;align-items:center;gap:1.4rem;
-  background:rgba(232,213,183,0.35);
-}
-.avatar-wrap{
-  flex-shrink:0;width:80px;height:80px;border-radius:50%;
-  border:2px solid rgba(196,94,42,0.2);
-  background:rgba(232,213,183,0.5);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
+.avatar-scene{padding:2rem 1.5rem 1.5rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:1.4rem;background:var(--panel-3);}
+.avatar-wrap{flex-shrink:0;width:80px;height:80px;border-radius:50%;border:1px solid var(--line-2);background:#0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .avatar-info{flex:1;}
-.avatar-name{
-  font-family:var(--serif);font-size:1.25rem;
-  color:var(--bark);font-weight:500;line-height:1.2;margin-bottom:0.3rem;
-}
+.avatar-name{font-family:var(--sans);font-size:1.2rem;color:var(--ink);font-weight:700;line-height:1.2;margin-bottom:0.3rem;}
 .avatar-role{
   display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--sans);font-size:0.62rem;
-  color:var(--rust);letter-spacing:0.12em;text-transform:uppercase;
-  background:rgba(196,94,42,0.12);border:1px solid rgba(196,94,42,0.35);
-  padding:0.25rem 0.6rem;border-radius:2px;margin-bottom:0.5rem;font-weight:500;
+  font-family:var(--sans);font-size:0.62rem;font-weight:500;
+  color:var(--ink);background:rgba(255,255,255,0.06);border:1px solid var(--line-2);
+  padding:0.25rem 0.6rem;letter-spacing:0.12em;text-transform:uppercase;
+  border-radius:2px;margin-bottom:0.5rem;
 }
-.avatar-location{
-  font-family:var(--sans);font-size:0.68rem;
-  color:var(--brown);font-weight:400;display:flex;align-items:center;gap:5px;
-}
+.avatar-location{font-family:var(--sans);font-size:0.68rem;color:var(--muted);font-weight:400;display:flex;align-items:center;gap:5px;}
 .os-content{padding:1.4rem;}
-.os-content p{
-  font-family:var(--sans);font-size:0.78rem;
-  color:var(--bark);line-height:1.8;margin-bottom:0.7rem;font-weight:400;
-}
-.os-content a{color:var(--terra);text-decoration:none;transition:color 0.3s;font-weight:400;}
-.os-content a:hover{color:var(--rust);}
-.contact-section{border-top:1px solid rgba(196,94,42,0.2);padding-top:0.9rem;margin-top:0.8rem;}
-.contact-head{
-  font-family:var(--sans);font-size:0.65rem;color:var(--rust);
-  margin-bottom:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;
-}
-.c-row{
-  display:flex;align-items:center;gap:10px;
-  font-family:var(--sans);font-size:0.72rem;
-  color:var(--bark);margin-bottom:0.45rem;font-weight:400;
-}
-.c-ico{
-  width:22px;height:22px;background:rgba(196,94,42,0.1);
-  border:1px solid rgba(196,94,42,0.2);border-radius:4px;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:var(--terra);font-style:normal;font-weight:500;
-}
+.os-content p{font-family:var(--sans);font-size:0.82rem;color:var(--text);line-height:1.8;margin-bottom:0.7rem;font-weight:400;}
+.os-content a{color:var(--ink);text-decoration:none;transition:color 0.25s;font-weight:400;}
+.os-content a:hover{color:var(--muted);}
+.contact-section{border-top:1px solid var(--line);padding-top:0.9rem;margin-top:0.8rem;}
+.contact-head{font-family:var(--sans);font-size:0.65rem;color:var(--muted);margin-bottom:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
+.c-row{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:0.72rem;color:var(--text);margin-bottom:0.45rem;font-weight:400;}
+.c-ico{width:22px;height:22px;background:rgba(255,255,255,0.05);border:1px solid var(--line-2);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--ink);font-style:normal;font-weight:500;}
 .info-section{margin-bottom:2.5rem;}
-.info-head{
-  font-family:var(--serif);font-size:1.3rem;color:var(--bark);font-weight:500;
-  margin-bottom:1rem;padding-bottom:0.5rem;
-  border-bottom:1px solid rgba(196,94,42,0.25);letter-spacing:0.04em;
-  text-shadow:0 1px 10px rgba(247,240,230,0.9);
-}
+.info-head{font-family:var(--sans);font-size:1.2rem;color:var(--ink);font-weight:700;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--line);letter-spacing:0.01em;}
 .info-list{list-style:none;}
-.info-list li{
-  font-family:var(--sans);font-size:0.78rem;color:var(--bark);
-  padding:0.35rem 0;display:flex;align-items:flex-start;gap:8px;
-  line-height:1.6;font-weight:400;
-}
-.info-list li::before{content:'—';color:rgba(196,94,42,0.6);flex-shrink:0;}
-.info-list li strong{color:var(--rust);}
+.info-list li{font-family:var(--sans);font-size:0.82rem;color:var(--text);padding:0.35rem 0;display:flex;align-items:flex-start;gap:8px;line-height:1.6;font-weight:400;}
+.info-list li::before{content:'—';color:var(--dim);flex-shrink:0;}
+.info-list li strong{color:var(--ink);font-weight:600;}
 .stack-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.6rem;}
-.tag{
-  font-family:var(--sans);font-size:0.6rem;
-  background:rgba(247,240,230,0.65);color:var(--bark);
-  padding:0.2rem 0.65rem;border:1px solid rgba(122,79,56,0.3);
-  letter-spacing:0.06em;text-transform:uppercase;transition:all 0.3s;
-  font-weight:400;
+.tag,.tag.hot,.tag.warm,.tag.cool{
+  font-family:var(--sans);font-size:0.6rem;font-weight:400;
+  background:var(--panel-3);color:var(--text);
+  padding:0.2rem 0.65rem;border:1px solid var(--line-2);
+  letter-spacing:0.06em;text-transform:uppercase;transition:all 0.25s;
 }
-.tag:hover{border-color:rgba(196,94,42,0.5);color:var(--terra);background:rgba(247,240,230,0.85);}
-.tag.hot{border-color:rgba(196,94,42,0.5);color:var(--rust);background:rgba(247,230,220,0.65);}
-.tag.warm{border-color:rgba(212,137,26,0.5);color:var(--brown);background:rgba(247,240,220,0.65);}
-.tag.cool{border-color:rgba(58,138,130,0.5);color:var(--teal);background:rgba(220,240,238,0.55);}
+.tag:hover{border-color:var(--accent);color:var(--ink);}
 .skill-item{margin-bottom:1rem;}
-.skill-lbl{
-  font-family:var(--sans);font-size:0.66rem;color:var(--bark);margin-bottom:0.35rem;
-  display:flex;justify-content:space-between;font-weight:400;letter-spacing:0.04em;
-  text-shadow:0 1px 6px rgba(247,240,230,0.8);
-}
-.skill-bar{height:2px;background:rgba(122,79,56,0.12);overflow:hidden;}
-.skill-fill{
-  height:100%;background:linear-gradient(90deg,var(--terra),var(--amber));
-  transform-origin:left;animation:skillGrow 1.5s cubic-bezier(0.23,1,0.32,1) both;
-}
+.skill-lbl{font-family:var(--sans);font-size:0.66rem;color:var(--text);margin-bottom:0.35rem;display:flex;justify-content:space-between;font-weight:400;letter-spacing:0.04em;}
+.skill-bar{height:2px;background:rgba(255,255,255,0.1);overflow:hidden;}
+.skill-fill{height:100%;background:var(--accent);transform-origin:left;animation:skillGrow 1.4s cubic-bezier(0.23,1,0.32,1) both;}
 @keyframes skillGrow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
 
 /* ── STATS ── */
-#stats{
-  background:rgba(232,213,183,0.28);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-top:1px solid rgba(255,255,255,0.5);
-  padding:5rem 3.5rem;
-}
-.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;}
-.stat-card{
-  background:rgba(255,255,255,0.25);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.6);
-  padding:2.5rem 2rem;text-align:center;
-  position:relative;overflow:hidden;transition:background 0.4s,box-shadow 0.3s;
-}
-.stat-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(196,94,42,0.1),transparent 70%);
-  opacity:0;transition:opacity 0.4s;
-}
-.stat-card:hover{background:rgba(255,255,255,0.72);box-shadow:0 12px 40px rgba(61,43,31,0.12);}
-.stat-card:hover::before{opacity:1;}
-.stat-icon{font-size:1.2rem;display:block;margin-bottom:1rem;opacity:0.5;}
-.stat-value{font-family:var(--serif);font-size:2.2rem;color:var(--bark);display:block;margin-bottom:0.4rem;font-weight:400;text-shadow:0 1px 12px rgba(247,240,230,0.9);}
-.stat-label{font-family:var(--sans);font-size:0.62rem;color:var(--rust);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
-.stat-sub{font-family:var(--sans);font-size:0.65rem;color:var(--brown);margin-top:0.4rem;display:block;font-weight:300;}
+#stats{background:transparent;border-top:1px solid var(--line);padding:5rem 3.5rem;}
+.stats-grid{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:center;}
+.stat-card{flex:1 1 240px;max-width:280px;background:var(--panel);border:1px solid var(--line);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;transition:background 0.3s,border-color 0.3s;}
+.stat-card::before{display:none;}
+.stat-card:hover{background:var(--panel-2);border-color:var(--line-2);}
+.stat-icon{font-size:1.1rem;display:block;margin-bottom:1rem;opacity:0.4;color:var(--ink);}
+.stat-value{font-family:var(--sans);font-size:2.2rem;color:var(--ink);display:block;margin-bottom:0.4rem;font-weight:700;}
+.stat-label{font-family:var(--sans);font-size:0.62rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
+.stat-sub{font-family:var(--sans);font-size:0.65rem;color:var(--dim);margin-top:0.4rem;display:block;font-weight:400;}
 
 /* ── FOOTER ── */
-footer{
-  background:rgba(61,43,31,0.55);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-top:1px solid rgba(196,94,42,0.25);
-  padding:3rem 3.5rem;text-align:center;
-}
+footer{background:#080808;border-top:1px solid var(--line);padding:3rem 3.5rem;text-align:center;}
 .footer-dirt{display:none;}
-.footer-copy{font-family:var(--sans);font-size:0.62rem;color:rgba(232,213,183,0.35);margin-bottom:2rem;letter-spacing:0.14em;text-transform:uppercase;}
+.footer-copy{font-family:var(--sans);font-size:0.62rem;color:var(--muted);margin-bottom:2rem;letter-spacing:0.14em;text-transform:uppercase;}
 .socials{display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;}
-.socials a{
-  font-family:var(--sans);font-size:0.65rem;background:transparent;
-  color:rgba(232,213,183,0.55);padding:0.4rem 1rem;
-  border:1px solid rgba(232,213,183,0.15);text-decoration:none;
-  transition:color 0.3s,border-color 0.3s;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
-}
-.socials a:hover{color:var(--sand);border-color:rgba(196,94,42,0.5);}
-.game-over-footer{font-family:var(--sans);font-size:0.6rem;color:rgba(232,213,183,0.18);letter-spacing:0.16em;text-transform:uppercase;}
+.socials a{font-family:var(--sans);font-size:0.65rem;background:transparent;color:var(--text);padding:0.4rem 1rem;border:1px solid var(--line-2);text-decoration:none;transition:color 0.25s,background 0.25s,border-color 0.25s;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;}
+.socials a:hover{color:#000;background:var(--accent);border-color:var(--accent);}
+.game-over-footer{font-family:var(--sans);font-size:0.6rem;color:var(--dim);letter-spacing:0.16em;text-transform:uppercase;}
 
-.back-top{
-  position:fixed;bottom:2rem;right:2rem;z-index:100;
-  font-family:var(--sans);font-size:0.6rem;
-  background:rgba(247,240,230,0.88);color:var(--terra);
-  padding:0.5rem 0.8rem;border:1px solid rgba(196,94,42,0.3);
-  text-decoration:none;transition:background 0.3s;letter-spacing:0.1em;
-  backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(61,43,31,0.15);
-}
-.back-top:hover{background:rgba(196,94,42,0.12);}
+.back-top{position:fixed;bottom:2rem;right:2rem;z-index:100;font-family:var(--sans);font-size:0.6rem;background:rgba(255,255,255,0.06);color:var(--ink);padding:0.5rem 0.8rem;border:1px solid var(--line-2);text-decoration:none;transition:background 0.25s,color 0.25s;letter-spacing:0.1em;backdrop-filter:blur(12px);}
+.back-top:hover{background:var(--accent);color:#000;}
 
 /* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s cubic-bezier(0.23,1,0.32,1),transform 0.7s cubic-bezier(0.23,1,0.32,1);}
 .reveal.visible{opacity:1;transform:none;}
 
 /* ── RESPONSIVE ── */
@@ -513,25 +310,64 @@ footer{
   .nav-links{display:none;}
   .about-grid{grid-template-columns:1fr;}
   .section{padding:3.5rem 1.5rem;}
-  .p-grid{grid-template-columns:1fr;}
+  .p-card{flex-basis:100%;max-width:100%;}
   #stats{padding:3.5rem 1.5rem;}
+  .hero-content{padding:6rem 1.5rem 3rem;}
 }
 
-/* ── GRAIN ── */
-body::after{
-  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-}
+/* ── CODING STATS DASHBOARD ── */
+.cs-wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:22px;}
+.cs-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.5rem 1.6rem;transition:border-color .3s;}
+.cs-card:hover{border-color:var(--line-2);}
+.cs-card-title{font-family:var(--sans);font-size:0.6rem;font-weight:600;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.3rem;}
+.cs-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.cs-metric{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.3rem 1rem;text-align:center;transition:border-color .3s,background .3s;}
+.cs-metric:hover{border-color:var(--line-2);background:var(--panel-2);}
+.cs-metric .n{font-family:var(--sans);font-size:2rem;font-weight:700;color:var(--ink);line-height:1;}
+.cs-metric .l{font-family:var(--sans);font-size:0.58rem;font-weight:500;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;margin-top:0.6rem;}
+.cs-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;align-items:start;}
+@media(max-width:820px){.cs-grid{grid-template-columns:1fr;}}
+.cs-col{display:flex;flex-direction:column;gap:22px;}
+/* topic bars */
+.cs-topic{display:flex;flex-direction:column;gap:12px;}
+.cs-topic-row{display:grid;grid-template-columns:132px 1fr 38px;align-items:center;gap:12px;}
+.cs-topic-lbl{font-family:var(--sans);font-size:0.72rem;color:var(--text);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cs-topic-track{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+.cs-topic-fill{height:100%;background:var(--accent);border-radius:4px;}
+.cs-topic-val{font-family:var(--sans);font-size:0.7rem;color:var(--muted);font-weight:600;text-align:left;}
+/* distribution */
+.cs-dist-head{font-family:var(--sans);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.7rem;display:flex;align-items:baseline;gap:8px;}
+.cs-dist-head b{color:var(--ink);font-size:1.15rem;font-weight:700;letter-spacing:0;}
+.cs-seg{display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:0.9rem;gap:2px;}
+.cs-seg span{display:block;height:100%;}
+.cs-legend{display:flex;flex-direction:column;gap:0.5rem;}
+.cs-legend-row{display:flex;align-items:center;justify-content:space-between;font-family:var(--sans);font-size:0.74rem;}
+.cs-legend-row .k{display:flex;align-items:center;gap:8px;color:var(--text);}
+.cs-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+.cs-legend-row .v{color:var(--ink);font-weight:600;}
+.cs-divider{border:none;border-top:1px solid var(--line);margin:1.3rem 0;}
+/* ratings */
+.cs-rate-row{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0;}
+.cs-rate-row + .cs-rate-row{border-top:1px solid var(--line);}
+.cs-rate-row .p{font-family:var(--sans);font-size:0.82rem;color:var(--text);font-weight:500;display:flex;align-items:center;gap:9px;}
+.cs-rate-row .r{text-align:right;}
+.cs-rate-row .r b{font-family:var(--sans);font-size:1.2rem;color:var(--ink);font-weight:700;}
+.cs-rate-row .r small{display:block;font-family:var(--sans);font-size:0.58rem;color:var(--dim);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px;}
+.cs-badge{font-family:var(--sans);font-size:0.58rem;font-weight:600;color:var(--ink);border:1px solid var(--line-2);padding:0.12rem 0.5rem;border-radius:3px;letter-spacing:0.06em;white-space:nowrap;}
+/* footer row */
+.cs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;}
+.cs-plats{display:flex;flex-wrap:wrap;gap:6px;}
+.cs-plat{font-family:var(--sans);font-size:0.62rem;color:var(--text);border:1px solid var(--line-2);padding:0.25rem 0.7rem;border-radius:3px;letter-spacing:0.08em;text-transform:uppercase;}
+.cs-rank{font-family:var(--sans);font-size:0.75rem;color:var(--muted);}
+.cs-rank b{color:var(--ink);font-weight:700;font-size:0.95rem;}
+.cs-link{font-family:var(--sans);font-size:0.64rem;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--line-2);padding-bottom:2px;transition:border-color .25s;}
+.cs-link:hover{border-color:var(--accent);}
+
 </style>
 </head>
 <body>
 
-<!-- ═══ FIXED BACKGROUND SLIDES — must be FIRST in body, before any stacking context ═══ -->
-<div class="bg-slide active" style="background-image:url('assets/img/scenary1.jpeg')"></div>
-<div class="bg-slide" style="background-image:url('assets/img/scenary2.jpeg')"></div>
-<div class="bg-slide" style="background-image:url('assets/img/scenary3.jpeg')"></div>
-<!-- Fixed dark gradient overlay for text contrast -->
-<div class="bg-overlay"></div>
+
 
 <nav>
   <a class="nav-brand" href="#">SB Portfolio</a>
@@ -546,8 +382,6 @@ body::after{
 
 <!-- ═══════════════════════════════════ HERO ══ -->
 <section id="hero">
-
-  <!-- Text content bottom-left -->
   <div class="hero-content">
     <div class="hero-eyebrow">
       <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="6" width="14" height="2" fill="currentColor"/><rect x="6" y="0" width="2" height="14" fill="currentColor"/></svg>
@@ -556,19 +390,8 @@ body::after{
     <div class="hero-title">Shraboni<br>Banerjee</div>
     <div class="hero-divider"></div>
     <p class="hero-desc">Software Engineer from Bengaluru, India. Building clean, thoughtful software and designing experiences that feel effortless.</p>
-    <a href="#works" class="hero-cta">See my work <span class="hero-cta-arrow">→</span></a>
+    <a href="#works" class="hero-cta">See my work <span class="hero-cta-arrow">&rarr;</span></a>
   </div>
-
-  <!-- Slide dots -->
-  <div class="hero-dots">
-    <button class="hero-dot active" data-slide="0"></button>
-    <button class="hero-dot" data-slide="1"></button>
-    <button class="hero-dot" data-slide="2"></button>
-  </div>
-
-  <!-- Slide counter -->
-  <div class="hero-counter"><span id="slideNum">01</span> / 03</div>
-
 </section>
 
 <div class="welcome-bar"><p>★ &nbsp; Welcome to my portfolio &nbsp; ★</p></div>
@@ -587,6 +410,7 @@ body::after{
     <button class="f-btn" data-filter="web">Design</button>
     <button class="f-btn" data-filter="app">App Dev</button>
     <button class="f-btn" data-filter="blockchain">Blockchain</button>
+    <button class="f-btn" data-filter="ai">AI / ML</button>
   </div>
 
   <div class="p-grid reveal" id="pgrid">
@@ -595,213 +419,220 @@ body::after{
       <div class="card-art"><span class="card-cat-badge">Design</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
   <!-- bg -->
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- subtle grid lines -->
-  <line x1="0" y1="60" x2="320" y2="60" stroke="#e0d0ba" stroke-width="1"/>
-  <line x1="0" y1="120" x2="320" y2="120" stroke="#e0d0ba" stroke-width="1"/>
-  <line x1="107" y1="0" x2="107" y2="180" stroke="#e0d0ba" stroke-width="1"/>
-  <line x1="214" y1="0" x2="214" y2="180" stroke="#e0d0ba" stroke-width="1"/>
+  <line x1="0" y1="60" x2="320" y2="60" stroke="#333333" stroke-width="1"/>
+  <line x1="0" y1="120" x2="320" y2="120" stroke="#333333" stroke-width="1"/>
+  <line x1="107" y1="0" x2="107" y2="180" stroke="#333333" stroke-width="1"/>
+  <line x1="214" y1="0" x2="214" y2="180" stroke="#333333" stroke-width="1"/>
   <!-- POS terminal body -->
-  <rect x="96" y="28" width="128" height="82" rx="6" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <rect x="96" y="28" width="128" height="82" rx="6" fill="#1c1c1c" stroke="#333333" stroke-width="1.5"/>
   <!-- screen -->
-  <rect x="104" y="36" width="112" height="52" rx="3" fill="#f7f0e6"/>
+  <rect x="104" y="36" width="112" height="52" rx="3" fill="#161616"/>
   <!-- screen header bar -->
-  <rect x="104" y="36" width="112" height="12" rx="3" fill="#c45e2a"/>
+  <rect x="104" y="36" width="112" height="12" rx="3" fill="#e6e6e6"/>
   <!-- header dots -->
   <circle cx="112" cy="42" r="3" fill="rgba(255,255,255,0.5)"/>
   <!-- header title -->
   <rect x="122" y="39" width="60" height="5" rx="2" fill="rgba(255,255,255,0.6)"/>
   <!-- table grid on screen -->
-  <rect x="108" y="52" width="24" height="14" rx="1" fill="#f0e8d8"/>
-  <rect x="136" y="52" width="24" height="14" rx="1" fill="#f0e8d8"/>
-  <rect x="164" y="52" width="24" height="14" rx="1" fill="#c45e2a" opacity="0.7"/>
-  <rect x="192" y="52" width="20" height="14" rx="1" fill="#f0e8d8"/>
-  <rect x="108" y="70" width="24" height="14" rx="1" fill="#f0e8d8"/>
-  <rect x="136" y="70" width="24" height="14" rx="1" fill="#d4891a" opacity="0.6"/>
-  <rect x="164" y="70" width="24" height="14" rx="1" fill="#f0e8d8"/>
-  <rect x="192" y="70" width="20" height="14" rx="1" fill="#f0e8d8"/>
+  <rect x="108" y="52" width="24" height="14" rx="1" fill="#1a1a1a"/>
+  <rect x="136" y="52" width="24" height="14" rx="1" fill="#1a1a1a"/>
+  <rect x="164" y="52" width="24" height="14" rx="1" fill="#e6e6e6" opacity="0.7"/>
+  <rect x="192" y="52" width="20" height="14" rx="1" fill="#1a1a1a"/>
+  <rect x="108" y="70" width="24" height="14" rx="1" fill="#1a1a1a"/>
+  <rect x="136" y="70" width="24" height="14" rx="1" fill="#9a9a9a" opacity="0.6"/>
+  <rect x="164" y="70" width="24" height="14" rx="1" fill="#1a1a1a"/>
+  <rect x="192" y="70" width="20" height="14" rx="1" fill="#1a1a1a"/>
   <!-- stand -->
-  <rect x="151" y="110" width="18" height="10" rx="1" fill="#d8c8b0"/>
-  <rect x="138" y="120" width="44" height="6" rx="3" fill="#d8c8b0"/>
+  <rect x="151" y="110" width="18" height="10" rx="1" fill="#3a3a3a"/>
+  <rect x="138" y="120" width="44" height="6" rx="3" fill="#3a3a3a"/>
   <!-- left receipt -->
-  <rect x="28" y="40" width="52" height="70" rx="3" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="34" y="48" width="30" height="4" rx="1" fill="#c45e2a" opacity="0.8"/>
-  <rect x="34" y="56" width="40" height="2.5" rx="1" fill="#d8c8b0"/>
-  <rect x="34" y="62" width="34" height="2.5" rx="1" fill="#d8c8b0"/>
-  <rect x="34" y="68" width="38" height="2.5" rx="1" fill="#d8c8b0"/>
-  <rect x="34" y="76" width="22" height="4" rx="1" fill="#d4891a" opacity="0.7"/>
-  <rect x="34" y="84" width="40" height="1.5" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="90" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.5"/>
+  <rect x="28" y="40" width="52" height="70" rx="3" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <rect x="34" y="48" width="30" height="4" rx="1" fill="#e6e6e6" opacity="0.8"/>
+  <rect x="34" y="56" width="40" height="2.5" rx="1" fill="#3a3a3a"/>
+  <rect x="34" y="62" width="34" height="2.5" rx="1" fill="#3a3a3a"/>
+  <rect x="34" y="68" width="38" height="2.5" rx="1" fill="#3a3a3a"/>
+  <rect x="34" y="76" width="22" height="4" rx="1" fill="#9a9a9a" opacity="0.7"/>
+  <rect x="34" y="84" width="40" height="1.5" rx="1" fill="#333333"/>
+  <rect x="34" y="90" width="30" height="3" rx="1" fill="#e6e6e6" opacity="0.5"/>
   <!-- right stat card -->
-  <rect x="244" y="40" width="52" height="70" rx="3" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <circle cx="270" cy="58" r="12" fill="#f7f0e6" stroke="#c45e2a" stroke-width="1.5"/>
-  <rect x="252" y="76" width="36" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="256" y="83" width="28" height="6" rx="1" fill="#c45e2a" opacity="0.25"/>
-  <rect x="252" y="93" width="36" height="2" rx="1" fill="#e0d0ba"/>
-  <rect x="252" y="99" width="22" height="2" rx="1" fill="#e0d0ba"/>
+  <rect x="244" y="40" width="52" height="70" rx="3" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <circle cx="270" cy="58" r="12" fill="#161616" stroke="#e6e6e6" stroke-width="1.5"/>
+  <rect x="252" y="76" width="36" height="3" rx="1" fill="#333333"/>
+  <rect x="256" y="83" width="28" height="6" rx="1" fill="#e6e6e6" opacity="0.25"/>
+  <rect x="252" y="93" width="36" height="2" rx="1" fill="#333333"/>
+  <rect x="252" y="99" width="22" height="2" rx="1" fill="#333333"/>
   <!-- bottom bar chart accent -->
-  <rect x="28" y="148" width="12" height="20" rx="1" fill="#c45e2a" opacity="0.35"/>
-  <rect x="44" y="140" width="12" height="28" rx="1" fill="#c45e2a" opacity="0.55"/>
-  <rect x="60" y="132" width="12" height="36" rx="1" fill="#c45e2a" opacity="0.75"/>
-  <rect x="76" y="136" width="12" height="32" rx="1" fill="#d4891a" opacity="0.6"/>
-  <rect x="92" y="144" width="12" height="24" rx="1" fill="#d4891a" opacity="0.4"/>
+  <rect x="28" y="148" width="12" height="20" rx="1" fill="#e6e6e6" opacity="0.35"/>
+  <rect x="44" y="140" width="12" height="28" rx="1" fill="#e6e6e6" opacity="0.55"/>
+  <rect x="60" y="132" width="12" height="36" rx="1" fill="#e6e6e6" opacity="0.75"/>
+  <rect x="76" y="136" width="12" height="32" rx="1" fill="#9a9a9a" opacity="0.6"/>
+  <rect x="92" y="144" width="12" height="24" rx="1" fill="#9a9a9a" opacity="0.4"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">RestoGenius POS</div><div class="card-meta">Tech Sprint · Apr 2024–Present</div><div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div></div>
     </a>
 
     <a href="./App.html" class="p-card app">
-      <div class="card-art"><span class="card-cat-badge" style="color:var(--teal);border-color:rgba(58,138,130,0.4);">App Dev</span>
+      <div class="card-art"><span class="card-cat-badge">App Dev</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- phone frame: centered x=100 to x=220, y=10 to y=174 -->
-  <rect x="100" y="10" width="120" height="164" rx="14" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <rect x="100" y="10" width="120" height="164" rx="14" fill="#1c1c1c" stroke="#333333" stroke-width="1.5"/>
   <!-- screen inset x=106 to x=214, y=18 to y=166 -->
-  <rect x="106" y="18" width="108" height="148" rx="9" fill="#f7f0e6"/>
+  <rect x="106" y="18" width="108" height="148" rx="9" fill="#161616"/>
   <!-- notch -->
-  <rect x="137" y="18" width="46" height="8" rx="4" fill="#e0d0ba"/>
+  <rect x="137" y="18" width="46" height="8" rx="4" fill="#333333"/>
   <!-- status bar -->
-  <rect x="112" y="30" width="18" height="3" rx="1" fill="#d8c8b0"/>
-  <rect x="190" y="30" width="18" height="3" rx="1" fill="#c45e2a" opacity="0.4"/>
+  <rect x="112" y="30" width="18" height="3" rx="1" fill="#3a3a3a"/>
+  <rect x="190" y="30" width="18" height="3" rx="1" fill="#e6e6e6" opacity="0.4"/>
   <!-- app icons grid — 3 per row, all within x=112..202 -->
-  <rect x="112" y="42" width="26" height="26" rx="6" fill="#c45e2a" opacity="0.85"/>
-  <rect x="147" y="42" width="26" height="26" rx="6" fill="#d4891a" opacity="0.85"/>
-  <rect x="182" y="42" width="26" height="26" rx="6" fill="#3a8a82" opacity="0.75"/>
-  <rect x="112" y="75" width="26" height="26" rx="6" fill="#5a7a5c" opacity="0.65"/>
-  <rect x="147" y="75" width="26" height="26" rx="6" fill="#7a4f38" opacity="0.55"/>
-  <rect x="182" y="75" width="26" height="26" rx="6" fill="#c45e2a" opacity="0.4"/>
+  <rect x="112" y="42" width="26" height="26" rx="6" fill="#e6e6e6" opacity="0.85"/>
+  <rect x="147" y="42" width="26" height="26" rx="6" fill="#9a9a9a" opacity="0.85"/>
+  <rect x="182" y="42" width="26" height="26" rx="6" fill="#b0b0b0" opacity="0.75"/>
+  <rect x="112" y="75" width="26" height="26" rx="6" fill="#808080" opacity="0.65"/>
+  <rect x="147" y="75" width="26" height="26" rx="6" fill="#6a6a6a" opacity="0.55"/>
+  <rect x="182" y="75" width="26" height="26" rx="6" fill="#e6e6e6" opacity="0.4"/>
   <!-- content card within screen -->
-  <rect x="109" y="110" width="102" height="36" rx="4" fill="#fff" stroke="#e8d5b7" stroke-width="1"/>
-  <rect x="115" y="117" width="44" height="3" rx="1" fill="#c45e2a" opacity="0.7"/>
-  <rect x="115" y="124" width="70" height="2.5" rx="1" fill="#d8c8b0"/>
-  <rect x="115" y="130" width="56" height="2.5" rx="1" fill="#d8c8b0"/>
-  <rect x="115" y="137" width="30" height="5" rx="2" fill="#c45e2a" opacity="0.3"/>
+  <rect x="109" y="110" width="102" height="36" rx="4" fill="#1c1c1c" stroke="#1e1e1e" stroke-width="1"/>
+  <rect x="115" y="117" width="44" height="3" rx="1" fill="#e6e6e6" opacity="0.7"/>
+  <rect x="115" y="124" width="70" height="2.5" rx="1" fill="#3a3a3a"/>
+  <rect x="115" y="130" width="56" height="2.5" rx="1" fill="#3a3a3a"/>
+  <rect x="115" y="137" width="30" height="5" rx="2" fill="#e6e6e6" opacity="0.3"/>
   <!-- home bar -->
-  <rect x="143" y="157" width="34" height="3" rx="1.5" fill="#d8c8b0"/>
+  <rect x="143" y="157" width="34" height="3" rx="1.5" fill="#3a3a3a"/>
   <!-- left decorative panel -->
-  <rect x="18" y="44" width="66" height="80" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="24" y="52" width="50" height="3" rx="1" fill="#c45e2a" opacity="0.6"/>
-  <rect x="24" y="59" width="40" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="24" y="65" width="46" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="24" y="71" width="34" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="24" y="80" width="50" height="2.5" rx="1" fill="#d4891a" opacity="0.5"/>
-  <rect x="24" y="87" width="38" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="24" y="93" width="44" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="24" y="102" width="30" height="7" rx="3" fill="#c45e2a" opacity="0.25"/>
+  <rect x="18" y="44" width="66" height="80" rx="4" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <rect x="24" y="52" width="50" height="3" rx="1" fill="#e6e6e6" opacity="0.6"/>
+  <rect x="24" y="59" width="40" height="2.5" rx="1" fill="#333333"/>
+  <rect x="24" y="65" width="46" height="2.5" rx="1" fill="#333333"/>
+  <rect x="24" y="71" width="34" height="2.5" rx="1" fill="#333333"/>
+  <rect x="24" y="80" width="50" height="2.5" rx="1" fill="#9a9a9a" opacity="0.5"/>
+  <rect x="24" y="87" width="38" height="2.5" rx="1" fill="#333333"/>
+  <rect x="24" y="93" width="44" height="2.5" rx="1" fill="#333333"/>
+  <rect x="24" y="102" width="30" height="7" rx="3" fill="#e6e6e6" opacity="0.25"/>
   <!-- right decorative panel -->
-  <rect x="236" y="44" width="66" height="80" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <circle cx="255" cy="64" r="10" fill="#f7f0e6" stroke="#d4891a" stroke-width="1.5"/>
-  <rect x="242" y="82" width="48" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="242" y="88" width="36" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="242" y="94" width="42" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="242" y="103" width="28" height="7" rx="3" fill="#3a8a82" opacity="0.25"/>
+  <rect x="236" y="44" width="66" height="80" rx="4" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <circle cx="255" cy="64" r="10" fill="#161616" stroke="#9a9a9a" stroke-width="1.5"/>
+  <rect x="242" y="82" width="48" height="2.5" rx="1" fill="#333333"/>
+  <rect x="242" y="88" width="36" height="2.5" rx="1" fill="#333333"/>
+  <rect x="242" y="94" width="42" height="2.5" rx="1" fill="#333333"/>
+  <rect x="242" y="103" width="28" height="7" rx="3" fill="#b0b0b0" opacity="0.25"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">App Development</div><div class="card-meta">Personal Projects · 2021–Present</div><div class="hp-bar"><div class="hp-fill" style="width:95%"></div></div></div>
     </a>
 
     <a href="./blockchain.html" class="p-card blockchain">
-      <div class="card-art"><span class="card-cat-badge" style="color:var(--gold);border-color:rgba(201,134,14,0.4);">Blockchain</span>
+      <div class="card-art"><span class="card-cat-badge">Blockchain</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- subtle dot grid -->
-  <circle cx="80" cy="45" r="1.5" fill="#d8c8b0"/>
-  <circle cx="160" cy="45" r="1.5" fill="#d8c8b0"/>
-  <circle cx="240" cy="45" r="1.5" fill="#d8c8b0"/>
-  <circle cx="80" cy="135" r="1.5" fill="#d8c8b0"/>
-  <circle cx="160" cy="135" r="1.5" fill="#d8c8b0"/>
-  <circle cx="240" cy="135" r="1.5" fill="#d8c8b0"/>
+  <circle cx="80" cy="45" r="1.5" fill="#3a3a3a"/>
+  <circle cx="160" cy="45" r="1.5" fill="#3a3a3a"/>
+  <circle cx="240" cy="45" r="1.5" fill="#3a3a3a"/>
+  <circle cx="80" cy="135" r="1.5" fill="#3a3a3a"/>
+  <circle cx="160" cy="135" r="1.5" fill="#3a3a3a"/>
+  <circle cx="240" cy="135" r="1.5" fill="#3a3a3a"/>
   <!-- chain line -->
-  <line x1="52" y1="90" x2="268" y2="90" stroke="#e0d0ba" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="52" y1="90" x2="268" y2="90" stroke="#333333" stroke-width="1.5" stroke-dasharray="4,3"/>
   <!-- block 1 -->
-  <rect x="28" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#c45e2a" stroke-width="1.5"/>
-  <rect x="34" y="72" width="36" height="6" rx="2" fill="#c45e2a" opacity="0.8"/>
-  <rect x="34" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="102" width="16" height="4" rx="1" fill="#d4891a" opacity="0.5"/>
+  <rect x="28" y="66" width="48" height="48" rx="6" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="1.5"/>
+  <rect x="34" y="72" width="36" height="6" rx="2" fill="#e6e6e6" opacity="0.8"/>
+  <rect x="34" y="82" width="28" height="2.5" rx="1" fill="#333333"/>
+  <rect x="34" y="88" width="22" height="2.5" rx="1" fill="#333333"/>
+  <rect x="34" y="94" width="30" height="2.5" rx="1" fill="#333333"/>
+  <rect x="34" y="102" width="16" height="4" rx="1" fill="#9a9a9a" opacity="0.5"/>
   <!-- connector arrow 1 -->
-  <polygon points="82,87 90,90 82,93" fill="#c45e2a" opacity="0.5"/>
+  <polygon points="82,87 90,90 82,93" fill="#e6e6e6" opacity="0.5"/>
   <!-- block 2 -->
-  <rect x="96" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#d4891a" stroke-width="1.5"/>
-  <rect x="102" y="72" width="36" height="6" rx="2" fill="#d4891a" opacity="0.8"/>
-  <rect x="102" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="102" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="102" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="102" y="102" width="16" height="4" rx="1" fill="#c45e2a" opacity="0.5"/>
+  <rect x="96" y="66" width="48" height="48" rx="6" fill="#1c1c1c" stroke="#9a9a9a" stroke-width="1.5"/>
+  <rect x="102" y="72" width="36" height="6" rx="2" fill="#9a9a9a" opacity="0.8"/>
+  <rect x="102" y="82" width="28" height="2.5" rx="1" fill="#333333"/>
+  <rect x="102" y="88" width="22" height="2.5" rx="1" fill="#333333"/>
+  <rect x="102" y="94" width="30" height="2.5" rx="1" fill="#333333"/>
+  <rect x="102" y="102" width="16" height="4" rx="1" fill="#e6e6e6" opacity="0.5"/>
   <!-- connector arrow 2 -->
-  <polygon points="150,87 158,90 150,93" fill="#c45e2a" opacity="0.5"/>
+  <polygon points="150,87 158,90 150,93" fill="#e6e6e6" opacity="0.5"/>
   <!-- block 3 -->
-  <rect x="164" y="66" width="48" height="48" rx="6" fill="#fff" stroke="#d4891a" stroke-width="1.5"/>
-  <rect x="170" y="72" width="36" height="6" rx="2" fill="#d4891a" opacity="0.8"/>
-  <rect x="170" y="82" width="28" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="170" y="88" width="22" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="170" y="94" width="30" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="170" y="102" width="16" height="4" rx="1" fill="#d4891a" opacity="0.5"/>
+  <rect x="164" y="66" width="48" height="48" rx="6" fill="#1c1c1c" stroke="#9a9a9a" stroke-width="1.5"/>
+  <rect x="170" y="72" width="36" height="6" rx="2" fill="#9a9a9a" opacity="0.8"/>
+  <rect x="170" y="82" width="28" height="2.5" rx="1" fill="#333333"/>
+  <rect x="170" y="88" width="22" height="2.5" rx="1" fill="#333333"/>
+  <rect x="170" y="94" width="30" height="2.5" rx="1" fill="#333333"/>
+  <rect x="170" y="102" width="16" height="4" rx="1" fill="#9a9a9a" opacity="0.5"/>
   <!-- connector arrow 3 -->
-  <polygon points="218,87 226,90 218,93" fill="#c45e2a" opacity="0.5"/>
+  <polygon points="218,87 226,90 218,93" fill="#e6e6e6" opacity="0.5"/>
   <!-- block 4 new -->
-  <rect x="232" y="62" width="56" height="56" rx="6" fill="#fff" stroke="#c45e2a" stroke-width="2"/>
-  <rect x="238" y="68" width="44" height="8" rx="3" fill="#c45e2a" opacity="0.9"/>
-  <rect x="238" y="80" width="34" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="238" y="86" width="26" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="238" y="92" width="38" height="2.5" rx="1" fill="#e0d0ba"/>
-  <rect x="238" y="100" width="20" height="5" rx="2" fill="#d4891a" opacity="0.6"/>
+  <rect x="232" y="62" width="56" height="56" rx="6" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="2"/>
+  <rect x="238" y="68" width="44" height="8" rx="3" fill="#e6e6e6" opacity="0.9"/>
+  <rect x="238" y="80" width="34" height="2.5" rx="1" fill="#333333"/>
+  <rect x="238" y="86" width="26" height="2.5" rx="1" fill="#333333"/>
+  <rect x="238" y="92" width="38" height="2.5" rx="1" fill="#333333"/>
+  <rect x="238" y="100" width="20" height="5" rx="2" fill="#9a9a9a" opacity="0.6"/>
   <!-- top code snippet -->
-  <rect x="28" y="20" width="90" height="36" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="34" y="26" width="50" height="3" rx="1" fill="#7a4f38" opacity="0.5"/>
-  <rect x="34" y="32" width="38" height="3" rx="1" fill="#c45e2a" opacity="0.6"/>
-  <rect x="34" y="38" width="60" height="3" rx="1" fill="#d4891a" opacity="0.5"/>
-  <rect x="34" y="44" width="30" height="3" rx="1" fill="#3a8a82" opacity="0.5"/>
+  <rect x="28" y="20" width="90" height="36" rx="4" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <rect x="34" y="26" width="50" height="3" rx="1" fill="#6a6a6a" opacity="0.5"/>
+  <rect x="34" y="32" width="38" height="3" rx="1" fill="#e6e6e6" opacity="0.6"/>
+  <rect x="34" y="38" width="60" height="3" rx="1" fill="#9a9a9a" opacity="0.5"/>
+  <rect x="34" y="44" width="30" height="3" rx="1" fill="#b0b0b0" opacity="0.5"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">To-Do DApp</div><div class="card-meta">Blockchain Dev · May 2022</div><div class="hp-bar"><div class="hp-fill" style="width:70%"></div></div></div>
     </a>
 
+    <a href="./ai-ml.html" class="p-card ai">
+      <div class="card-art"><span class="card-cat-badge">AI / ML</span>
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0f0f0f"/><circle cx="30" cy="30" r="1.3" fill="#2a2a2a"/><circle cx="30" cy="150" r="1.3" fill="#2a2a2a"/><circle cx="290" cy="30" r="1.3" fill="#2a2a2a"/><circle cx="290" cy="150" r="1.3" fill="#2a2a2a"/><line x1="72" y1="52" x2="160" y2="34" stroke="#333333" stroke-width="1"/><line x1="72" y1="52" x2="160" y2="72" stroke="#333333" stroke-width="1"/><line x1="72" y1="52" x2="160" y2="108" stroke="#333333" stroke-width="1"/><line x1="72" y1="52" x2="160" y2="146" stroke="#333333" stroke-width="1"/><line x1="72" y1="90" x2="160" y2="34" stroke="#333333" stroke-width="1"/><line x1="72" y1="90" x2="160" y2="72" stroke="#333333" stroke-width="1"/><line x1="72" y1="90" x2="160" y2="108" stroke="#333333" stroke-width="1"/><line x1="72" y1="90" x2="160" y2="146" stroke="#333333" stroke-width="1"/><line x1="72" y1="128" x2="160" y2="34" stroke="#333333" stroke-width="1"/><line x1="72" y1="128" x2="160" y2="72" stroke="#333333" stroke-width="1"/><line x1="72" y1="128" x2="160" y2="108" stroke="#333333" stroke-width="1"/><line x1="72" y1="128" x2="160" y2="146" stroke="#333333" stroke-width="1"/><line x1="160" y1="34" x2="248" y2="72" stroke="#333333" stroke-width="1"/><line x1="160" y1="34" x2="248" y2="108" stroke="#333333" stroke-width="1"/><line x1="160" y1="72" x2="248" y2="72" stroke="#333333" stroke-width="1"/><line x1="160" y1="72" x2="248" y2="108" stroke="#333333" stroke-width="1"/><line x1="160" y1="108" x2="248" y2="72" stroke="#333333" stroke-width="1"/><line x1="160" y1="108" x2="248" y2="108" stroke="#333333" stroke-width="1"/><line x1="160" y1="146" x2="248" y2="72" stroke="#333333" stroke-width="1"/><line x1="160" y1="146" x2="248" y2="108" stroke="#333333" stroke-width="1"/><circle cx="72" cy="52" r="9" fill="#1c1c1c" stroke="#9a9a9a" stroke-width="1.5"/><circle cx="72" cy="90" r="9" fill="#1c1c1c" stroke="#9a9a9a" stroke-width="1.5"/><circle cx="72" cy="128" r="9" fill="#1c1c1c" stroke="#9a9a9a" stroke-width="1.5"/><circle cx="160" cy="34" r="9" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="1.5"/><circle cx="160" cy="72" r="9" fill="#e6e6e6" stroke="#e6e6e6" stroke-width="2"/><circle cx="160" cy="108" r="9" fill="#e6e6e6" stroke="#e6e6e6" stroke-width="2"/><circle cx="160" cy="146" r="9" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="1.5"/><circle cx="248" cy="72" r="11" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="2"/><circle cx="248" cy="108" r="11" fill="#1c1c1c" stroke="#e6e6e6" stroke-width="2"/><rect x="266" y="68" width="26" height="4" rx="2" fill="#9a9a9a" opacity="0.5"/><rect x="266" y="104" width="18" height="4" rx="2" fill="#e6e6e6" opacity="0.6"/></svg>
+      </div>
+      <div class="card-body"><div class="card-title">AI / ML Projects</div><div class="card-meta">Machine Learning &amp; Computer Vision · Personal</div><div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div></div>
+    </a>
+
     <a href="./Adevu.html" class="p-card web">
       <div class="card-art"><span class="card-cat-badge">Design</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- ground line -->
-  <rect x="0" y="148" width="320" height="32" rx="0" fill="#e8d5b7"/>
-  <line x1="0" y1="148" x2="320" y2="148" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="0" y="148" width="320" height="32" rx="0" fill="#1e1e1e"/>
+  <line x1="0" y1="148" x2="320" y2="148" stroke="#3a3a3a" stroke-width="1"/>
   <!-- main building -->
-  <rect x="90" y="52" width="140" height="96" rx="2" fill="#fff" stroke="#d8c8b0" stroke-width="1.5"/>
+  <rect x="90" y="52" width="140" height="96" rx="2" fill="#1c1c1c" stroke="#3a3a3a" stroke-width="1.5"/>
   <!-- roofline accent -->
-  <rect x="86" y="48" width="148" height="8" rx="2" fill="#c45e2a" opacity="0.85"/>
+  <rect x="86" y="48" width="148" height="8" rx="2" fill="#e6e6e6" opacity="0.85"/>
   <!-- hotel sign band -->
-  <rect x="110" y="60" width="100" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="124" y="64" width="72" height="5" rx="1" fill="#c45e2a" opacity="0.6"/>
+  <rect x="110" y="60" width="100" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="124" y="64" width="72" height="5" rx="1" fill="#e6e6e6" opacity="0.6"/>
   <!-- windows row 1 -->
-  <rect x="100" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="124" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="151" y="82" width="18" height="14" rx="2" fill="#d4891a" opacity="0.35" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="178" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="202" y="82" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="100" y="82" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="124" y="82" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="151" y="82" width="18" height="14" rx="2" fill="#9a9a9a" opacity="0.35" stroke="#333333" stroke-width="1"/>
+  <rect x="178" y="82" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="202" y="82" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- windows row 2 -->
-  <rect x="100" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="124" y="103" width="18" height="14" rx="2" fill="#c45e2a" opacity="0.25" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="151" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="178" y="103" width="18" height="14" rx="2" fill="#d4891a" opacity="0.3" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="202" y="103" width="18" height="14" rx="2" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="100" y="103" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="124" y="103" width="18" height="14" rx="2" fill="#e6e6e6" opacity="0.25" stroke="#333333" stroke-width="1"/>
+  <rect x="151" y="103" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="178" y="103" width="18" height="14" rx="2" fill="#9a9a9a" opacity="0.3" stroke="#333333" stroke-width="1"/>
+  <rect x="202" y="103" width="18" height="14" rx="2" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- door -->
-  <rect x="148" y="122" width="24" height="26" rx="2" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
-  <circle cx="168" cy="135" r="2" fill="#c45e2a" opacity="0.6"/>
+  <rect x="148" y="122" width="24" height="26" rx="2" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="1"/>
+  <circle cx="168" cy="135" r="2" fill="#e6e6e6" opacity="0.6"/>
   <!-- left lamp post -->
-  <rect x="62" y="96" width="3" height="52" rx="1" fill="#d8c8b0"/>
-  <rect x="56" y="90" width="15" height="10" rx="5" fill="#d4891a" opacity="0.5"/>
+  <rect x="62" y="96" width="3" height="52" rx="1" fill="#3a3a3a"/>
+  <rect x="56" y="90" width="15" height="10" rx="5" fill="#9a9a9a" opacity="0.5"/>
   <!-- right lamp post -->
-  <rect x="255" y="96" width="3" height="52" rx="1" fill="#d8c8b0"/>
-  <rect x="249" y="90" width="15" height="10" rx="5" fill="#d4891a" opacity="0.5"/>
+  <rect x="255" y="96" width="3" height="52" rx="1" fill="#3a3a3a"/>
+  <rect x="249" y="90" width="15" height="10" rx="5" fill="#9a9a9a" opacity="0.5"/>
   <!-- pathway -->
-  <rect x="138" y="148" width="44" height="32" fill="#efe5d3"/>
-  <line x1="160" y1="148" x2="160" y2="180" stroke="#e0d0ba" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="138" y="148" width="44" height="32" fill="#161616"/>
+  <line x1="160" y1="148" x2="160" y2="180" stroke="#333333" stroke-width="1" stroke-dasharray="4,3"/>
   <!-- left bushes -->
-  <circle cx="76" cy="148" r="12" fill="#5a7a5c" opacity="0.4"/>
-  <circle cx="88" cy="152" r="9" fill="#5a7a5c" opacity="0.3"/>
+  <circle cx="76" cy="148" r="12" fill="#808080" opacity="0.4"/>
+  <circle cx="88" cy="152" r="9" fill="#808080" opacity="0.3"/>
   <!-- right bushes -->
-  <circle cx="244" cy="148" r="12" fill="#5a7a5c" opacity="0.4"/>
-  <circle cx="232" cy="152" r="9" fill="#5a7a5c" opacity="0.3"/>
+  <circle cx="244" cy="148" r="12" fill="#808080" opacity="0.4"/>
+  <circle cx="232" cy="152" r="9" fill="#808080" opacity="0.3"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">Hotel Management</div><div class="card-meta">ADEVU · Jun 2023–Mar 2024</div><div class="hp-bar"><div class="hp-fill" style="width:88%"></div></div></div>
@@ -810,49 +641,49 @@ body::after{
     <a href="Techbiz.html" class="p-card web">
       <div class="card-art"><span class="card-cat-badge">Design</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- sidebar -->
-  <rect x="18" y="20" width="62" height="142" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="18" y="20" width="62" height="30" rx="4" fill="#c45e2a" opacity="0.15"/>
-  <rect x="26" y="30" width="46" height="5" rx="2" fill="#c45e2a" opacity="0.7"/>
-  <rect x="24" y="44" width="50" height="8" rx="3" fill="#c45e2a" opacity="0.85"/>
-  <rect x="24" y="56" width="50" height="8" rx="3" fill="#f0e8d8"/>
-  <rect x="24" y="68" width="50" height="8" rx="3" fill="#f0e8d8"/>
-  <rect x="24" y="80" width="50" height="8" rx="3" fill="#f0e8d8"/>
+  <rect x="18" y="20" width="62" height="142" rx="4" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <rect x="18" y="20" width="62" height="30" rx="4" fill="#e6e6e6" opacity="0.15"/>
+  <rect x="26" y="30" width="46" height="5" rx="2" fill="#e6e6e6" opacity="0.7"/>
+  <rect x="24" y="44" width="50" height="8" rx="3" fill="#e6e6e6" opacity="0.85"/>
+  <rect x="24" y="56" width="50" height="8" rx="3" fill="#1a1a1a"/>
+  <rect x="24" y="68" width="50" height="8" rx="3" fill="#1a1a1a"/>
+  <rect x="24" y="80" width="50" height="8" rx="3" fill="#1a1a1a"/>
   <rect x="26" y="46" width="24" height="3" rx="1" fill="rgba(255,255,255,0.8)"/>
-  <rect x="26" y="58" width="30" height="3" rx="1" fill="#d8c8b0"/>
-  <rect x="26" y="70" width="26" height="3" rx="1" fill="#d8c8b0"/>
-  <rect x="26" y="82" width="28" height="3" rx="1" fill="#d8c8b0"/>
+  <rect x="26" y="58" width="30" height="3" rx="1" fill="#3a3a3a"/>
+  <rect x="26" y="70" width="26" height="3" rx="1" fill="#3a3a3a"/>
+  <rect x="26" y="82" width="28" height="3" rx="1" fill="#3a3a3a"/>
   <!-- main panel -->
-  <rect x="88" y="20" width="214" height="142" rx="4" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="88" y="20" width="214" height="142" rx="4" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
   <!-- topbar -->
-  <rect x="88" y="20" width="214" height="18" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="96" y="26" width="80" height="5" rx="2" fill="#c45e2a" opacity="0.5"/>
+  <rect x="88" y="20" width="214" height="18" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="96" y="26" width="80" height="5" rx="2" fill="#e6e6e6" opacity="0.5"/>
   <!-- gem cards row -->
-  <rect x="96" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="96" y="46" width="58" height="54" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- ruby gem shape -->
-  <polygon points="125,54 134,62 125,70 116,62" fill="#c45e2a" opacity="0.75"/>
-  <rect x="106" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="110" y="84" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.4"/>
-  <rect x="162" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <polygon points="125,54 134,62 125,70 116,62" fill="#e6e6e6" opacity="0.75"/>
+  <rect x="106" y="78" width="38" height="3" rx="1" fill="#333333"/>
+  <rect x="110" y="84" width="30" height="3" rx="1" fill="#e6e6e6" opacity="0.4"/>
+  <rect x="162" y="46" width="58" height="54" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- sapphire gem -->
-  <polygon points="191,54 200,62 191,70 182,62" fill="#3a8a82" opacity="0.65"/>
-  <rect x="172" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="176" y="84" width="30" height="3" rx="1" fill="#3a8a82" opacity="0.4"/>
-  <rect x="228" y="46" width="58" height="54" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <polygon points="191,54 200,62 191,70 182,62" fill="#b0b0b0" opacity="0.65"/>
+  <rect x="172" y="78" width="38" height="3" rx="1" fill="#333333"/>
+  <rect x="176" y="84" width="30" height="3" rx="1" fill="#b0b0b0" opacity="0.4"/>
+  <rect x="228" y="46" width="58" height="54" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- emerald gem -->
-  <polygon points="257,54 266,62 257,70 248,62" fill="#5a7a5c" opacity="0.65"/>
-  <rect x="238" y="78" width="38" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="242" y="84" width="30" height="3" rx="1" fill="#5a7a5c" opacity="0.4"/>
+  <polygon points="257,54 266,62 257,70 248,62" fill="#808080" opacity="0.65"/>
+  <rect x="238" y="78" width="38" height="3" rx="1" fill="#333333"/>
+  <rect x="242" y="84" width="30" height="3" rx="1" fill="#808080" opacity="0.4"/>
   <!-- chart panel -->
-  <rect x="96" y="108" width="196" height="42" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="102" y="130" width="14" height="14" rx="2" fill="#c45e2a" opacity="0.7"/>
-  <rect x="120" y="122" width="14" height="22" rx="2" fill="#3a8a82" opacity="0.6"/>
-  <rect x="138" y="118" width="14" height="26" rx="2" fill="#d4891a" opacity="0.65"/>
-  <rect x="156" y="125" width="14" height="19" rx="2" fill="#5a7a5c" opacity="0.55"/>
-  <rect x="174" y="120" width="14" height="24" rx="2" fill="#c45e2a" opacity="0.45"/>
-  <rect x="192" y="128" width="14" height="16" rx="2" fill="#7a4f38" opacity="0.4"/>
-  <line x1="102" y1="144" x2="276" y2="144" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="96" y="108" width="196" height="42" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="102" y="130" width="14" height="14" rx="2" fill="#e6e6e6" opacity="0.7"/>
+  <rect x="120" y="122" width="14" height="22" rx="2" fill="#b0b0b0" opacity="0.6"/>
+  <rect x="138" y="118" width="14" height="26" rx="2" fill="#9a9a9a" opacity="0.65"/>
+  <rect x="156" y="125" width="14" height="19" rx="2" fill="#808080" opacity="0.55"/>
+  <rect x="174" y="120" width="14" height="24" rx="2" fill="#e6e6e6" opacity="0.45"/>
+  <rect x="192" y="128" width="14" height="16" rx="2" fill="#6a6a6a" opacity="0.4"/>
+  <line x1="102" y1="144" x2="276" y2="144" stroke="#333333" stroke-width="1"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">Gemstone Admin Panel</div><div class="card-meta">Techbiz · Oct 2021–Apr 2022</div><div class="hp-bar"><div class="hp-fill" style="width:80%"></div></div></div>
@@ -861,52 +692,52 @@ body::after{
     <a href="./United.html" class="p-card web">
       <div class="card-art"><span class="card-cat-badge">Design</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- map background tiles -->
-  <rect x="0" y="0" width="320" height="180" fill="#f7f0e6"/>
-  <line x1="0" y1="60" x2="320" y2="60" stroke="#e8d5b7" stroke-width="1"/>
-  <line x1="0" y1="120" x2="320" y2="120" stroke="#e8d5b7" stroke-width="1"/>
-  <line x1="80" y1="0" x2="80" y2="180" stroke="#e8d5b7" stroke-width="1"/>
-  <line x1="160" y1="0" x2="160" y2="180" stroke="#e8d5b7" stroke-width="1"/>
-  <line x1="240" y1="0" x2="240" y2="180" stroke="#e8d5b7" stroke-width="1"/>
+  <rect x="0" y="0" width="320" height="180" fill="#161616"/>
+  <line x1="0" y1="60" x2="320" y2="60" stroke="#1e1e1e" stroke-width="1"/>
+  <line x1="0" y1="120" x2="320" y2="120" stroke="#1e1e1e" stroke-width="1"/>
+  <line x1="80" y1="0" x2="80" y2="180" stroke="#1e1e1e" stroke-width="1"/>
+  <line x1="160" y1="0" x2="160" y2="180" stroke="#1e1e1e" stroke-width="1"/>
+  <line x1="240" y1="0" x2="240" y2="180" stroke="#1e1e1e" stroke-width="1"/>
   <!-- road horizontal -->
-  <rect x="0" y="82" width="320" height="16" rx="0" fill="#e0d0ba"/>
+  <rect x="0" y="82" width="320" height="16" rx="0" fill="#333333"/>
   <line x1="0" y1="90" x2="320" y2="90" stroke="#fff" stroke-width="1.5" stroke-dasharray="12,8"/>
   <!-- road vertical -->
-  <rect x="152" y="0" width="16" height="180" rx="0" fill="#e0d0ba"/>
+  <rect x="152" y="0" width="16" height="180" rx="0" fill="#333333"/>
   <line x1="160" y1="0" x2="160" y2="180" stroke="#fff" stroke-width="1.5" stroke-dasharray="12,8"/>
   <!-- buildings -->
-  <rect x="18" y="20" width="50" height="56" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
-  <rect x="22" y="26" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="38" y="26" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="22" y="42" width="12" height="10" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="38" y="42" width="12" height="10" rx="1" fill="#c45e2a" opacity="0.3"/>
-  <rect x="178" y="20" width="38" height="56" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
-  <rect x="224" y="20" width="78" height="56" rx="3" fill="#efe5d3" stroke="#d8c8b0" stroke-width="1"/>
-  <rect x="228" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="248" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="268" y="26" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="228" y="44" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="248" y="44" width="14" height="12" rx="1" fill="#d4891a" opacity="0.35"/>
-  <rect x="268" y="44" width="14" height="12" rx="1" fill="#fff" opacity="0.8"/>
-  <rect x="18" y="110" width="120" height="52" rx="3" fill="#efe5d3" stroke="#d8c8b0" stroke-width="1"/>
-  <rect x="182" y="110" width="120" height="52" rx="3" fill="#e8d5b7" stroke="#d8c8b0" stroke-width="1"/>
+  <rect x="18" y="20" width="50" height="56" rx="3" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="22" y="26" width="12" height="10" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="38" y="26" width="12" height="10" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="22" y="42" width="12" height="10" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="38" y="42" width="12" height="10" rx="1" fill="#e6e6e6" opacity="0.3"/>
+  <rect x="178" y="20" width="38" height="56" rx="3" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="224" y="20" width="78" height="56" rx="3" fill="#161616" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="228" y="26" width="14" height="12" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="248" y="26" width="14" height="12" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="268" y="26" width="14" height="12" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="228" y="44" width="14" height="12" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="248" y="44" width="14" height="12" rx="1" fill="#9a9a9a" opacity="0.35"/>
+  <rect x="268" y="44" width="14" height="12" rx="1" fill="#1c1c1c" opacity="0.8"/>
+  <rect x="18" y="110" width="120" height="52" rx="3" fill="#161616" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="182" y="110" width="120" height="52" rx="3" fill="#1e1e1e" stroke="#3a3a3a" stroke-width="1"/>
   <!-- route line -->
-  <polyline points="60,90 160,90 160,50" stroke="#c45e2a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="60,90 160,90 160,50" stroke="#e6e6e6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- start pin -->
-  <circle cx="60" cy="90" r="6" fill="#c45e2a"/>
-  <circle cx="60" cy="90" r="3" fill="#fff"/>
+  <circle cx="60" cy="90" r="6" fill="#e6e6e6"/>
+  <circle cx="60" cy="90" r="3" fill="#1c1c1c"/>
   <!-- end pin -->
-  <circle cx="160" cy="50" r="8" fill="#c45e2a"/>
-  <circle cx="160" cy="50" r="4" fill="#fff"/>
-  <circle cx="160" cy="50" r="2" fill="#c45e2a"/>
+  <circle cx="160" cy="50" r="8" fill="#e6e6e6"/>
+  <circle cx="160" cy="50" r="4" fill="#1c1c1c"/>
+  <circle cx="160" cy="50" r="2" fill="#e6e6e6"/>
   <!-- pin drop shadow -->
-  <ellipse cx="160" cy="57" rx="5" ry="2" fill="#c45e2a" opacity="0.2"/>
+  <ellipse cx="160" cy="57" rx="5" ry="2" fill="#e6e6e6" opacity="0.2"/>
   <!-- mini device frame bottom right -->
-  <rect x="218" y="116" width="76" height="40" rx="5" fill="#fff" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="222" y="120" width="68" height="28" rx="3" fill="#f7f0e6"/>
-  <rect x="222" y="120" width="68" height="8" rx="3" fill="#c45e2a" opacity="0.2"/>
-  <rect x="226" y="122" width="30" height="3" rx="1" fill="#c45e2a" opacity="0.5"/>
+  <rect x="218" y="116" width="76" height="40" rx="5" fill="#1c1c1c" stroke="#333333" stroke-width="1"/>
+  <rect x="222" y="120" width="68" height="28" rx="3" fill="#161616"/>
+  <rect x="222" y="120" width="68" height="8" rx="3" fill="#e6e6e6" opacity="0.2"/>
+  <rect x="226" y="122" width="30" height="3" rx="1" fill="#e6e6e6" opacity="0.5"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">United Navigation App</div><div class="card-meta">Microsoft Challenge · Feb 2022</div><div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div></div>
@@ -915,46 +746,46 @@ body::after{
     <a href="zedd-labz.html" class="p-card web">
       <div class="card-art"><span class="card-cat-badge">Design</span>
         <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="180" fill="#f2ebe0"/>
+  <rect width="320" height="180" fill="#0f0f0f"/>
   <!-- browser frame -->
-  <rect x="24" y="18" width="272" height="148" rx="6" fill="#fff" stroke="#e0d0ba" stroke-width="1.5"/>
+  <rect x="24" y="18" width="272" height="148" rx="6" fill="#1c1c1c" stroke="#333333" stroke-width="1.5"/>
   <!-- browser chrome -->
-  <rect x="24" y="18" width="272" height="22" rx="6" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
+  <rect x="24" y="18" width="272" height="22" rx="6" fill="#161616" stroke="#333333" stroke-width="1"/>
   <!-- traffic lights -->
-  <circle cx="38" cy="29" r="4" fill="#e07070" opacity="0.7"/>
-  <circle cx="52" cy="29" r="4" fill="#d4891a" opacity="0.7"/>
-  <circle cx="66" cy="29" r="4" fill="#5a7a5c" opacity="0.7"/>
+  <circle cx="38" cy="29" r="4" fill="#888888" opacity="0.7"/>
+  <circle cx="52" cy="29" r="4" fill="#9a9a9a" opacity="0.7"/>
+  <circle cx="66" cy="29" r="4" fill="#808080" opacity="0.7"/>
   <!-- url bar -->
-  <rect x="80" y="23" width="180" height="12" rx="6" fill="#f0e8d8" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="88" y="27" width="80" height="4" rx="2" fill="#d8c8b0"/>
+  <rect x="80" y="23" width="180" height="12" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <rect x="88" y="27" width="80" height="4" rx="2" fill="#3a3a3a"/>
   <!-- hero section of site -->
-  <rect x="24" y="40" width="272" height="60" rx="0" fill="#efe5d3"/>
+  <rect x="24" y="40" width="272" height="60" rx="0" fill="#161616"/>
   <!-- big heading lines -->
-  <rect x="50" y="52" width="100" height="10" rx="3" fill="#c45e2a" opacity="0.8"/>
-  <rect x="50" y="66" width="140" height="8" rx="3" fill="#3d2b1f" opacity="0.25"/>
-  <rect x="50" y="78" width="80" height="8" rx="3" fill="#3d2b1f" opacity="0.15"/>
+  <rect x="50" y="52" width="100" height="10" rx="3" fill="#e6e6e6" opacity="0.8"/>
+  <rect x="50" y="66" width="140" height="8" rx="3" fill="#4a4a4a" opacity="0.25"/>
+  <rect x="50" y="78" width="80" height="8" rx="3" fill="#4a4a4a" opacity="0.15"/>
   <!-- hero CTA button -->
-  <rect x="50" y="90" width="60" height="16" rx="3" fill="#c45e2a" opacity="0.85"/>
+  <rect x="50" y="90" width="60" height="16" rx="3" fill="#e6e6e6" opacity="0.85"/>
   <!-- hero graphic right side -->
-  <circle cx="230" cy="65" r="28" fill="#d4891a" opacity="0.12"/>
-  <circle cx="230" cy="65" r="18" fill="#d4891a" opacity="0.18"/>
-  <circle cx="230" cy="65" r="9" fill="#d4891a" opacity="0.5"/>
+  <circle cx="230" cy="65" r="28" fill="#9a9a9a" opacity="0.12"/>
+  <circle cx="230" cy="65" r="18" fill="#9a9a9a" opacity="0.18"/>
+  <circle cx="230" cy="65" r="9" fill="#9a9a9a" opacity="0.5"/>
   <!-- three content cards -->
-  <rect x="28" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="28" y="108" width="80" height="8" rx="4" fill="#c45e2a" opacity="0.5"/>
-  <rect x="34" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="34" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="120" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="120" y="108" width="80" height="8" rx="4" fill="#d4891a" opacity="0.5"/>
-  <rect x="126" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="126" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="126" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="212" y="108" width="80" height="50" rx="4" fill="#f7f0e6" stroke="#e0d0ba" stroke-width="1"/>
-  <rect x="212" y="108" width="80" height="8" rx="4" fill="#3a8a82" opacity="0.5"/>
-  <rect x="218" y="122" width="50" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="218" y="129" width="60" height="3" rx="1" fill="#e0d0ba"/>
-  <rect x="218" y="136" width="40" height="3" rx="1" fill="#e0d0ba"/>
+  <rect x="28" y="108" width="80" height="50" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="28" y="108" width="80" height="8" rx="4" fill="#e6e6e6" opacity="0.5"/>
+  <rect x="34" y="122" width="50" height="3" rx="1" fill="#333333"/>
+  <rect x="34" y="129" width="60" height="3" rx="1" fill="#333333"/>
+  <rect x="34" y="136" width="40" height="3" rx="1" fill="#333333"/>
+  <rect x="120" y="108" width="80" height="50" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="120" y="108" width="80" height="8" rx="4" fill="#9a9a9a" opacity="0.5"/>
+  <rect x="126" y="122" width="50" height="3" rx="1" fill="#333333"/>
+  <rect x="126" y="129" width="60" height="3" rx="1" fill="#333333"/>
+  <rect x="126" y="136" width="40" height="3" rx="1" fill="#333333"/>
+  <rect x="212" y="108" width="80" height="50" rx="4" fill="#161616" stroke="#333333" stroke-width="1"/>
+  <rect x="212" y="108" width="80" height="8" rx="4" fill="#b0b0b0" opacity="0.5"/>
+  <rect x="218" y="122" width="50" height="3" rx="1" fill="#333333"/>
+  <rect x="218" y="129" width="60" height="3" rx="1" fill="#333333"/>
+  <rect x="218" y="136" width="40" height="3" rx="1" fill="#333333"/>
 </svg>
       </div>
       <div class="card-body"><div class="card-title">Zedd Labz Redesign</div><div class="card-meta">Internship · Jun–Jul 2021</div><div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div></div>
@@ -983,27 +814,27 @@ body::after{
               <!-- Clean minimal SVG avatar -->
               <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
                 <!-- bg circle -->
-                <circle cx="40" cy="40" r="40" fill="#e8d5b7"/>
+                <circle cx="40" cy="40" r="40" fill="#1e1e1e"/>
                 <!-- hair -->
-                <ellipse cx="40" cy="26" rx="16" ry="14" fill="#3d2b1f"/>
-                <rect x="24" y="26" width="32" height="8" fill="#3d2b1f"/>
+                <ellipse cx="40" cy="26" rx="16" ry="14" fill="#4a4a4a"/>
+                <rect x="24" y="26" width="32" height="8" fill="#4a4a4a"/>
                 <!-- face -->
-                <ellipse cx="40" cy="34" rx="14" ry="15" fill="#f5c5a0"/>
+                <ellipse cx="40" cy="34" rx="14" ry="15" fill="#cfcfcf"/>
                 <!-- hair top detail -->
-                <ellipse cx="40" cy="22" rx="15" ry="10" fill="#3d2b1f"/>
-                <ellipse cx="32" cy="20" rx="5" ry="6" fill="#3d2b1f"/>
-                <ellipse cx="48" cy="20" rx="5" ry="6" fill="#3d2b1f"/>
+                <ellipse cx="40" cy="22" rx="15" ry="10" fill="#4a4a4a"/>
+                <ellipse cx="32" cy="20" rx="5" ry="6" fill="#4a4a4a"/>
+                <ellipse cx="48" cy="20" rx="5" ry="6" fill="#4a4a4a"/>
                 <!-- eyes -->
-                <ellipse cx="34" cy="33" rx="2.5" ry="3" fill="#3d2b1f"/>
-                <ellipse cx="46" cy="33" rx="2.5" ry="3" fill="#3d2b1f"/>
-                <circle cx="35" cy="32" r="1" fill="#fff" opacity="0.6"/>
-                <circle cx="47" cy="32" r="1" fill="#fff" opacity="0.6"/>
+                <ellipse cx="34" cy="33" rx="2.5" ry="3" fill="#4a4a4a"/>
+                <ellipse cx="46" cy="33" rx="2.5" ry="3" fill="#4a4a4a"/>
+                <circle cx="35" cy="32" r="1" fill="#1c1c1c" opacity="0.6"/>
+                <circle cx="47" cy="32" r="1" fill="#1c1c1c" opacity="0.6"/>
                 <!-- smile -->
-                <path d="M35,40 Q40,44 45,40" stroke="#c45e2a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M35,40 Q40,44 45,40" stroke="#e6e6e6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
                 <!-- neck -->
-                <rect x="36" y="47" width="8" height="7" fill="#f5c5a0"/>
+                <rect x="36" y="47" width="8" height="7" fill="#cfcfcf"/>
                 <!-- shirt / body -->
-                <path d="M20,80 Q20,60 40,58 Q60,60 60,80 Z" fill="#c45e2a" opacity="0.8"/>
+                <path d="M20,80 Q20,60 40,58 Q60,60 60,80 Z" fill="#e6e6e6" opacity="0.8"/>
                 <!-- collar -->
                 <path d="M32,55 L40,62 L48,55" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
               </svg>
@@ -1011,11 +842,11 @@ body::after{
             <div class="avatar-info">
               <div class="avatar-name">Shraboni<br>Banerjee</div>
               <div class="avatar-role">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="3" fill="#c45e2a"/></svg>
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="3" fill="#e6e6e6"/></svg>
                 Software Engineer
               </div>
               <div class="avatar-location">
-                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="#8a6a55" opacity="0.6"/></svg>
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="#7a7a7a" opacity="0.6"/></svg>
                 Bengaluru, India
               </div>
             </div>
@@ -1069,13 +900,22 @@ body::after{
 <section id="stats">
   <div class="section-header reveal">
     <div class="section-number">04 / Stats</div>
-    <div class="section-title-large">Coding Profiles</div>
-    <p class="sub-label">Programming statistics</p>
+    <div class="section-title-large">Coding Stats</div>
+    <p class="sub-label">Aggregated across AtCoder · LeetCode · CodeForces · CodeChef</p>
   </div>
-  <div class="stats-grid reveal">
-    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">500+</span><span class="stat-label">LeetCode Problems</span><span class="stat-sub">Solved &amp; Counting</span></div>
-    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">1785</span><span class="stat-label">CodeChef Rating</span><span class="stat-sub">3★ · Rank 31/25,909</span></div>
-    <div class="stat-card"><span class="stat-icon">◈</span><span class="stat-value">#2350</span><span class="stat-label">Codeforces Div. 3</span><span class="stat-sub">out of 40,160</span></div>
+  <div class="cs-wrap reveal">
+    <div class="cs-metrics"><div class="cs-metric"><div class="n">1093</div><div class="l">Questions Solved</div></div><div class="cs-metric"><div class="n">372</div><div class="l">Active Days</div></div><div class="cs-metric"><div class="n">770</div><div class="l">Submissions</div></div><div class="cs-metric"><div class="n">38</div><div class="l">Max Streak</div></div><div class="cs-metric"><div class="n">11</div><div class="l">Current Streak</div></div><div class="cs-metric"><div class="n">6</div><div class="l">Contests</div></div></div>
+    <div class="cs-grid">
+      <div class="cs-card">
+        <div class="cs-card-title">DSA Topic Analysis</div>
+        <div class="cs-topic"><div class="cs-topic-row"><div class="cs-topic-lbl">Arrays</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:100.0%;"></div></div><div class="cs-topic-val">303</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">String</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:41.6%;"></div></div><div class="cs-topic-val">126</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">Dynamic Programming</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:38.3%;"></div></div><div class="cs-topic-val">116</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">HashMap & Set</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:35.3%;"></div></div><div class="cs-topic-val">107</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">Math</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:29.7%;"></div></div><div class="cs-topic-val">90</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">Sorting</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:25.1%;"></div></div><div class="cs-topic-val">76</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">Two Pointers</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:23.4%;"></div></div><div class="cs-topic-val">71</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">Binary Search</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:22.4%;"></div></div><div class="cs-topic-val">68</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">DFS</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:17.5%;"></div></div><div class="cs-topic-val">53</div></div><div class="cs-topic-row"><div class="cs-topic-lbl">BFS</div><div class="cs-topic-track"><div class="cs-topic-fill" style="width:14.9%;"></div></div><div class="cs-topic-val">45</div></div></div>
+      </div>
+      <div class="cs-col">
+        <div class="cs-card"><div class="cs-card-title">Question Distribution</div><div class="cs-dist-head">DSA <b>578</b></div><div class="cs-seg"><span style="width:32.7%;background:#e6e6e6;"></span><span style="width:50.7%;background:#9a9a9a;"></span><span style="width:16.6%;background:#5a5a5a;"></span></div><div class="cs-legend"><div class="cs-legend-row"><span class="k"><span class="cs-dot" style="background:#e6e6e6;"></span>Easy</span><span class="v">189</span></div><div class="cs-legend-row"><span class="k"><span class="cs-dot" style="background:#9a9a9a;"></span>Medium</span><span class="v">293</span></div><div class="cs-legend-row"><span class="k"><span class="cs-dot" style="background:#5a5a5a;"></span>Hard</span><span class="v">96</span></div></div><hr class="cs-divider"><div class="cs-dist-head">Competitive <b>515</b></div><div class="cs-seg"><span style="width:89.3%;background:#e6e6e6;"></span><span style="width:10.7%;background:#7a7a7a;"></span></div><div class="cs-legend"><div class="cs-legend-row"><span class="k"><span class="cs-dot" style="background:#e6e6e6;"></span>CodeChef</span><span class="v">460</span></div><div class="cs-legend-row"><span class="k"><span class="cs-dot" style="background:#7a7a7a;"></span>Codeforces</span><span class="v">55</span></div></div></div>
+        <div class="cs-card"><div class="cs-card-title">Contest Ratings</div><div class="cs-rate-row"><span class="p"><span class="cs-badge">3★</span>CodeChef</span><span class="r"><b>1773</b><small>max 1786</small></span></div><div class="cs-rate-row"><span class="p"><span class="cs-badge">Newbie</span>Codeforces</span><span class="r"><b>542</b><small>max 542</small></span></div><div class="cs-rate-row"><span class="p">Contests Attended</span><span class="r"><b>6</b><small>CodeChef 5 · CF 1</small></span></div></div>
+      </div>
+    </div>
+    <div class="cs-card"><div class="cs-foot"><div class="cs-plats"><span class="cs-plat">AtCoder</span><span class="cs-plat">LeetCode</span><span class="cs-plat">CodeForces</span><span class="cs-plat">CodeChef</span></div><div class="cs-rank">Global Rank <b>#7901</b></div><a class="cs-link" href="https://codolio.com/profile/mismagius" target="_blank" rel="noopener">Full profile on Codolio ↗</a></div></div>
   </div>
 </section>
 
@@ -1096,34 +936,18 @@ body::after{
 <a href="#" class="back-top">↑ Top</a>
 
 <script>
-// ── Background slideshow ───────────────────────────────────
-const heroSlides = document.querySelectorAll('.bg-slide');
-const dots       = document.querySelectorAll('.hero-dot');
-const numEl      = document.getElementById('slideNum');
-let current      = 0, autoTimer;
+// ── In-page smooth scroll ─────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const t = document.querySelector(id);
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    }
+  });
+});
 
-function goTo(n) {
-  heroSlides[current].classList.remove('active');
-  if(dots[current]) dots[current].classList.remove('active');
-  current = (n + heroSlides.length) % heroSlides.length;
-  heroSlides[current].classList.add('active');
-  if(dots[current]) dots[current].classList.add('active');
-  if(numEl) numEl.textContent = String(current + 1).padStart(2, '0');
-}
-
-function startAuto() {
-  clearInterval(autoTimer);
-  autoTimer = setInterval(() => goTo(current + 1), 5000);
-}
-
-dots.forEach(d => d.addEventListener('click', () => {
-  goTo(+d.dataset.slide);
-  startAuto();
-}));
-
-startAuto();
-
-// ── Portfolio filters ──────────────────────────────────────
+// ── Portfolio filters ─────────────────────────────────
 document.querySelectorAll('.f-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
@@ -1135,10 +959,10 @@ document.querySelectorAll('.f-btn').forEach(btn => {
   });
 });
 
-// ── Scroll reveal ──────────────────────────────────────────
+// ── Scroll reveal ─────────────────────────────────────
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
