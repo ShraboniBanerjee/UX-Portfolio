@@ -1,19 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/*--------------------------------------------------------------
+# Base — black minimalist theme (Roboto)
+--------------------------------------------------------------*/
 body {
-  font-family: "sans-serif", roboto;
-  color: #0d1e2d;
+  font-family: 'Roboto', sans-serif;
+  color: #c2c2c2;
+  background: #000;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: #777;
+  color: #8c8c8c;
   text-decoration: none;
+  transition: color .2s ease;
 }
 
 a:hover {
-  color: #000;
+  color: #fff;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Roboto', sans-serif;
+  color: #f4f4f4;
+  font-weight: 700;
 }
 
 .section {
@@ -22,15 +32,17 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .filters a {
   text-decoration: none;
-  color: #000;
+  color: #8c8c8c;
   display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
   position: relative;
+  transition: color .2s ease;
 }
 
 .filters a:hover, .filters a:focus, .filters a:active {
   text-decoration: none;
+  color: #fff;
 }
 
 .filters a:hover:before {
@@ -40,11 +52,11 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   right: 10px;
   bottom: 0;
   height: 1px;
-  background-color: #000;
+  background-color: #fff;
 }
 
 .filters a.active {
-  color: #000;
+  color: #fff;
 }
 
 .filters a.active:before {
@@ -54,7 +66,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   right: 10px;
   bottom: 0;
   height: 1px;
-  background-color: #000;
+  background-color: #fff;
 }
 
 .item {
@@ -76,7 +88,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   visibility: hidden;
   opacity: 0;
   transition: .3s all ease-in-out;
@@ -104,12 +116,14 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .item .item-wrap > .work-info h3 {
   font-size: 20px;
   margin-bottom: 0;
+  color: #fff;
 }
 
 .item .item-wrap > .work-info span {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: .2rem;
+  color: #cfcfcf;
 }
 
 .item .item-wrap:hover {
@@ -133,7 +147,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .testimonial-wrap {
   padding: 50px 50px 80px 50px;
-  background: #eceff2;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .testimonial-wrap .testimonial {
@@ -150,6 +165,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .testimonial-wrap .testimonial blockquote p {
   font-size: 20px;
+  color: #e6e6e6;
 }
 
 .h3 {
@@ -160,21 +176,21 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   font-size: 16px;
 }
 
-
-
 .heading {
   font-size: 28px;
+  color: #f4f4f4;
 }
 
 .readmore {
   display: inline-block;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   padding: 10px 15px;
   font-size: 12px;
   text-transform: uppercase;
-  color: #000;
+  color: #fff;
   transition: .2s all ease;
   font-weight: 700;
+  background: transparent;
 }
 
 .readmore:active, .readmore:focus, .readmore:hover {
@@ -182,12 +198,10 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 .readmore:hover {
-  color: #fff;
+  color: #000;
   text-decoration: none;
-  background: #000;
+  background: #fff;
 }
-
-
 
 .sticky-content {
   position: sticky;
@@ -209,31 +223,38 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   top: .7rem;
   width: 10px;
   height: 2px;
-  background: #000;
+  background: #fff;
 }
 
 .form-control {
   border-radius: 0;
-  background: #f8f9fa;
-  border: 1px solid transparent;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f4f4f4;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
 
+.form-control::placeholder {
+  color: #6a6a6a;
+}
+
 .form-control:active, .form-control:focus {
-  background: #eff1f4;
+  background: #1a1a1a;
   outline: none;
   box-shadow: none;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f4f4f4;
 }
 
 .custom-progress {
   height: 7px;
   border-radius: 0;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .custom-progress .progress-bar {
-  background: #000;
+  background: #fff;
 }
 
 
@@ -262,7 +283,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .php-email-form .loading {
   display: none;
-  background: #fff;
+  background: #111;
+  color: #c2c2c2;
   text-align: center;
   padding: 15px;
 }
@@ -274,8 +296,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
+  border: 3px solid #fff;
+  border-top-color: #333;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
@@ -303,7 +325,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 --------------------------------------------------------------*/
 /* Custom Navmenu */
 .custom-navmenu {
-  background: #0d1e2d;
+  background: #0a0a0a;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .custom-navmenu .custom-menu, .custom-navmenu .custom-menu li {
@@ -324,6 +347,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .custom-navmenu .custom-menu li a:hover {
   text-decoration: none;
+  color: #fff;
 }
 
 .custom-navmenu .custom-menu li.active a {
@@ -363,6 +387,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 .custom-navbar .navbar-brand {
   font-size: 1.7rem;
+  color: #f4f4f4;
 }
 
 /* Burger */
@@ -377,7 +402,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   width: 100%;
   height: 2px;
   display: block;
-  background: #000;
+  background: #fff;
   border-radius: 2px;
   position: absolute;
   opacity: 1;
@@ -430,16 +455,18 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .burger:focus {
   outline: none;
 }
-.img-1{
-  color: blue;
+
+.img-1 {
+  color: #f4f4f4;
   padding: 0.3rem;
 }
 
-.img-2{
+.img-2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -448,7 +475,11 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 .footer a {
-  color: #000;
+  color: #c2c2c2;
+}
+
+.footer a:hover {
+  color: #fff;
 }
 
 .social a {
@@ -456,10 +487,12 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #f8f9fa;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
   text-align: center;
-  color: #0d1e2d;
+  color: #c2c2c2;
+  transition: .2s all ease;
 }
 
 .social a span {
@@ -471,9 +504,11 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 .social a:hover {
-  color:#000;
+  color: #000;
+  background: #fff;
+  border-color: #fff;
 }
 
 .social span:hover {
-  color: blue;
+  color: inherit;
 }
